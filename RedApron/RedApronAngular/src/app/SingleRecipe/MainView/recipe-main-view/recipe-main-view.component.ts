@@ -7,9 +7,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeMainViewComponent implements OnInit {
 
+  
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  
 }
+
