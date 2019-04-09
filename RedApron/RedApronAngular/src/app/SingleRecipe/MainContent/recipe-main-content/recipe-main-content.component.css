@@ -4,5 +4,9 @@
 }
 
 .recipeCard {
-    margin-right:50px;
+    margin-right: 50px;
+}
+
+.alarmIcon {
+    height: 2000px;
 }

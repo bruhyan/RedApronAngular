@@ -6,18 +6,27 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
 import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
+import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+
+
 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MainContentComponent } from './SingleRecipe/MainContent/main-content/main-content.component';
-import { MainViewComponent } from './SingleRecipe/MainView/main-view/main-view.component';
+import { RecipeMainViewComponent } from './SingleRecipe/MainView/recipe-main-view/recipe-main-view.component';
+import { RecipeMainContentComponent } from './SingleRecipe/MainContent/recipe-main-content/recipe-main-content.component';
+import { RecipeInstructionsComponent } from './SingleRecipe/Instructions/recipe-instructions/recipe-instructions.component';
+import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/recipe-reviews.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MainContentComponent,
-    MainViewComponent
+    RecipeMainViewComponent,
+    RecipeMainContentComponent,
+    RecipeInstructionsComponent,
+    RecipeReviewsComponent,
   ],
   imports: [
     BrowserModule,
@@ -27,7 +36,10 @@ import { MainViewComponent } from './SingleRecipe/MainView/main-view/main-view.c
     MatDividerModule,
     MatListModule,
     MatCardModule,
-    MatButtonModule
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
