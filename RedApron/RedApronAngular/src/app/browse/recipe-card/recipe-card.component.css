@@ -1,0 +1,8 @@
+.mat-card {
+    max-width:300px;
+    margin:auto;
+}
+
+.mat-card-actions{
+    display: flex;
+}

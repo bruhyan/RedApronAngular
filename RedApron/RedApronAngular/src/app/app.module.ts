@@ -19,6 +19,8 @@ import { RecipeMainViewComponent } from './SingleRecipe/MainView/recipe-main-vie
 import { RecipeMainContentComponent } from './SingleRecipe/MainContent/recipe-main-content/recipe-main-content.component';
 import { RecipeInstructionsComponent } from './SingleRecipe/Instructions/recipe-instructions/recipe-instructions.component';
 import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/recipe-reviews.component';
+import { BrowseCategoryComponent } from './browse/browse-category/browse-category.component';
+import { RecipeCardComponent } from './browse/recipe-card/recipe-card.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/re
     RecipeMainContentComponent,
     RecipeInstructionsComponent,
     RecipeReviewsComponent,
+    BrowseCategoryComponent,
+    RecipeCardComponent,
   ],
   imports: [
     BrowserModule,
