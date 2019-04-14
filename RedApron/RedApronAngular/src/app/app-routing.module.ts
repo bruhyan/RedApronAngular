@@ -14,6 +14,8 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 const routes: Routes = [
   {path: '', component : LandingPageComponent},
   {path: 'home', component: LandingPageComponent},
+  {path: 'browse/recipeMainView', component : RecipeMainViewComponent},
+  {path: 'browse', component :BrowseCategoryComponent},
   {path: 'recipeMainView', component : RecipeMainViewComponent},
   {path: 'browse', component :BrowseCategoryComponent},
   {path: 'userLogin', component: UserLoginComponent},

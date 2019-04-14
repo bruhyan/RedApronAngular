@@ -31,6 +31,7 @@ import { IntroductionComponent } from './LandingPage/introduction/introduction.c
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { CategoryMainComponent } from './browse/category-main/category-main.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
@@ -50,6 +51,7 @@ import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/prof
     HeaderComponent,
     OurServicesComponent,
     NavbarComponent,
+    CategoryMainComponent,
     UserLoginComponent,
     UserRegisterComponent,
     UserProfileComponent,
