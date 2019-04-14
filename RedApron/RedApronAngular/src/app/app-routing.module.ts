@@ -8,6 +8,7 @@ import { BrowseCategoryComponent } from './browse/browse-category/browse-categor
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { CartComponent } from './cart/cart.component';
 
 
 
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'userLogin', component: UserLoginComponent},
   {path: 'userRegister', component: UserRegisterComponent}, 
   {path: 'userProfile', component: UserProfileComponent}
+  {path: 'cart', component :CartComponent}
 ];
 
 @NgModule({

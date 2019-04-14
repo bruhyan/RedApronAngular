@@ -1,0 +1,69 @@
+body {
+    background-color: #f2f2f2 !important;
+}
+
+.fade-color{
+    background: #f2f2f2;
+}
+
+.white{
+    background: #fff;
+}
+
+.hack{
+    margin-bottom: -45px;
+}
+
+.full-size{
+    height: 1366px;
+}
+
+.card{
+    margin: 8px 8px 0 8px;
+}
+
+.form-control{
+    width: auto;
+}
+
+* {
+    box-sizing: border-box;
+  }
+  
+  /* Style the list (remove margins and bullets, etc) */
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  /* Style the list items */
+  ul li {
+    border: 0;
+    margin-top: -1px; /* Prevent double borders */
+    background-color: #fff;
+    padding: 12px;
+    text-decoration: none;
+    font-size: 18px;
+    color: black;
+    display: block;
+    position: relative;
+  }
+  
+  /* Add a light grey background color on hover */
+  ul li:hover {
+    background-color: #eee;
+  }
+  
+  /* Style the close button (span) */
+  .close {
+    cursor: pointer;
+    position: absolute;
+    top: 10%;
+    right: 0%;
+    padding: 12px 16px;
+    transform: translate(0%, -50%);
+  }
+  
+  .close:hover {background: #bbb;}
+

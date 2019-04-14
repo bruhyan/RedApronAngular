@@ -36,6 +36,7 @@ import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +57,7 @@ import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/prof
     UserRegisterComponent,
     UserProfileComponent,
     ProfileSubscriptionsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
