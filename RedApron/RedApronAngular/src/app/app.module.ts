@@ -26,6 +26,8 @@ import { IntroductionComponent } from './LandingPage/introduction/introduction.c
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { UserLoginComponent } from './User/user-login/user-login.component';
+import { UserRegisterComponent } from './User/user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +43,8 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
     HeaderComponent,
     OurServicesComponent,
     NavbarComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,
