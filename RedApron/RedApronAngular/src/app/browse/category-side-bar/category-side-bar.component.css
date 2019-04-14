@@ -1,0 +1,13 @@
+.sidebar-header{
+    color: #0f346c;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.accordion-button{
+    font-size:100%;
+    font-family:inherit;
+    border:0;
+    padding:0;  
+    background:transparent;
+}

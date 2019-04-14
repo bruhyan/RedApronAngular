@@ -11,7 +11,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
-
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 
 import {CategoryService} from './service/category.service';
@@ -33,6 +33,7 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { CategoryMainComponent } from './browse/category-main/category-main.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { CategorySideBarComponent } from './browse/category-side-bar/category-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { UserRegisterComponent } from './User/user-register/user-register.compon
     CategoryMainComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    CategorySideBarComponent,
   ],
   imports: [
     BrowserModule,
@@ -65,7 +67,8 @@ import { UserRegisterComponent } from './User/user-register/user-register.compon
     MatTableModule,
     FormsModule,
     MatPaginatorModule,
-    HttpClientModule
+    HttpClientModule,
+    NgbModule
   ],
   providers: [
     CategoryService,
