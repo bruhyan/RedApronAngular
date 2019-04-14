@@ -26,7 +26,7 @@ export class UserRegisterComponent implements OnInit {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.model.firstName);
+    console.log(this.model.firstName, this.model.lastName);
   }
 
 }

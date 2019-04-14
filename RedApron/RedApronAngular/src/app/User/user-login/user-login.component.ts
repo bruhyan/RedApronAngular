@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
+import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-login',
@@ -13,7 +15,16 @@ export class UserLoginComponent implements OnInit {
 
   constructor(private userService : UserService) { }
 
+  model = {
+    email: '',
+    password: ''
+  }
+
   ngOnInit() {
+  }
+
+  onSubmit(form: NgForm) {
+    console.log(this.model.email, this.model.password);
   }
 
   getUser() {
