@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {CategoryService} from './service/category.service';
 import {RecipeService} from './service/recipe.service';
+import {UserService} from './service/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -32,6 +33,8 @@ import { OurServicesComponent } from './LandingPage/our-services/our-services.co
 import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +52,8 @@ import { UserRegisterComponent } from './User/user-register/user-register.compon
     NavbarComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    UserProfileComponent,
+    ProfileSubscriptionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -67,7 +72,8 @@ import { UserRegisterComponent } from './User/user-register/user-register.compon
   ],
   providers: [
     CategoryService,
-    RecipeService
+    RecipeService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })

@@ -7,6 +7,8 @@ import { LandingPageComponent } from './LandingPage/landing-page/landing-page.co
 import { BrowseCategoryComponent } from './browse/browse-category/browse-category.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { UserProfileComponent } from './User/user-profile/user-profile.component';
+
 
 
 const routes: Routes = [
@@ -15,7 +17,8 @@ const routes: Routes = [
   {path: 'recipeMainView', component : RecipeMainViewComponent},
   {path: 'browse', component :BrowseCategoryComponent},
   {path: 'userLogin', component: UserLoginComponent},
-  {path: 'userRegister', component: UserRegisterComponent} 
+  {path: 'userRegister', component: UserRegisterComponent}, 
+  {path: 'userProfile', component: UserProfileComponent}
 ];
 
 @NgModule({
