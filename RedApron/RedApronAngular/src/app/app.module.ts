@@ -25,6 +25,11 @@ import { RecipeInstructionsComponent } from './SingleRecipe/Instructions/recipe-
 import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/recipe-reviews.component';
 import { BrowseCategoryComponent } from './browse/browse-category/browse-category.component';
 import { RecipeCardComponent } from './browse/recipe-card/recipe-card.component';
+import { LandingPageComponent } from './LandingPage/landing-page/landing-page.component';
+import { IntroductionComponent } from './LandingPage/introduction/introduction.component';
+import { HeaderComponent } from './LandingPage/header/header.component';
+import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +40,11 @@ import { RecipeCardComponent } from './browse/recipe-card/recipe-card.component'
     RecipeReviewsComponent,
     BrowseCategoryComponent,
     RecipeCardComponent,
+    LandingPageComponent,
+    IntroductionComponent,
+    HeaderComponent,
+    OurServicesComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
