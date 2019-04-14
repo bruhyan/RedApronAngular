@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
 import { CategoryService } from './service/category.service';
@@ -38,6 +39,7 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
 import { CategoryMainComponent } from './browse/category-main/category-main.component';
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { CategorySideBarComponent } from './browse/category-side-bar/category-side-bar.component';
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
@@ -63,6 +65,7 @@ import { CartComponent } from './cart/cart.component';
     CategoryMainComponent,
     UserLoginComponent,
     UserRegisterComponent,
+    CategorySideBarComponent,
     UserProfileComponent,
     ProfileSubscriptionsComponent,
     CartComponent,
@@ -85,8 +88,9 @@ import { CartComponent } from './cart/cart.component';
 
 
   ],
-  providers: [MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService],
+
+  providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
+    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
 
   bootstrap: [AppComponent]
 })
