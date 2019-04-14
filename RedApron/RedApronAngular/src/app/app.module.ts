@@ -16,6 +16,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {CategoryService} from './service/category.service';
 import {RecipeService} from './service/recipe.service';
+import {UserService} from './service/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -34,6 +35,9 @@ import { CategoryMainComponent } from './browse/category-main/category-main.comp
 import { UserLoginComponent } from './User/user-login/user-login.component';
 import { UserRegisterComponent } from './User/user-register/user-register.component';
 import { CategorySideBarComponent } from './browse/category-side-bar/category-side-bar.component';
+import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,9 @@ import { CategorySideBarComponent } from './browse/category-side-bar/category-si
     UserLoginComponent,
     UserRegisterComponent,
     CategorySideBarComponent,
+    UserProfileComponent,
+    ProfileSubscriptionsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -72,7 +79,8 @@ import { CategorySideBarComponent } from './browse/category-side-bar/category-si
   ],
   providers: [
     CategoryService,
-    RecipeService
+    RecipeService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
