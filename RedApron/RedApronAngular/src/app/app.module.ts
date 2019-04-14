@@ -16,6 +16,7 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 import {CategoryService} from './service/category.service';
 import {RecipeService} from './service/recipe.service';
+import {UserService} from './service/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -30,6 +31,11 @@ import { IntroductionComponent } from './LandingPage/introduction/introduction.c
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { CategoryMainComponent } from './browse/category-main/category-main.component';
+import { UserLoginComponent } from './User/user-login/user-login.component';
+import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
 
 @NgModule({
@@ -46,6 +52,11 @@ import { CartComponent } from './cart/cart.component';
     HeaderComponent,
     OurServicesComponent,
     NavbarComponent,
+    CategoryMainComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
+    UserProfileComponent,
+    ProfileSubscriptionsComponent,
     CartComponent,
   ],
   imports: [
@@ -65,7 +76,8 @@ import { CartComponent } from './cart/cart.component';
   ],
   providers: [
     CategoryService,
-    RecipeService
+    RecipeService,
+    UserService
   ],
   bootstrap: [AppComponent]
 })
