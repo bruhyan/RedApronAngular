@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import {HttpClientModule} from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
@@ -12,6 +14,8 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 
 
 
+import {CategoryService} from './service/category.service';
+import {RecipeService} from './service/recipe.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -19,6 +23,13 @@ import { RecipeMainViewComponent } from './SingleRecipe/MainView/recipe-main-vie
 import { RecipeMainContentComponent } from './SingleRecipe/MainContent/recipe-main-content/recipe-main-content.component';
 import { RecipeInstructionsComponent } from './SingleRecipe/Instructions/recipe-instructions/recipe-instructions.component';
 import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/recipe-reviews.component';
+import { BrowseCategoryComponent } from './browse/browse-category/browse-category.component';
+import { RecipeCardComponent } from './browse/recipe-card/recipe-card.component';
+import { LandingPageComponent } from './LandingPage/landing-page/landing-page.component';
+import { IntroductionComponent } from './LandingPage/introduction/introduction.component';
+import { HeaderComponent } from './LandingPage/header/header.component';
+import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +38,13 @@ import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/re
     RecipeMainContentComponent,
     RecipeInstructionsComponent,
     RecipeReviewsComponent,
+    BrowseCategoryComponent,
+    RecipeCardComponent,
+    LandingPageComponent,
+    IntroductionComponent,
+    HeaderComponent,
+    OurServicesComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -39,9 +57,14 @@ import { RecipeReviewsComponent } from './SingleRecipe/Reviews/recipe-reviews/re
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    MatPaginatorModule
+    FormsModule,
+    MatPaginatorModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    CategoryService,
+    RecipeService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
