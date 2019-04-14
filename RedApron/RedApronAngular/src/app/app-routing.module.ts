@@ -10,7 +10,7 @@ import { BrowseCategoryComponent } from './browse/browse-category/browse-categor
 const routes: Routes = [
   {path: '', component : LandingPageComponent},
   {path: 'home', component: LandingPageComponent},
-  {path: 'recipeMainView', component : RecipeMainViewComponent},
+  {path: 'browse/recipeMainView', component : RecipeMainViewComponent},
   {path: 'browse', component :BrowseCategoryComponent}
 ];
 

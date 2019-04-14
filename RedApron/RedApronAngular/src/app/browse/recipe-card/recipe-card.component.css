@@ -1,8 +1,18 @@
 .mat-card {
-    max-width:300px;
-    margin:auto;
+    width:300px;
+    height: 400px;
+    border-radius: 25px;
+    position: relative;
+
 }
 
 .mat-card-actions{
     display: flex;
+}
+
+.recipeCardImg{
+    border-radius: 25px 25px 0px 0px;
+    object-fit: cover;
+ 
+
 }

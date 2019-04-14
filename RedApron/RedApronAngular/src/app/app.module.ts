@@ -30,6 +30,7 @@ import { IntroductionComponent } from './LandingPage/introduction/introduction.c
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { CategoryMainComponent } from './category-main/category-main.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { NavbarComponent } from './navbar/navbar/navbar.component';
     HeaderComponent,
     OurServicesComponent,
     NavbarComponent,
+    CategoryMainComponent,
   ],
   imports: [
     BrowserModule,
