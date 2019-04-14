@@ -1,0 +1,38 @@
+.img-fluid{
+    height: 35%;
+    margin: 5%;
+}
+
+.row{
+    height: 210px;
+    padding-bottom: 0;
+}
+
+  
+
+
+.sidenav{
+    list-style:none;
+    margin:0;
+    padding:15px;
+    text-align:left;
+}
+
+.sidenav a{
+    display:inline-block;
+    padding:5px;
+    color: white;
+}
+
+ul{
+    list-style: none;
+}
+
+.rowBot{
+    margin-left: 50%;
+    padding-bottom: 20px;
+}
+
+.row{
+    padding: 12px;
+}

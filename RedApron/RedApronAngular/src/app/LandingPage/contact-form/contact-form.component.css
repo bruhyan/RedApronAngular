@@ -1,0 +1,6 @@
+.hr_line{
+    background-image: url(../../../assets/images/hr_line3.png);
+    background-repeat: no-repeat;
+    background-position: center bottom ;
+    padding: 0 0 10px;
+}

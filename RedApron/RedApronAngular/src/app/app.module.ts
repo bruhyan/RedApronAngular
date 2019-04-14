@@ -5,10 +5,11 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatCardModule } from '@angular/material/card';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon';
-import {MatTableModule} from '@angular/material/table';
-import {MatPaginatorModule} from '@angular/material/paginator';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
 
 
 
@@ -25,6 +26,9 @@ import { LandingPageComponent } from './LandingPage/landing-page/landing-page.co
 import { IntroductionComponent } from './LandingPage/introduction/introduction.component';
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
+import { ContactFormComponent } from './LandingPage/contact-form/contact-form.component';
+import { GmapComponent } from './LandingPage/gmap/gmap.component';
+import { FooterComponent } from './LandingPage/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +43,10 @@ import { OurServicesComponent } from './LandingPage/our-services/our-services.co
     IntroductionComponent,
     HeaderComponent,
     OurServicesComponent,
+    ContactFormComponent,
+    GmapComponent,
+    FooterComponent
+
   ],
   imports: [
     BrowserModule,
@@ -51,9 +59,14 @@ import { OurServicesComponent } from './LandingPage/our-services/our-services.co
     MatButtonModule,
     MatIconModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
+    })
+    
+
   ],
-  providers: [],
+  providers: [MarkerManager,AgmMarker,GoogleMapsAPIWrapper],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
