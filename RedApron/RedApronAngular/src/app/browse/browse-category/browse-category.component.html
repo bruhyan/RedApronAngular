@@ -1,51 +1,67 @@
 <head>
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
+<div class="container">
 
-<mat-card class="recommendedPicksCard">
-  <mat-card-header>
-    <mat-card-title>
-      <h2>recommended picks</h2>
-    </mat-card-title>
-    <mat-card-subtitle>don't know where to start? here are our bestsellers!</mat-card-subtitle>
-  </mat-card-header>
-  <mat-card-content>
+    
 
-  <mat-grid-list cols="4">
-    <mat-grid-tile>
-        <app-recipe-card></app-recipe-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-recipe-card></app-recipe-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-recipe-card></app-recipe-card>
-    </mat-grid-tile>
-    <mat-grid-tile>
-        <app-recipe-card></app-recipe-card>
-    </mat-grid-tile>
-  </mat-grid-list>
-  <br >
-  <mat-grid-list cols="3" gutterSize='20px' rowHeight="537px">
-      <mat-grid-tile colspan="2">
-          <img mat-card-image src="../../../../assets/images/cat1.png">
-      </mat-grid-tile>
-      <mat-grid-tile colspan='1'>          
-        <img mat-card-image src="../../../../assets/images/cat2.png">
-      </mat-grid-tile>
-      <mat-grid-tile colspan='1'>
-          <img mat-card-image src="../../../../assets/images/cat3.png">
-      </mat-grid-tile>
-      <mat-grid-tile colspan='2'>
-          <img mat-card-image src="../../../../assets/images/cat4.png">
-      </mat-grid-tile>
-      <mat-grid-tile colspan='1'>
-          <img mat-card-image src="../../../../assets/images/cat5.png">
-      </mat-grid-tile>
-      <mat-grid-tile colspan='2'>
-          <img mat-card-image src="../../../../assets/images/cat6.png">
-      </mat-grid-tile>
-    </mat-grid-list>
-</mat-card-content>
+  <mat-card class="recommendedPicksCard">
+    <mat-card-header>
 
-</mat-card>
+    
+      <mat-card-title>
+          <div class="row py-5">
+              <div class="col-md-12">
+                  <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/browseHeader.png" />
+                </div>
+            </div>
+        <h2>recommended picks</h2>
+      </mat-card-title>
+      <mat-card-subtitle>don't know where to start? here are our bestsellers!</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+
+      <div class="row pb-5">
+        <div class="col-md-3">
+          <app-recipe-card></app-recipe-card>
+        </div>
+        <div class="col-md-3">
+          <app-recipe-card></app-recipe-card>
+        </div>
+        <div class="col-md-3">
+          <app-recipe-card></app-recipe-card>
+        </div>
+        <div class="col-md-3">
+          <app-recipe-card></app-recipe-card>
+        </div>
+      </div>
+
+      <div class="row pb-5">
+        <div class="col-md-7">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat1.png" />
+        </div>
+        <div class="col-md-5">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat2.png" />
+        </div>
+      </div>
+      <div class="row pb-5">
+        <div class="col-md-5">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat3.png" />
+        </div>
+        <div class="col-md-7">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat4.png" />
+        </div>
+      </div>
+      <div class="row pb-5">
+        <div class="col-md-7">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat5.png" />
+        </div>
+        <div class="col-md-5">
+          <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat6.png" />
+        </div>
+      </div>
+
+    </mat-card-content>
+
+  </mat-card>
+</div>

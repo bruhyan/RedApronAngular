@@ -1,5 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatDividerModule } from '@angular/material/divider';
@@ -9,10 +11,13 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
-import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper} from '@agm/core';
+import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 
 
 
+import { CategoryService } from './service/category.service';
+import { RecipeService } from './service/recipe.service';
+import { UserService } from './service/user.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,6 +34,13 @@ import { OurServicesComponent } from './LandingPage/our-services/our-services.co
 import { ContactFormComponent } from './LandingPage/contact-form/contact-form.component';
 import { GmapComponent } from './LandingPage/gmap/gmap.component';
 import { FooterComponent } from './LandingPage/footer/footer.component';
+import { NavbarComponent } from './navbar/navbar/navbar.component';
+import { CategoryMainComponent } from './browse/category-main/category-main.component';
+import { UserLoginComponent } from './User/user-login/user-login.component';
+import { UserRegisterComponent } from './User/user-register/user-register.component';
+import { UserProfileComponent } from './User/user-profile/user-profile.component';
+import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
+import { CartComponent } from './cart/cart.component';
 
 @NgModule({
   declarations: [
@@ -45,8 +57,15 @@ import { FooterComponent } from './LandingPage/footer/footer.component';
     OurServicesComponent,
     ContactFormComponent,
     GmapComponent,
-    FooterComponent
+    FooterComponent,
 
+    NavbarComponent,
+    CategoryMainComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
+    UserProfileComponent,
+    ProfileSubscriptionsComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,10 +82,12 @@ import { FooterComponent } from './LandingPage/footer/footer.component';
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
-    
+
 
   ],
-  providers: [MarkerManager,AgmMarker,GoogleMapsAPIWrapper],
+  providers: [MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
+    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
