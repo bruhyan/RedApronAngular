@@ -30,7 +30,9 @@ import { IntroductionComponent } from './LandingPage/introduction/introduction.c
 import { HeaderComponent } from './LandingPage/header/header.component';
 import { OurServicesComponent } from './LandingPage/our-services/our-services.component';
 import { NavbarComponent } from './navbar/navbar/navbar.component';
-import { CategoryMainComponent } from './category-main/category-main.component';
+import { CategoryMainComponent } from './browse/category-main/category-main.component';
+import { UserLoginComponent } from './User/user-login/user-login.component';
+import { UserRegisterComponent } from './User/user-register/user-register.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +49,8 @@ import { CategoryMainComponent } from './category-main/category-main.component';
     OurServicesComponent,
     NavbarComponent,
     CategoryMainComponent,
+    UserLoginComponent,
+    UserRegisterComponent,
   ],
   imports: [
     BrowserModule,
