@@ -21,7 +21,7 @@ const routes: Routes = [
   {path: 'browse', component :BrowseCategoryComponent},
   {path: 'userLogin', component: UserLoginComponent},
   {path: 'userRegister', component: UserRegisterComponent}, 
-  {path: 'userProfile', component: UserProfileComponent}
+  {path: 'userProfile', component: UserProfileComponent},
   {path: 'cart', component :CartComponent}
 ];
 
