@@ -1,10 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
-@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
-.theme-color{
-    color: #f9453b;
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+.theme-color {
+    color: #f44336;
 }
 
-.theme-invert-color{
+.theme-invert-color {
     color: #fff;
+}
+
+.theme-bg {
+    background: #303038;
 }
