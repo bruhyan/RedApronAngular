@@ -45,6 +45,7 @@ import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/prof
 import { CartComponent } from './cart/cart.component';
 import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
 import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/tracking-map.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
     CartComponent,
     CreateSubscriptionMainComponent,
     TrackingMapComponent,
+    CartItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -88,6 +90,7 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
     MatPaginatorModule,
     FormsModule,
     NgbModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
