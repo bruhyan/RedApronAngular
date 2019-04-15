@@ -82,6 +82,8 @@ import { CartComponent } from './cart/cart.component';
     MatIconModule,
     MatTableModule,
     MatPaginatorModule,
+    FormsModule,
+    NgbModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
