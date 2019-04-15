@@ -43,6 +43,7 @@ import { CategorySideBarComponent } from './browse/category-side-bar/category-si
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
+import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +70,7 @@ import { CartComponent } from './cart/cart.component';
     UserProfileComponent,
     ProfileSubscriptionsComponent,
     CartComponent,
+    CreateSubscriptionMainComponent,
   ],
   imports: [
     BrowserModule,

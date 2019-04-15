@@ -1,6 +1,9 @@
 .btn{
     float: right;
-    margin: 20px;
+    margin: 40px;
     position: fixed;
-    /* right: 10%; */
+    bottom:0;
+    left: 35px;
+    font-size: 25px;
+
 }
