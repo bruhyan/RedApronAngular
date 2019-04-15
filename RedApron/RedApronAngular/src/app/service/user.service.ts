@@ -14,17 +14,18 @@ const httpOptions = {
 })
 export class UserService {
 
-  baseUrl = '/api/Recipe';
+  baseUrl = '/api/Subscriber';
 
   constructor(private httpClient : HttpClient) { }
 
   
 
-  getUser(): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl).pipe(
-      catchError(this.handleError)
-    );
-  }
+  userLogin(email: string, password: string): Observable<any> {
+		return this.httpClient.get<any>(this.baseUrl+"/subscriberLogin?email="+email+"&password="+password).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
 
   private handleError(error: HttpErrorResponse)
 	{
