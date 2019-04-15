@@ -44,6 +44,7 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
 import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
+import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/tracking-map.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create
     ProfileSubscriptionsComponent,
     CartComponent,
     CreateSubscriptionMainComponent,
+    TrackingMapComponent,
   ],
   imports: [
     BrowserModule,
