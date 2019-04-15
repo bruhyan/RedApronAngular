@@ -27,17 +27,64 @@
         <a routerLink="/userRegister" routerLinkActive="active" class="nav-link" href="#">Register <span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a routerLink="/userProfile" routerLinkActive="active" class="nav-link" href="#">Profile <span
-            class="sr-only">(current)</span></a>
-      </li>
+      
       <li>
-      <a routerLink="/cart" routerLinkActive="active" class="nav-link" href="#">Cart<span
-          class="sr-only">(current)</span></a>
+        <a routerLink="/cart" routerLinkActive="active" class="nav-link" href="#">Cart<span
+            class="sr-only">(current)</span></a>
       </li>
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
+      <div>
+          
+              <a routerLink="/userProfile" routerLinkActive="active" class="nav-link" href="#"><i class="fa fa-user-circle" style="font-size:larger; color:white"></i> <span
+                  class="sr-only">(current)</span></a>
+           
+      </div>
+      <!-- <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic" ngDropdownToggle>
+            <i class="fa fa-user-circle" style="font-size:larger; color:white"></i>
+        </button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic" style="width: 100px;">
+          <div style="overflow-y: scroll; max-height:400px;">
+            <div class="row">
+                <button type="submit" class="btn btn-outline-secondary" style="margin-left: 25px">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div> -->
+
+      <div ngbDropdown class="d-inline-block">
+        <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
+            class="fa fa-shopping-cart" style="font-size:larger"></i></button>
+        <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="width: 500px;">
+          <h5 style="text-align: center"><span style="font-weight: bold">My Cart, </span><span style="color: gray">4
+              items</span></h5>
+          <br />
+          <div style="overflow-y: scroll; max-height:400px;">
+            <div class="row">
+              <app-cart-item></app-cart-item>
+            </div>
+            <div class="row">
+              <app-cart-item></app-cart-item>
+            </div>
+            <div class="row">
+              <app-cart-item></app-cart-item>
+            </div>
+            <div class="row">
+              <app-cart-item></app-cart-item>
+            </div>
+          </div>
+          <h5 style="margin-left: 270px;"><span style="font-weight: bold">Sub-total: </span><span>&nbsp;SGD$100</span>
+          </h5>
+          <hr>
+          <div class="row" style="margin:5px">
+            <button type="submit" class="btn btn-outline-secondary" style="margin-left: 25px">Clear</button>
+            <button type="submit" class="btn btn-success" style='margin-left: 270px'>View Cart</button>
+          </div>
+
+        </div>
+      </div>
       <!-- <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button> -->
     </form>
