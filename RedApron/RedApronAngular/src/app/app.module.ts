@@ -86,6 +86,7 @@ import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create
     MatPaginatorModule,
     FormsModule,
     NgbModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
@@ -94,7 +95,7 @@ import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
+    MatPaginatorModule, HttpClientModule,  RecipeService, UserService, NgbModule],
 
   bootstrap: [AppComponent]
 })
