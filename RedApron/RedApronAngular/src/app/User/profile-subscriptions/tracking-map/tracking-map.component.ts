@@ -69,7 +69,6 @@ export class TrackingMapComponent implements OnInit {
     },
     {
         "featureType": "poi",
-        "elementType": "label",
         "stylers": [
             {
                 "visibility": "off"

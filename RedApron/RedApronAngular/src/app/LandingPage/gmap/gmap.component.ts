@@ -51,7 +51,7 @@ export class GmapComponent implements OnInit {
     },
     {
         "featureType": "poi",
-        "elementType": "label",
+       
         "stylers": [
             {
                 "visibility": "off"
