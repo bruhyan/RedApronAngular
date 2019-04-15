@@ -44,6 +44,7 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
 import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
+import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create
     ProfileSubscriptionsComponent,
     CartComponent,
     CreateSubscriptionMainComponent,
+    CartItemComponent,
   ],
   imports: [
     BrowserModule,
@@ -86,6 +88,7 @@ import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create
     MatPaginatorModule,
     FormsModule,
     NgbModule,
+    HttpClientModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
