@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../service/user.service';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { SessionService } from '../../service/session.service';
 
 @Component({
   selector: 'app-user-login',
@@ -13,21 +14,30 @@ export class UserLoginComponent implements OnInit {
   // user : User;
   errorMessage : string;
 
-  constructor(private userService : UserService) { }
+  constructor(private userService : UserService,
+              private router : Router,
+              public sessionService : SessionService,
+              private activatedRoute: ActivatedRoute) {
+
+               }
 
   model = {
     email: '',
-    password: ''
+    password: '',
+    
   }
+
+  loginError: boolean;
 
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
     console.log(this.model.email, this.model.password);
+    this.userLogin();
   }
 
-  getUser() {
+  userLogin() {
     this.userService.getUser().subscribe(
       response => {
         // this.user = response.subscriber;
