@@ -19,7 +19,7 @@ export class SessionService {
     sessionStorage.isLogin = isLogin;
   }
 
-  getCurrentUser(): User {
-    return JSON.parse(sessionStorage.currentUser);
-  }
+  // getCurrentUser(): User {
+  //   return JSON.parse(sessionStorage.currentUser);
+  // }
 }

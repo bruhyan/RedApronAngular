@@ -10,6 +10,6 @@ export class User {
     password: string;
 
     constructor(addressLine1?: string, addressLine2?) {
-        this.
+        
     }
 }
