@@ -58,7 +58,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
 
   }
-  openDialog(answer: String, staffName: String): void {
+  openDialog(answer: string, staffName: string): void {
     const dialogRef = this.dialog.open(EnquiryAnswerComponent, {
       data: {
         name: this.firstName + " " + this.lastName,
