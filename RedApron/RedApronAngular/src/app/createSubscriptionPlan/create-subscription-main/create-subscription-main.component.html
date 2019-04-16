@@ -1,66 +1,67 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Create a Subscription Plan</h4>
+    <h4 class="modal-title" id="modal-basic-title">Add Subscription Plan to Cart</h4>
     <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
       <span aria-hidden="true">&times;</span>
     </button>
   </div>
   <div class="modal-body">
-    <form>
+    <form #planForm="ngForm" (ngSubmit)="createPlan(planForm)">
       <div class="row">
         <div class="col-md-6">
           <img alt="Card image cap" class="card-img-top img-fluid" style="margin: 10px; margin-top: 30%" src="../../../../assets/images/subform.png" />
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <label for="startDate">Start Date:</label>
+            <!-- <label for="startDate">Start Date:</label>
             <div class="input-group">
               <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
-                #dp1="ngbDatepicker">
+                #dp1="ngbDatepicker" [(ngModel)]="newSubscriptionPlan.startDate">
               <div class="input-group-append">
                 <button class="btn btn-outline-secondary" (click)="dp1.toggle()" type="button"><i
                     class="fa fa-calendar"></i></button>
               </div>
-            </div>
+            </div> -->
             <br />
+
+            <label for="startDate">Start Date:</label>
+            <div class="input-group">
+              <input type="date" class="form-control" name="test" #test="ngModel" [(ngModel)]="newSubscriptionPlan.startDate">
+              </div>
+
             <label for="numWeeks">No. of Weeks:</label>
-            <input id="numWeeks" class="form-control" placeholder="Enter duration of subscription">
+            <input type="number" id="numWeeks" class="form-control" placeholder="Enter duration of subscription" name="numWeeks" #numWeeks="ngModel" [(ngModel)]="newSubscriptionPlan.numOfWeeks" required>
             <br />
             <label for="numRecipes">No. of Recipes/Week :</label>
-            <input id="numRecipes" class="form-control" placeholder="Enter number of recipes per week">
+            <input type="number" id="numRecipes" class="form-control" placeholder="Enter number of recipes per week" name="numRecipes" #numRecipes="ngModel"  [(ngModel)]="newSubscriptionPlan.numOfRecipes" required>
             <br />
             <label for="deliveryDate">Delivery Date:</label>
             <div class="input-group">
-              <input id="deliveryDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
-                #dp="ngbDatepicker">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="dp.toggle()" type="button"><i
-                    class="fa fa-calendar"></i></button>
-              </div>
+                <select id="selDelDate" name="deliveryDate" #deliveryDate="ngModel" [(ngModel)]="newSubscriptionPlan.deliveryDay" required="true">
+                    <option *ngFor="let key of keys" value="{{key}}">{{key}}</option>
+                  </select>
             </div>
             <br />
             <label for="categoryName">Category:</label>
             <br />
-            <div ngbDropdown class="d-inline-block">
-              <button class="btn btn-outline-secondary" id="dropdownBasic1" ngbDropdownToggle>Select Category</button>
-              <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-                <button ngbDropdownItem>Healthy for 2</button>
-                <button ngbDropdownItem>Healthy for 4</button>
-                <button ngbDropdownItem>Signature</button>
-              </div>
+            <div class="input-group">
+                <select id="selCategory" name="selCategory" #selCategory="ngModel" [(ngModel)]="newSubscriptionPlan.categoryId" required="true">
+                    <option *ngFor="let category of categories" value="{{category.categoryId}}">{{category.name}}</option>
+                  </select>
             </div>
             <br />
             <br />
             <label for="preferences">Preferences:</label>
-            <input id="preferences" class="form-control" placeholder="Any allergies or preferences?">
+            <input id="preferences" class="form-control" placeholder="Any allergies or preferences?" name="preference" #preference="ngModel" [(ngModel)]="newSubscriptionPlan.preference">
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+          <button type="submit" ngbAutoFocus class="btn btn-outline-info" [disabled]="!planForm.valid">Add to Cart</button>
+        </div>
     </form>
   </div>
-  <div class="modal-footer">
-    <button type="button" ngbAutoFocus class="btn btn-outline-info" (click)="modal.close('Save click')">Create</button>
-  </div>
+  
 </ng-template>
 
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->

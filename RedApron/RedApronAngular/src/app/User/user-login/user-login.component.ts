@@ -4,6 +4,8 @@ import { NgForm } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { SessionService } from '../../service/session.service';
 import { User } from '../../user';
+import { ToastrService } from 'ngx-toastr';
+
 @Component({
   selector: 'app-user-login',
   templateUrl: './user-login.component.html',
@@ -17,7 +19,8 @@ export class UserLoginComponent implements OnInit {
   constructor(private userService : UserService,
               private router : Router,
               public sessionService : SessionService,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              private toastr : ToastrService) {
 
                }
 
@@ -55,9 +58,16 @@ export class UserLoginComponent implements OnInit {
       },
       error => {
         this.loginError = true;
-        this.errorMessage = error
+        this.errorMessage = error;
+        this.showFailure();
       }
     );
   }
+
+  
+  showFailure() {
+    this.toastr.error('Invalid email or password', 'Login Failed');
+  }
+
 
 }

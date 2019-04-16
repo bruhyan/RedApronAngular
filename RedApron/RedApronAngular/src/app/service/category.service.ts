@@ -26,7 +26,7 @@ export class CategoryService {
 		);
 	}
   
-  getCategoryByCategoryId(categoryId: number): Observable<any>
+   getCategoryByCategoryId(categoryId: number): Observable<any>
 	{
 		return this.httpClient.get<any>(this.baseUrl + "/retrieveCategoryById/" + categoryId).pipe
 		(

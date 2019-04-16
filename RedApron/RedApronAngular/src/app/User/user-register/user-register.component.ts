@@ -80,11 +80,11 @@ export class UserRegisterComponent implements OnInit {
   }
 
   showSuccess(message : string) {
-    this.toastr.success('Registration Success!', message);
+    this.toastr.success(message, 'Registration Success!');
   }
 
   showFailure() {
-    this.toastr.error('Registration Failed', 'Something went wrong ):')
+    this.toastr.error('Something went wrong :(', 'Registration Failed')
   }
 
 }
