@@ -29,6 +29,13 @@ export class ReviewService {
     );
   }
 
+  retrieveReviewsByRecipeId(id: string): Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveReviewsByRecipeId/"+ id).pipe
+      (
+        catchError(this.handleError)
+      );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: String = "";
 

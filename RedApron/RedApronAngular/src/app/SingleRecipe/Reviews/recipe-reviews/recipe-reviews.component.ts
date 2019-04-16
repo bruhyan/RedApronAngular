@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { ReviewService } from '../../../service/review.service';
 
 @Component({
   selector: 'app-recipe-reviews',
@@ -13,12 +15,21 @@ export class RecipeReviewsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient, private reviewService : ReviewService) { }
+
+  reviews;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.retrieveAllReviewsByRecipeId("1");
   }
 
+  retrieveAllReviewsByRecipeId(id:string){
+    this.reviewService.retrieveReviewsByRecipeId(id).subscribe(res =>{
+      this.reviews = res.reviewEntities;
+      console.log("Reviews: " + this.reviews)
+    }
+    )};
 }
 
 export interface PeriodicElement {
