@@ -37,11 +37,11 @@ export class UserEnquiriesComponent implements OnInit {
         var currentMonth = date.getMonth() + 1; //Months are zero based
         var currentYear = date.getFullYear();
         enquiry.created = (currentDate + "-" + currentMonth + "-" + currentYear);
+        console.log(enquiry.enquiryId);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
-          // enquiry.answerData = data.answer.text;
-          // enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
-          
-          console.log()
+          console.log(data);
+          enquiry.answerData = data.answer.text;
+          enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
         });
 ;
       }
