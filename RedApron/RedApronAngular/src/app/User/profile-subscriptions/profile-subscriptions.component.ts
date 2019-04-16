@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { SubscriptionPlanService } from '../../service/subscription-plan.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-subscriptions',
@@ -13,12 +15,62 @@ export class ProfileSubscriptionsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private subscriptionPlanService: SubscriptionPlanService) { }
+
+  currentUser;
+  userId;
+  firstName;
+  lastName;
+  subscriptionPlans;
+  recipes;
+  subscriptionPlan;
+
+  numOfSubscriptions: number[] = [];
+  numOfRecipes: number[] = [];
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+
+    this.currentUser = JSON.parse(sessionStorage.currentUser);
+    console.log(this.currentUser);
+    this.userId = this.currentUser.subscriberId;
+    this.firstName = this.currentUser.firstName;
+    this.lastName = this.currentUser.lastName;
+    this.retrieveAllSubscriptionPlansBySubscriberId(this.userId);
   }
 
+  retrieveAllSubscriptionPlansBySubscriberId(id: string){
+    //retrieve subscription plan data by subscriberID
+    this.subscriptionPlanService.retrieveAllSubscriptionPlansBySubscriberId(id).subscribe(res =>{
+      this.subscriptionPlans = res.subscriptionPlanEntities;
+      console.log("HERE " + this.subscriptionPlans);
+
+      //loop through the subscription to get data 
+      for(let subscriptionPlan of this.subscriptionPlans){
+
+        this.recipes = this.subscriptionPlanService.retrieveAllRecipesBySubscriptionId(subscriptionPlan.subscriptionPlanId).subscribe(
+          data =>{this.recipes = data.recipeEntities;
+            console.log("Recipe: " + this.recipes)      
+            for(let recipe of this.recipes){
+              console.log("Recipe ID: " + recipe.recipeId)
+              this.numOfRecipes.push(recipe.recipeId)
+              console.log("Passthorugh Recipes: " + this.numOfRecipes)
+            }      
+          }
+        );
+        console.log("SP ID: " + subscriptionPlan.subscriptionPlanId);
+        console.log("Recipes: " + this.recipes);
+
+        
+
+        this.numOfSubscriptions.push(subscriptionPlan.subscriptionPlanId)
+        console.log("Passthorugh SP: " + this.numOfSubscriptions)
+
+        
+        
+      }
+    })
+  }
 }
 
 export interface PeriodicElement {
