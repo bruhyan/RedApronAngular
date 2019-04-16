@@ -16,8 +16,14 @@ export class ContactFormComponent implements OnInit {
   ngOnInit() {
   }
 
-  createEnquiry(){
-    var enquiry:Enquiry = new Enquiry(undefined,this.enquiryText,new Date());
-    this.enquiryService.createEnquiry(enquiry);
+  createEnquiry(body){
+    console.log(body);
+    var enquiry:Enquiry = new Enquiry(undefined,body,new Date());
+    console.log(enquiry);
+    this.enquiryService.createEnquiry(enquiry).subscribe(res=>{
+
+      console.log(res);
+
+    })
   }
 }
