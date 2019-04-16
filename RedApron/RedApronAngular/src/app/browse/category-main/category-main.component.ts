@@ -16,14 +16,15 @@ export class CategoryMainComponent implements OnInit {
   categoryBrowsing: string;
   recipeNums: number[] = [];
   recipes: Recipe[] = [];
-
+  message:number
 
 
   constructor(private categoryService: CategoryService, private recipeService: RecipeService,public sharingService: SharingServiceService) { }
 
   ngOnInit() {
-    this.categoriesBrowsing = this.sharingService.getData().categories
-    if (this.sharingService.getData().isGeneral) {
+    console.log("*********** PARENT MAIN : is not from child " + this.sharingService.getData().isGeneral )
+    if (this.sharingService.getData().isGeneral) { //IS GENERAL
+      this.categoriesBrowsing = this.sharingService.getData().categories
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
         this.categoryBrowsing = "Healthy"
@@ -39,12 +40,10 @@ export class CategoryMainComponent implements OnInit {
         this.categoryBrowsing = "Seasonal Specials"
       }
       for (let cat of this.categoriesBrowsing) {
-        console.log("cat Id browsing : " + cat.categoryId )
-
+        console.log("cat Id browsing : " + cat.categoryId)
         this.retrieveRecipesForCategory(cat.categoryId);
       }
-
-    } //else (clicked the menu button)
+    }
 
   }
 
@@ -58,6 +57,26 @@ export class CategoryMainComponent implements OnInit {
     },
       error => {
         console.log("****** browse category recipe retrieval " + error);
+      }
+    ) 
+  }
+
+  receiveMessage($event) {
+    this.message = $event
+    this.recipeNums = []
+    this.categoryBrowsing = ""
+    this.retrieveCategory(this.message)
+    console.log("*********** PARENT MAIN got cat id : " + this.message)
+    this.retrieveRecipesForCategory(this.message)
+  }
+
+  retrieveCategory(categoryId:number) {
+    this.categoryService.getCategoryByCategoryId(categoryId).subscribe(res => {
+      console.log(res);
+      this.categoryBrowsing = res.category.name
+    },
+      error => {
+        console.log("****** category side bar " + error);
       }
     ) 
   }
