@@ -12,6 +12,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
+import { ToastrModule } from 'ngx-toastr';
+
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -77,6 +79,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     CartItemComponent,
   ],
   imports: [
+    ToastrModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,

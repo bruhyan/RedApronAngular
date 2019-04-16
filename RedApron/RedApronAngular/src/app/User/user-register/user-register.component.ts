@@ -1,6 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+
+import { UserService } from '../../service/user.service';
+import { SessionService } from '../../service/session.service';
+import {SubscriptionPlan} from '../../models/SubscriptionPlan';
+import {Enquiry} from '../../models/Enquiry';
+import {Review} from '../../models/Review';
+import {User} from '../../user';
 
 @Component({
   selector: 'app-user-register',
@@ -9,7 +17,26 @@ import { Router } from '@angular/router';
 })
 export class UserRegisterComponent implements OnInit {
 
-  constructor() { }
+  submitted: boolean;
+  resultSuccess: boolean;
+  resultError: boolean;
+  message: string;
+
+  newUser: User;
+  reviews: Review[];
+  enquiries: Enquiry[];
+  subscriptionPlans: SubscriptionPlan[];
+
+  constructor(
+    public sessionService: SessionService,
+    private activatedRoute: ActivatedRoute,
+    private userService: UserService,
+    private toastr : ToastrService
+
+  ) {
+    this.newUser = new User();
+
+   }
 
   model = {
     firstName: '',
@@ -22,11 +49,42 @@ export class UserRegisterComponent implements OnInit {
     phoneNumber: ''
   }
 
+
+
+
   ngOnInit() {
   }
 
   onSubmit(form: NgForm) {
-    console.log(this.model.firstName, this.model.lastName);
+    
+    console.log(this.model.lastName);
+    console.log(this.newUser.firstName);
+    this.submitted = true;
+    if(form.valid) {
+      this.userService.createUser(this.newUser).subscribe(
+        response => {
+          let newUserReturn : User = response.subscriber;
+          this.resultSuccess = true;
+          this.resultError = false;
+          this.message = "New user "+ newUserReturn.email + " created successfully";
+          this.showSuccess(this.message);
+          form.reset();
+        },
+        error => {
+          this.resultError = true;
+          this.resultSuccess = false;
+          this.showFailure();
+        }
+      )
+    }
+  }
+
+  showSuccess(message : string) {
+    this.toastr.success('Registration Success!', message);
+  }
+
+  showFailure() {
+    this.toastr.error('Registration Failed', 'Something went wrong ):')
   }
 
 }

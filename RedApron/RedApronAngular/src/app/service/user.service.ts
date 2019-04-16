@@ -4,6 +4,8 @@ import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http';
 import {catchError} from 'rxjs/operators';
 import {ErrorObservable} from 'rxjs/observable/ErrorObservable';
 
+import {User} from '../user';
+
 const httpOptions = {
   header: new HttpHeaders({ 'Content-Type': 'application/json'})
 };
@@ -22,6 +24,16 @@ export class UserService {
 
   userLogin(email: string, password: string): Observable<any> {
 		return this.httpClient.get<any>(this.baseUrl+"/subscriberLogin?email="+email+"&password="+password).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
+
+	createUser(newUser: User): Observable<any> {
+		let createSubscriberReq = {
+			"subscriber" : newUser
+		};
+		return this.httpClient.put<any>(this.baseUrl, createSubscriberReq).pipe
 		(
 			catchError(this.handleError)
 		);
