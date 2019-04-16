@@ -1,5 +1,5 @@
-import { Recipe} from './recipe';
-import {SubscriptionPlan} from './subscriptionPlan';
+import { Recipe} from './Recipe';
+import {SubscriptionPlan} from './SubscriptionPlan';
 
 export class Category {
     categoryId: number
