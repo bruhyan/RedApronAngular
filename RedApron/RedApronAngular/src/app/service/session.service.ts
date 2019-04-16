@@ -8,6 +8,20 @@ export class SessionService {
 
   constructor() { }
 
+
+
+  getIsChanged(): boolean{
+      if(sessionStorage.isChanged == "true"){
+        return true;
+      }else{
+        return false;
+      }
+  }
+
+  setIsChanged(isChanged: boolean): void{
+    sessionStorage.isChanged = isChanged;
+  }
+
   getIsLogin(): boolean {
     if(sessionStorage.isLogin == "true") {
       return true;
