@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { SubscriptionPlanService } from '../../service/subscription-plan.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-profile-subscriptions',
@@ -13,12 +15,41 @@ export class ProfileSubscriptionsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private subscriptionPlanService: SubscriptionPlanService) { }
+
+   currentUser;
+   userId;
+  firstName;
+  lastName;
+  subscriptionPlans;
+  recipes;
+  subscriptionPlan;
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+
+    this.currentUser = JSON.parse(sessionStorage.currentUser);
+    console.log(this.currentUser);
+    this.userId = this.currentUser.subscriberId;
+    this.firstName = this.currentUser.firstName;
+    this.lastName = this.currentUser.lastName;
+    this.retrieveAllSubscriptionPlansBySubscriberId(this.userId);
   }
 
+  retrieveAllSubscriptionPlansBySubscriberId(id: string){
+    //retrieve subscription plan data by subscriberID
+    this.subscriptionPlanService.retrieveAllSubscriptionPlansBySubscriberId(id).subscribe(res =>{
+      this.subscriptionPlans = res.subscriptionPlanEntities;
+      console.log("HERE " + this.subscriptionPlans);
+
+      //loop through the subscription to get data 
+      for(let subscriptionPlan of this.subscriptionPlans){
+        this.recipes = this.subscriptionPlanService.retrieveAllRecipesBySubscriptionId(subscriptionPlan.subscriptionPlanId);
+        console.log("SP ID: " + subscriptionPlan.subscriptionPlanId);
+        console.log("Recipes: " + this.recipes);
+      }
+    })
+  }
 }
 
 export interface PeriodicElement {

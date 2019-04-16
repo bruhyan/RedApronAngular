@@ -17,6 +17,7 @@ export class UserEnquiriesComponent implements OnInit {
   lastName;
   currentUser;
   enquiries;
+
   ngOnInit() {
     this.currentUser = JSON.parse(sessionStorage.currentUser);
     console.log(this.currentUser);
@@ -26,7 +27,7 @@ export class UserEnquiriesComponent implements OnInit {
     this.retrieveEnquiriesByUser(this.userId);
   }
 
-  retrieveEnquiriesByUser(id: String) {
+  retrieveEnquiriesByUser(id: string) {
     this.enquiryService.retrieveEnquiries(id).subscribe(res => {
 
       this.enquiries = res.enquiryEntities;
@@ -38,8 +39,8 @@ export class UserEnquiriesComponent implements OnInit {
         var currentYear = date.getFullYear();
         enquiry.created = (currentDate + "-" + currentMonth + "-" + currentYear);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
-          enquiry.answerData = data.answer.text;
-          enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
+          // enquiry.answerData = data.answer.text;
+          // enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
           
           console.log()
         });
@@ -49,7 +50,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
   }
 
-  retrieveAnswerByEnquiryId(id: String) {
+  retrieveAnswerByEnquiryId(id: string) {
     return new Promise(resolve => {
       this.answerService.retrieveAnswerByEnquiryId(id).subscribe(res => {
         resolve(res);
@@ -57,7 +58,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
 
   }
-  openDialog(answer: String, staffName: String): void {
+  openDialog(answer: string, staffName: string): void {
     const dialogRef = this.dialog.open(EnquiryAnswerComponent, {
       data: {
         name: this.firstName + " " + this.lastName,
