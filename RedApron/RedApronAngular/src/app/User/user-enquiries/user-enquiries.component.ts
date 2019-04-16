@@ -26,7 +26,7 @@ export class UserEnquiriesComponent implements OnInit {
     this.retrieveEnquiriesByUser(this.userId);
   }
 
-  retrieveEnquiriesByUser(id: String) {
+  retrieveEnquiriesByUser(id: string) {
     this.enquiryService.retrieveEnquiries(id).subscribe(res => {
 
       this.enquiries = res.enquiryEntities;
