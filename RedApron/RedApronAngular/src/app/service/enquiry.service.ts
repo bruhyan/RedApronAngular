@@ -27,8 +27,6 @@ export class EnquiryService {
   }
 
   createEnquiry(enquiry : Enquiry){
-    // let json: Enquiry = new Enquiry;
-    // json[]
 
     let createEquiryReq = {
       "enquiry": enquiry

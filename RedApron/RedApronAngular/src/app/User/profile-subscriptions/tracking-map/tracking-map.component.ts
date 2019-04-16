@@ -14,8 +14,11 @@ declare var google: any;
 export class TrackingMapComponent implements OnInit {
 
 
-  latitude = 1.2966;
-  longitude = 103.7764;
+  currentUser = JSON.parse(sessionStorage.currentUser);
+  userPostal = this.currentUser.postalCode;
+
+
+  userEndLocation;
 
   lat: number = 1.2966;
   lng: number = 103.7764;
@@ -118,13 +121,16 @@ export class TrackingMapComponent implements OnInit {
   onMapReady(map: any) {
     console.log(map);
     this.map = map;
+    var geocoder = new google.maps.Geocoder();
+    this.geocodeAddress(geocoder);
 
-    this.calcRoute();
+
   }
 
   // get locations from direction service
   calcRoute() {
     console.log('calcroute');
+
     this.line = new google.maps.Polyline({
       strokeOpacity: 0.5,
       path: [],
@@ -132,7 +138,7 @@ export class TrackingMapComponent implements OnInit {
     });
 
     const start = new google.maps.LatLng(1.2966, 103.7764);
-    const end = new google.maps.LatLng(1.3073, 103.7901);
+    const end = this.userEndLocation;
     const request = {
       origin: start,
       destination: end,
@@ -154,6 +160,25 @@ export class TrackingMapComponent implements OnInit {
           }
         }
         this.initRoute();
+      }
+    });
+  }
+
+  geocodeAddress(geocoder) {
+    let postal:Number = this.userPostal;
+
+
+    geocoder.geocode({'address': postal.toString()}, (results, status) => {
+      if (status === 'OK') {
+        var location = results[0].geometry.location;
+        
+        this.userEndLocation = location;
+
+        this.calcRoute();
+      
+
+      } else {
+        alert('Geocode was not successful for the following reason: ' + status);
       }
     });
   }
