@@ -27,10 +27,7 @@
         <a routerLink="/userRegister" routerLinkActive="active" class="nav-link" href="#">Register <span
             class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item active">
-        <a routerLink="/userProfile" routerLinkActive="active" class="nav-link" href="#">Profile <span
-            class="sr-only">(current)</span></a>
-      </li>
+      
       <li>
         <a routerLink="/cart" routerLinkActive="active" class="nav-link" href="#">Cart<span
             class="sr-only">(current)</span></a>
@@ -38,6 +35,23 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
+      <!-- <div *ngIf="sessionService.getIsLogin() == true">
+          
+              <a routerLink="/userProfile" routerLinkActive="active" class="nav-link" href="#"><i class="fa fa-user-circle" style="font-size:larger; color:white"></i> <span
+                  class="sr-only">(current)</span></a>
+           
+      </div> -->
+      <div *ngIf="sessionService.getIsLogin() == true">
+      <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user-circle" style="font-size:larger; color:white"></i></button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a ngbDropdownItem routerLink="/userProfile" class="nav-link" href="#">Profile<span
+                class="sr-only">(current)</span></a>
+            <button ngbDropdownItem (click)="userLogout()">Logout</button>
+          </div>
+      </div>
+    </div>
+
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
             class="fa fa-shopping-cart" style="font-size:larger"></i></button>

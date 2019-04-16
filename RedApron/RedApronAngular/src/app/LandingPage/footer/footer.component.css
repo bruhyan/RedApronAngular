@@ -8,6 +8,10 @@
     padding-bottom: 0;
 }
 
+#footer{
+    max-height: 254px;
+    overflow: hidden;
+}
   
 
 

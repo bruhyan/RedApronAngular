@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
+import { MatDialogModule } from '@angular/material/dialog';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -44,7 +45,10 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 import { ProfileSubscriptionsComponent } from './User/profile-subscriptions/profile-subscriptions.component';
 import { CartComponent } from './cart/cart.component';
 import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
+import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/tracking-map.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
+import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
 
 @NgModule({
   declarations: [
@@ -72,7 +76,10 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     ProfileSubscriptionsComponent,
     CartComponent,
     CreateSubscriptionMainComponent,
+    TrackingMapComponent,
     CartItemComponent,
+    UserEnquiriesComponent,
+    EnquiryAnswerComponent,
   ],
   imports: [
     BrowserModule,
@@ -89,6 +96,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     FormsModule,
     NgbModule,
     HttpClientModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
@@ -98,6 +106,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
     MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
+  entryComponents: [EnquiryAnswerComponent],
 
   bootstrap: [AppComponent]
 })
