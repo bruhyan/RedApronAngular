@@ -13,11 +13,13 @@ export class Review {
     constructor(reviewId?: number
         , text ?: string
         , rating?: number
-        , date?: Date){
+        , date?: Date
+        , subscriber ?: User){
         this.reviewId = reviewId
         this.text = text
         this.rating = rating
         this.date = date
+        this.subscriber = subscriber
     }
     
 }

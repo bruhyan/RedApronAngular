@@ -3,13 +3,13 @@
     <h4 class="card-title">{{recipe.name}}</h4>
     <div class="card-text"><p>{{recipe.shortDescription}}}</p></div>
     <div>
-      <div class='time'>
+
+      <!-- <div class='time'>
       
       <p><i class="fa fa-clock-o" style="font-size:24px; margin-right:10px"></i>25-01-19</p>
-    </div>
-    <div class='button'>
-       <a routerLink="#"><button type="button" class="btn btn-success">Add Reviews</button></a> 
-    </div>
+    </div> -->
+
+    <button mat-raised-button (click)="openDialog()">Create Review</button>
     </div>
   </div>
 </div>
