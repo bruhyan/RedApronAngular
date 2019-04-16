@@ -4,6 +4,7 @@ import { CategoryService } from '../../service/category.service'
 import { Category } from '../../models/Category'
 import { RecipeService } from '../../service/recipe.service'
 import { Recipe } from '../../models/Recipe'
+import { SharingServiceService } from '../../service/sharing-service.service';
 
 @Component({
   selector: 'app-browse-category',
@@ -25,13 +26,11 @@ export class BrowseCategoryComponent implements OnInit {
   randomNums: number[] = [];
   randomRecipes: Recipe[] = [];
 
-  constructor(private categoryService: CategoryService, private recipeService: RecipeService) { }
+  constructor(private categoryService: CategoryService, private recipeService: RecipeService, public sharingService: SharingServiceService) { }
 
   ngOnInit() {
     this.retrieveAllCategories();
     this.retrieveAllRecipes();
-
-
   }
 
   retrieveAllCategories() {
@@ -94,5 +93,25 @@ randomPicks(){
   getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
   }
+
+  setCategories(categoryName){
+    //call service to set data
+    if (categoryName == "Healthy") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.healthy});
+    } else if (categoryName == "Quick") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.quick});
+    }else if (categoryName == "Vegetarian") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.vegetarian});
+    }else if (categoryName == "Baking") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.baking});
+    }else if (categoryName == "Signature") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.signature});
+    }else if (categoryName == "Seasonal") {
+      this.sharingService.setData({"isGeneral": true, "categories": this.seasonal});
+    }
+    // console.log("********** " + this.sharingService.getData().isGeneral);
+  }
+
+
 
 }
