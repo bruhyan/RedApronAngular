@@ -15,9 +15,9 @@
                   <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/browseHeader.png" />
                 </div>
             </div>
-        <h2>recommended picks</h2>
+        <h2>random picks</h2>
       </mat-card-title>
-      <mat-card-subtitle>don't know where to start? here are our bestsellers!</mat-card-subtitle>
+      <mat-card-subtitle>don't know where to start? here are some delicious recipes you can try!</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
 
@@ -30,26 +30,26 @@
 
       <div class="row pb-5">
         <div class="col-md-7">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat1.png" /></a>
+          <a (click) = "setCategories('Healthy')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat1.png" /></a>
         </div>
         <div class="col-md-5">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat2.png" /></a>
+          <a (click) = "setCategories('Quick')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat2.png" /></a>
         </div>
       </div>
       <div class="row pb-5">
         <div class="col-md-5">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat3.png" /></a>
+          <a (click) = "setCategories('Vegetarian')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat3.png" /></a>
         </div>
         <div class="col-md-7">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat4.png" /></a>
+          <a (click) = "setCategories('Baking')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat4.png" /></a>
         </div>
       </div>
       <div class="row pb-5">
         <div class="col-md-7">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat5.png" /></a>
+          <a (click) = "setCategories('Signature')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat5.png" /></a>
         </div>
         <div class="col-md-5">
-          <a routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat6.png" /></a>
+          <a (click) = "setCategories('Seasonal')" routerLink="/browse/categoryMain"><img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/cat6.png" /></a>
         </div>
       </div>
 
