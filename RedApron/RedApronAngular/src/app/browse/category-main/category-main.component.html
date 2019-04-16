@@ -9,43 +9,24 @@
   <div class="col-md-3">
     <app-category-side-bar></app-category-side-bar>
   </div>
+
   <div class="col-md-9">
     <div class="container">
-      <div class="row py-5">
-        <div class="col-md-4">
+        <h3 style='text-align: center'>Browsing "{{categoryBrowsing}}"</h3>
+
+      <div class="row py-5" >
+        <div class="col-md-4" *ngFor="let num of recipeNums">
+          <app-recipe-card [num] = "num"></app-recipe-card>
+        </div>
+        <!-- <div class="col-md-4">
           <app-recipe-card></app-recipe-card>
         </div>
         <div class="col-md-4">
           <app-recipe-card></app-recipe-card>
-        </div>
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
+        </div> -->
       </div>
 
-      <div class="row py-5">
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-      </div>
-
-      <div class="row py-5">
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-        <div class="col-md-4">
-          <app-recipe-card></app-recipe-card>
-        </div>
-      </div>
+      
     </div>
   </div>
 </div>

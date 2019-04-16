@@ -27,10 +27,12 @@ export class EnquiryService {
   }
 
   createEnquiry(enquiry : Enquiry){
-    // let json: Enquiry = new Enquiry;
-    // json[]
 
-    return this.httpClient.put<Enquiry>(this.baseUrl, enquiry).pipe(
+    let createEquiryReq = {
+      "enquiry": enquiry
+    };
+
+    return this.httpClient.put<Enquiry>(this.baseUrl, createEquiryReq).pipe(
       catchError(this.handleError)
     );
   }
