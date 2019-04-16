@@ -1,12 +1,32 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user';
+import { SubscriptionPlan } from '../models/SubscriptionPlan';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SessionService {
+  plans : SubscriptionPlan[];
 
-  constructor() { }
+  constructor() {
+    
+   }
+
+   initCart() : void {
+    this.plans = [];
+    sessionStorage.cart = JSON.stringify(this.plans);
+   }
+
+  addPlanToCart(plan: SubscriptionPlan): void {
+    let cart = JSON.parse(sessionStorage.cart);
+    cart.push(plan);
+    sessionStorage.cart = JSON.stringify(cart);
+  }
+
+  clearCart():void {
+    this.plans = [];
+    sessionStorage.cart = JSON.stringify(this.plans);
+  }
 
   getIsLogin(): boolean {
     if(sessionStorage.isLogin == "true") {
