@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { EnquiryService } from 'src/app/service/enquiry.service';
 
 @Component({
   selector: 'app-contact-form',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ContactFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(private enquiryService: EnquiryService) { }
 
   ngOnInit() {
   }
 
+  createEnquiry(){
+
+  }
 }
