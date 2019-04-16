@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { SubscriptionPlanService } from '../service/subscription-plan.service';
+import { RecipeService } from '../service/recipe.service'
+import { Recipe } from '../models/Recipe';
+
 
 @Component({
   selector: 'app-review-past-recipes',
@@ -7,9 +11,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReviewPastRecipesComponent implements OnInit {
 
-  constructor() { }
+  @Input() num: number
+  recipe;
+
+  constructor(private subscriptionPlanService: SubscriptionPlanService, private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.retrieveRecipe();
+    console.log("SubscriptionPlan: " + this.num)
+  }
+
+  retrieveRecipe(){
+    this.recipeService.getRecipeByRecipeId(this.num).subscribe(res => {
+      this.recipe = res.recipe
+      console.log("recipe in past recipes: "+this.recipe);
+    });
   }
 
 }

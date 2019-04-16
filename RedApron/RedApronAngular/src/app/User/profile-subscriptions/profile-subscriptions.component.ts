@@ -17,13 +17,16 @@ export class ProfileSubscriptionsComponent implements OnInit {
 
   constructor(private subscriptionPlanService: SubscriptionPlanService) { }
 
-   currentUser;
-   userId;
+  currentUser;
+  userId;
   firstName;
   lastName;
   subscriptionPlans;
   recipes;
   subscriptionPlan;
+
+  numOfSubscriptions: number[] = [];
+  numOfRecipes: number[] = [];
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
@@ -44,9 +47,27 @@ export class ProfileSubscriptionsComponent implements OnInit {
 
       //loop through the subscription to get data 
       for(let subscriptionPlan of this.subscriptionPlans){
-        this.recipes = this.subscriptionPlanService.retrieveAllRecipesBySubscriptionId(subscriptionPlan.subscriptionPlanId);
+
+        this.recipes = this.subscriptionPlanService.retrieveAllRecipesBySubscriptionId(subscriptionPlan.subscriptionPlanId).subscribe(
+          data =>{this.recipes = data.recipeEntities;
+            console.log("Recipe: " + this.recipes)      
+            for(let recipe of this.recipes){
+              console.log("Recipe ID: " + recipe.recipeId)
+              this.numOfRecipes.push(recipe.recipeId)
+              console.log("Passthorugh Recipes: " + this.numOfRecipes)
+            }      
+          }
+        );
         console.log("SP ID: " + subscriptionPlan.subscriptionPlanId);
         console.log("Recipes: " + this.recipes);
+
+        
+
+        this.numOfSubscriptions.push(subscriptionPlan.subscriptionPlanId)
+        console.log("Passthorugh SP: " + this.numOfSubscriptions)
+
+        
+        
       }
     })
   }

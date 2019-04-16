@@ -2,8 +2,6 @@
   <app-tracking-map></app-tracking-map>
 
 </div>
-<!-- 
- app-review-past-recipes -->
 
 <!-- <tbody>
   <tr> *ngFor="let subscriptionPlan of subscriptionPlans" ; index as i">
@@ -14,18 +12,27 @@
   </tr>
 </tbody> -->
 
+<hr>
 
-<div class="row pb-5">
-    <div class="col-md-3">
-      <app-review-past-recipes></app-review-past-recipes>
+<div class="container">
+  <div class="row pb-5">
+    <div class="col-md-3" *ngFor="let num of numOfRecipes">
+      <app-review-past-recipes [num]="num"></app-review-past-recipes>
     </div>
-    <div class="col-md-3">
-      <app-review-past-recipes></app-review-past-recipes>
-    </div>
-    <div class="col-md-3">
-      <app-review-past-recipes></app-review-past-recipes>
-    </div>
-    <div class="col-md-3">
-      <app-review-past-recipes></app-review-past-recipes>
-    </div>
+  </div>
 </div>
+
+<!-- <div class="row pb-5">
+  <div class="col-md-3">
+    <app-review-past-recipes></app-review-past-recipes>
+  </div>
+  <div class="col-md-3">
+    <app-review-past-recipes></app-review-past-recipes>
+  </div>
+  <div class="col-md-3">
+    <app-review-past-recipes></app-review-past-recipes>
+  </div>
+  <div class="col-md-3">
+    <app-review-past-recipes></app-review-past-recipes>
+  </div>
+</div> -->

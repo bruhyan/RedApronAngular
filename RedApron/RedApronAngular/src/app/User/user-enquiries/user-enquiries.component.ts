@@ -40,8 +40,8 @@ export class UserEnquiriesComponent implements OnInit {
         console.log(enquiry.enquiryId);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
           console.log(data);
-          enquiry.answerData = data.answer.text;
-          enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
+          // enquiry.answerData = data.answer.text;
+          // enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
         });
 ;
       }
