@@ -38,8 +38,8 @@ export class UserEnquiriesComponent implements OnInit {
         var currentYear = date.getFullYear();
         enquiry.created = (currentDate + "-" + currentMonth + "-" + currentYear);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
-          enquiry.answerData = data.answer.text;
-          enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
+          // enquiry.answerData = data.answer.text;
+          // enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
           
           console.log()
         });
@@ -49,7 +49,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
   }
 
-  retrieveAnswerByEnquiryId(id: String) {
+  retrieveAnswerByEnquiryId(id: string) {
     return new Promise(resolve => {
       this.answerService.retrieveAnswerByEnquiryId(id).subscribe(res => {
         resolve(res);
@@ -57,7 +57,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
 
   }
-  openDialog(answer: String, staffName: String): void {
+  openDialog(answer: string, staffName: string): void {
     const dialogRef = this.dialog.open(EnquiryAnswerComponent, {
       data: {
         name: this.firstName + " " + this.lastName,
