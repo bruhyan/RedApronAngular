@@ -16,10 +16,10 @@
         </div>
         <div class="form-group">
           <label for="body">Body</label>
-          <textarea class="form-control" rows="5" id="body" placeholder="Write your questions here."></textarea>
+          <textarea class="form-control" rows="5" #enquiryBody id="body" placeholder="Write your questions here."></textarea>
         </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" (click)="createEnquiry(enquiryBody.value)" class="btn btn-primary">Submit</button>
       </form>
     </div>
 

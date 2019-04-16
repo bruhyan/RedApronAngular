@@ -40,8 +40,9 @@ export class UserEnquiriesComponent implements OnInit {
         console.log(enquiry.enquiryId);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
           console.log(data);
-          enquiry.answerData = data.answer.text;
-          enquiry.staffName = data.answer.staff.firstName + " " + data.answer.staff.lastName;
+          let result:any = data;
+          enquiry.answerData = result.answer.text;
+          enquiry.staffName = result.answer.staff.firstName + " " + result.answer.staff.lastName;
         });
 ;
       }
@@ -49,7 +50,7 @@ export class UserEnquiriesComponent implements OnInit {
     })
   }
 
-  retrieveAnswerByEnquiryId(id: String) {
+  retrieveAnswerByEnquiryId(id: string) {
     return new Promise(resolve => {
       this.answerService.retrieveAnswerByEnquiryId(id).subscribe(res => {
         resolve(res);
