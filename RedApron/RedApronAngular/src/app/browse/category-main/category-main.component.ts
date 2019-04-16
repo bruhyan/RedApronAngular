@@ -17,33 +17,43 @@ export class CategoryMainComponent implements OnInit {
   recipeNums: number[] = [];
   recipes: Recipe[] = [];
   message:number
+  cat: string
 
 
   constructor(private categoryService: CategoryService, private recipeService: RecipeService,public sharingService: SharingServiceService) { }
 
   ngOnInit() {
     console.log("*********** PARENT MAIN : is not from child " + this.sharingService.getData().isGeneral )
-    if (this.sharingService.getData().isGeneral) { //IS GENERAL
       this.categoriesBrowsing = this.sharingService.getData().categories
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
         this.categoryBrowsing = "Healthy"
+        this.cat = "cat1.png"
       } else if (temp == "Quick") {
         this.categoryBrowsing = "Quick & Easy"
+        this.cat = "cat2.png"
       }else if (temp == "Vegetarian") {
         this.categoryBrowsing = "Vegetarian"
+        this.cat = "cat3.png"
       }else if (temp == "Baking") {
         this.categoryBrowsing = "Baking"
+        this.cat = "cat4.png"
+
       }else if (temp == "Signature") {
         this.categoryBrowsing = "Signature"
+        this.cat = "cat5.png"
+
       }else if (temp == "Seasonal") {
         this.categoryBrowsing = "Seasonal Specials"
+        this.cat = "cat6.png"
+
       }
+      console.log(this.cat)
       for (let cat of this.categoriesBrowsing) {
         console.log("cat Id browsing : " + cat.categoryId)
         this.retrieveRecipesForCategory(cat.categoryId);
       }
-    }
+    
 
   }
 
