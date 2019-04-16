@@ -1,4 +1,8 @@
+<hr>
 <div class="container" style="background: white;">
+
+  <h1>Tracking your current order here: </h1>
+  <br/>
   <app-tracking-map></app-tracking-map>
 
 </div>
@@ -14,7 +18,10 @@
 
 <hr>
 
+
 <div class="container">
+  <h1>Share your review of the recipes: </h1>
+<br/>
   <div class="row pb-5">
     <div class="col-md-3" *ngFor="let num of numOfRecipes">
       <app-review-past-recipes [num]="num"></app-review-past-recipes>
