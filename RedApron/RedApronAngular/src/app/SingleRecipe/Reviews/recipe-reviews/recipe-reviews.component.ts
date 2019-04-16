@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import {MatPaginator, MatTableDataSource} from '@angular/material';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { ReviewService } from '../../../service/review.service';
 
 @Component({
   selector: 'app-recipe-reviews',
@@ -13,10 +15,14 @@ export class RecipeReviewsComponent implements OnInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
 
-  constructor() { }
+  constructor(private httpClient: HttpClient) { }
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+  }
+
+  retrieveAllReviewsByRecipeId(id:string){
+
   }
 
 }
