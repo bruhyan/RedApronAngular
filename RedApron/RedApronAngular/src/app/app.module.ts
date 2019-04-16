@@ -13,6 +13,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 import { ToastrModule } from 'ngx-toastr';
+import { MatDialogModule } from '@angular/material/dialog';
 
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -48,6 +49,8 @@ import { CartComponent } from './cart/cart.component';
 import { CreateSubscriptionMainComponent } from './createSubscriptionPlan/create-subscription-main/create-subscription-main.component';
 import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/tracking-map.component';
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
+import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
+import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +80,8 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     CreateSubscriptionMainComponent,
     TrackingMapComponent,
     CartItemComponent,
+    UserEnquiriesComponent,
+    EnquiryAnswerComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -94,6 +99,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
     FormsModule,
     NgbModule,
     HttpClientModule,
+    MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     })
@@ -103,6 +109,7 @@ import { CartItemComponent } from './cart/cart-item/cart-item.component';
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
     MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
+  entryComponents: [EnquiryAnswerComponent],
 
   bootstrap: [AppComponent]
 })

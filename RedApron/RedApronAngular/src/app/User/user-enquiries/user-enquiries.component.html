@@ -1,0 +1,22 @@
+<div class="container">
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Enquiry #</th>
+        <th scope="col">Question: </th>
+        <th scope="col">Created At </th>
+        <th scope="col">Answer</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let enquiry of enquiries; index as i">
+        <td scope="row">{{ i + 1 }}</td>
+        <td>{{ enquiry.text }}</td>
+        <td>{{ enquiry.created }}</td>
+        <td><button mat-raised-button (click)="openDialog(enquiry.answerData, enquiry.staffName)">View Answer</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

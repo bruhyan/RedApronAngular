@@ -18,5 +18,6 @@ export class Enquiry {
        this.enquiryId = enquiryId
        this.created = created
        this.updated = updated
+       this.text = text
     }
 }
