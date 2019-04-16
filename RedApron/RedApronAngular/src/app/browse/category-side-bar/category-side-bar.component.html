@@ -13,7 +13,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of healthy">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
     <ngb-panel >
@@ -26,7 +29,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of quick">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
     <ngb-panel>
@@ -39,7 +45,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of vegetarian">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
     <ngb-panel>
@@ -52,7 +61,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of baking">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
     <ngb-panel>
@@ -65,7 +77,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of signature">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
     <ngb-panel>
@@ -78,7 +93,10 @@
 
       </ng-template>
       <ng-template ngbPanelContent>
-
+        <ul *ngFor="let cat of seasonal">
+          <li>{{cat.name}}</li>
+          <hr>
+        </ul>
       </ng-template>
     </ngb-panel>
   </ngb-accordion>

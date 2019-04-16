@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { RecipeService } from '../../service/recipe.service'
+import { Recipe } from '../../models/Recipe'
 
 @Component({
   selector: 'app-recipe-card',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RecipeCardComponent implements OnInit {
 
-  constructor() { }
+  @Input() num: number
+  recipe
+
+  constructor(private recipeService: RecipeService) { }
 
   ngOnInit() {
+    this.retrieveRecipe();
   }
 
+  retrieveRecipe() {
+    this.recipeService.getRecipeByRecipeId(this.num).subscribe(res => {
+      this.recipe = res.recipe
+      console.log(this.recipe);
+
+    },
+      error => {
+        console.log("****** browse category recipe retrieval " + error);
+      }
+    ) 
+  }
 }

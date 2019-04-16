@@ -11,50 +11,50 @@ import { Category } from '../../models/Category'
 })
 export class CategorySideBarComponent implements OnInit {
 
-  categories: Category[];
+  categories: Category[] = [];
   
-  healthy: Category[];
-  quick: Category[];
-  vegetarian: Category[];
-  baking: Category[];
-  signature: Category[];
-  seasonal: Category[];
+  healthy: Category[] = [];
+  quick: Category[] = [];
+  vegetarian: Category[] =[];
+  baking: Category[] =[];
+  signature: Category[] = [];
+  seasonal: Category[] = [];
 
   constructor(private categoryService: CategoryService) { }
 
   ngOnInit() {
     this.retrieveAllCategories();
-    this.filterCategories();
 
   }
 
   retrieveAllCategories() {
     this.categoryService.getCategories().subscribe(res => {
       console.log(res);
+      this.categories = res.categoryEntities
+      this.filterCategories();
+
     },
       error => {
         console.log("****** category side bar " + error);
       }
-    )
+    ) 
   }
 
   filterCategories(){
-    for(var i in this.categories) {
-      // if (cat.name.split(" ")[0] == "Healthy") {
-      //   this.healthy.concat(cat)
-      // } else if (cat.name.split(" ")[0] == "Quick") {
-      //   this.quick.concat(cat)
-      // }else if (cat.name.split(" ")[0] == "Vegetarian") {
-      //   this.vegetarian.concat(cat)
-      // }else if (cat.name.split(" ")[0] == "Baking") {
-      //   this.baking.concat(cat)
-      // }else if (cat.name.split(" ")[0] == "Signature") {
-      //   this.signature.concat(cat)
-      // }else if (cat.name.split(" ")[0] == "Seasonal") {
-      //   this.seasonal.concat(cat)
-      // }
-      // console.log("HEALTHY " + this.healthy);
-      console.log("filter");
+    for(let cat of this.categories) {
+      if (cat.name.split(" ")[0] == "Healthy") {
+        this.healthy.push(cat)
+      } else if (cat.name.split(" ")[0] == "Quick") {
+        this.quick.push(cat)
+      }else if (cat.name.split(" ")[0] == "Vegetarian") {
+        this.vegetarian.push(cat)
+      }else if (cat.name.split(" ")[0] == "Baking") {
+        this.baking.push(cat)
+      }else if (cat.name.split(" ")[0] == "Signature") {
+        this.signature.push(cat)
+      }else if (cat.name.split(" ")[0] == "Seasonal") {
+        this.seasonal.push(cat)
+      }
     }
 
   }
