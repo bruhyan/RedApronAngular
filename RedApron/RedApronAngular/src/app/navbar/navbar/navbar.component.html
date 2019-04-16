@@ -35,24 +35,22 @@
     </ul>
 
     <form class="form-inline my-2 my-lg-0">
-      <div>
+      <!-- <div *ngIf="sessionService.getIsLogin() == true">
           
               <a routerLink="/userProfile" routerLinkActive="active" class="nav-link" href="#"><i class="fa fa-user-circle" style="font-size:larger; color:white"></i> <span
                   class="sr-only">(current)</span></a>
            
-      </div>
-      <!-- <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic" ngDropdownToggle>
-            <i class="fa fa-user-circle" style="font-size:larger; color:white"></i>
-        </button>
-        <div ngbDropdownMenu aria-labelledby="dropdownBasic" style="width: 100px;">
-          <div style="overflow-y: scroll; max-height:400px;">
-            <div class="row">
-                <button type="submit" class="btn btn-outline-secondary" style="margin-left: 25px">Clear</button>
-            </div>
-          </div>
-        </div>
       </div> -->
+      <div *ngIf="sessionService.getIsLogin() == true">
+      <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user-circle" style="font-size:larger; color:white"></i></button>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a ngbDropdownItem routerLink="/userProfile" class="nav-link" href="#">Profile<span
+                class="sr-only">(current)</span></a>
+            <button ngbDropdownItem (click)="userLogout()">Logout</button>
+          </div>
+      </div>
+    </div>
 
       <div ngbDropdown class="d-inline-block">
         <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
