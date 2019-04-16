@@ -8,18 +8,19 @@
           <div class="sidebar-header d-flex align-items-center justify-content-between">
             <h5 class="m-0">Healthy</h5><i class="fa fa-lg fa-pull-right fa-heart"></i>
           </div>
-          <!-- <p>{{healthy[0]}}</p> -->
         </button>
 
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of healthy">
-          <li>{{cat.name}}</li>
+              <a (click)="sendMessage(cat.categoryId)">
+            <li>{{cat.name}} </li>
+          </a>
           <hr>
         </ul>
       </ng-template>
     </ngb-panel>
-    <ngb-panel >
+    <ngb-panel>
       <ng-template ngbPanelHeader>
         <button ngbPanelToggle class="accordion-button">
           <div class="sidebar-header d-flex align-items-center justify-content-between">
@@ -30,7 +31,9 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of quick">
-          <li>{{cat.name}}</li>
+            <a (click)="sendMessage(cat.categoryId)">
+                <li>{{cat.name}}</li>
+          </a>
           <hr>
         </ul>
       </ng-template>
@@ -46,7 +49,9 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of vegetarian">
-          <li>{{cat.name}}</li>
+            <a (click)="sendMessage(cat.categoryId)">
+                <li>{{cat.name}}</li>
+          </a>
           <hr>
         </ul>
       </ng-template>
@@ -62,7 +67,9 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of baking">
-          <li>{{cat.name}}</li>
+            <a (click)="sendMessage(cat.categoryId)">
+                <li>{{cat.name}}</li>
+          </a>
           <hr>
         </ul>
       </ng-template>
@@ -78,7 +85,9 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of signature">
-          <li>{{cat.name}}</li>
+            <a (click)="sendMessage(cat.categoryId)">
+                <li>{{cat.name}}</li>
+          </a>
           <hr>
         </ul>
       </ng-template>
@@ -94,7 +103,9 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of seasonal">
-          <li>{{cat.name}}</li>
+            <a (click)="sendMessage(cat.categoryId)">
+                <li>{{cat.name}}</li>
+          </a>
           <hr>
         </ul>
       </ng-template>

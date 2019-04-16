@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Enquiry } from '../models/Enquiry';
+import { Review } from '../models/Review';
 
 const httpOptions = {
   header: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -11,28 +11,20 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class EnquiryService {
 
-  baseUrl = '/api/Enquiry';
+export class ReviewService {
+
+  baseUrl = '/api/Review';
 
   constructor(private httpClient: HttpClient) { }
 
-
-
-  retrieveEnquiries(id: string): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveEnquiryBySubscriber/"+ id).pipe
-      (
-        catchError(this.handleError)
-      );
-  }
-
-  createEnquiry(enquiry : Enquiry){
-
-    let createEquiryReq = {
-      "enquiry": enquiry
+  createReview(review : Review){
+    
+    let createReviewReq = {
+      "review": review
     };
 
-    return this.httpClient.put<Enquiry>(this.baseUrl, createEquiryReq).pipe(
+    return this.httpClient.put<Review>(this.baseUrl, createReviewReq).pipe(
       catchError(this.handleError)
     );
   }
@@ -51,5 +43,4 @@ export class EnquiryService {
 
     return throwError(errorMessage);
   }
-
 }

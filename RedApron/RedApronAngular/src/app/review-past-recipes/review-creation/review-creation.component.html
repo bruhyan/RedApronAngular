@@ -1,0 +1,47 @@
+<h1 mat-dialog-title>Leave us a review?</h1>
+<div mat-dialog-content>
+  <form>
+    <div class="row">
+      <div class="col-md-5">
+        <label for="review">Review</label>
+      </div>
+      <div class="col-md-6" style="width: 20rem">
+        <textarea class="form-control" rows="5" #reviewBody id="body" placeholder="Write your reviews here."></textarea>
+      </div>
+    </div>
+    <br />
+
+    <div class="row">
+      <div class="col-md-5">
+        <label for="rating">Rating</label>
+      </div>
+      <div class="col-md-7">
+        <div class="form-group">
+          <ngb-rating [formControl]="ctrl"></ngb-rating>
+          <div class="form-text small">
+            <div *ngIf="ctrl.valid" class="text-success">Thanks!</div>
+            <div *ngIf="ctrl.invalid" class="text-danger">Please rate us</div>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row">
+          <div class="col-md-5">
+            <pre>Model: <b>{{ ctrl.value }}</b></pre>
+          </div>
+          <!-- <button class="btn btn-sm btn-outline-{{ ctrl.disabled ? 'danger' : 'success'}} mr-2" (click)="toggle()">
+                {{ ctrl.disabled ? "control disabled" : " control enabled" }}
+              </button> -->
+          <div class="col-md-5">
+            <button class="btn btn-sm btn-outline-primary mr-2" (click)="ctrl.setValue(null)">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <button mat-button [mat-dialog-close]="" type="submit" (click)="createReview(reviewBody.value, ctrl.value)"
+    class="btn btn-primary">Submit</button>
+  <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cancel</button>
+</div>

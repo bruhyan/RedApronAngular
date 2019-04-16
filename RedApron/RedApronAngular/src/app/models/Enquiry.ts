@@ -14,10 +14,12 @@ export class Enquiry {
     constructor( enquiryId ?: number
         ,text?: string
        ,created ?: Date
-       ,updated ?: Date) {
+       ,updated ?: Date
+       , subscriber ?: User) {
        this.enquiryId = enquiryId
        this.created = created
        this.updated = updated
        this.text = text
+       this.subscriber = subscriber
     }
 }

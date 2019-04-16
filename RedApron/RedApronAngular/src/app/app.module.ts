@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -22,6 +22,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
 import { RecipeService } from './service/recipe.service';
 import { UserService } from './service/user.service';
+import { SubscriptionPlanService } from './service/subscription-plan.service';
+import { ReviewService } from './service/review.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +53,8 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
 import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
+import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
+import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +73,7 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     GmapComponent,
     FooterComponent,
 
+
     NavbarComponent,
     CategoryMainComponent,
     UserLoginComponent,
@@ -82,6 +87,8 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     CartItemComponent,
     UserEnquiriesComponent,
     EnquiryAnswerComponent,
+    ReviewPastRecipesComponent,
+    ReviewCreationComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -97,6 +104,7 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     MatTableModule,
     MatPaginatorModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
     MatDialogModule,
@@ -108,8 +116,8 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
-  entryComponents: [EnquiryAnswerComponent],
+    MatPaginatorModule, HttpClientModule, ReviewService, SubscriptionPlanService, RecipeService, UserService, NgbModule],
+  entryComponents: [EnquiryAnswerComponent, ReviewCreationComponent],
 
   bootstrap: [AppComponent]
 })
