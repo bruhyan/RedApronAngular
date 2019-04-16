@@ -21,6 +21,7 @@ export class CategoryService {
 	{		
 		return this.httpClient.get<any>(this.baseUrl + "/retrieveAllCategories").pipe
 		(
+	
 			catchError(this.handleError)
 		);
 	}

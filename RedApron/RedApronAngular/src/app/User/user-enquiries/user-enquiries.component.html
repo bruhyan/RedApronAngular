@@ -12,10 +12,7 @@
     </thead>
     <tbody>
       <tr *ngFor="let enquiry of enquiries; index as i">
-        <th scope="row">{{ i + 1 }}</th>
-        <td>
-          {{ enquiry.name }}
-        </td>
+        <td scope="row">{{ i + 1 }}</td>
         <td>{{ enquiry.text }}</td>
         <td>{{ enquiry.created }}</td>
         <td><button mat-raised-button (click)="openDialog(enquiry.answerData, enquiry.staffName)">View Answer</button></td>

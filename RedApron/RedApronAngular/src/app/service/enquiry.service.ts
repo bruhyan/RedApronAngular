@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Enquiry } from '../models/Enquiry';
 
 const httpOptions = {
   header: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -23,6 +24,15 @@ export class EnquiryService {
       (
         catchError(this.handleError)
       );
+  }
+
+  createEnquiry(enquiry : Enquiry){
+    // let json: Enquiry = new Enquiry;
+    // json[]
+
+    return this.httpClient.put<Enquiry>(this.baseUrl, enquiry).pipe(
+      catchError(this.handleError)
+    );
   }
 
   private handleError(error: HttpErrorResponse) {
