@@ -40,6 +40,7 @@ export class UserEnquiriesComponent implements OnInit {
         console.log(enquiry.enquiryId);
         this.retrieveAnswerByEnquiryId(enquiry.enquiryId).then(data =>{
           console.log(data);
+
           let result:any = data;
           enquiry.answerData = result.answer.text;
           enquiry.staffName = result.answer.staff.firstName + " " + result.answer.staff.lastName;

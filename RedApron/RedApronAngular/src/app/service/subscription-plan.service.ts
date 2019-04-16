@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs'
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
-import { Enquiry } from '../models/Enquiry';
 
 const httpOptions = {
   header: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -11,34 +10,29 @@ const httpOptions = {
 @Injectable({
   providedIn: 'root'
 })
-export class EnquiryService {
+export class SubscriptionPlanService {
 
-  baseUrl = '/api/Enquiry';
+  baseUrl = '/api/SubscriptionPlan';
 
   constructor(private httpClient: HttpClient) { }
 
-
-
-  retrieveEnquiries(id: string): Observable<any> {
-    return this.httpClient.get<any>(this.baseUrl + "/retrieveEnquiryBySubscriber/"+ id).pipe
-      (
-        catchError(this.handleError)
-      );
-  }
-
-  createEnquiry(enquiry : Enquiry){
-
-    let createEquiryReq = {
-      "enquiry": enquiry
-    };
-
-    return this.httpClient.put<Enquiry>(this.baseUrl, createEquiryReq).pipe(
+  retrieveAllSubscriptionPlansBySubscriberId(id: string): Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllSubscriptionPlansBySubscriberId/"+ id).pipe
+    (
       catchError(this.handleError)
     );
   }
 
+  retrieveAllRecipesBySubscriptionId(id: string): Observable <any> {
+    return this.httpClient.get<any>(this.baseUrl + "/retrieveAllRecipesBySubscriptionPlanId/"+ id).pipe
+    (
+      catchError(this.handleError)
+    );
+  }
+
+
   private handleError(error: HttpErrorResponse) {
-    let errorMessage: String = "";
+    let errorMessage: string = "";
 
     if (error.error instanceof ErrorEvent) {
       errorMessage = "An unknown error has occurred: " + error.error.message;

@@ -22,6 +22,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
 import { RecipeService } from './service/recipe.service';
 import { UserService } from './service/user.service';
+import { SubscriptionPlanService } from './service/subscription-plan.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -51,6 +52,7 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
 import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
+import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +84,7 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     CartItemComponent,
     UserEnquiriesComponent,
     EnquiryAnswerComponent,
+    ReviewPastRecipesComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -108,7 +111,7 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
+    MatPaginatorModule, HttpClientModule, CategoryService, SubscriptionPlanService, RecipeService, UserService, NgbModule],
   entryComponents: [EnquiryAnswerComponent],
 
   bootstrap: [AppComponent]
