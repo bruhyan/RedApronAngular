@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 import { CategoryService } from '../../service/category.service'
 import { Category } from '../../models/Category'
+import { SharingServiceService } from '../../service/sharing-service.service';
+
 
 
 @Component({
@@ -12,7 +14,7 @@ import { Category } from '../../models/Category'
 export class CategorySideBarComponent implements OnInit {
 
   categories: Category[] = [];
-  
+  category: Category
   healthy: Category[] = [];
   quick: Category[] = [];
   vegetarian: Category[] =[];
@@ -20,7 +22,10 @@ export class CategorySideBarComponent implements OnInit {
   signature: Category[] = [];
   seasonal: Category[] = [];
 
-  constructor(private categoryService: CategoryService) { }
+ 
+  @Output() messageEvent = new EventEmitter<string>()
+
+  constructor(private categoryService: CategoryService,public sharingService: SharingServiceService) { }
 
   ngOnInit() {
     this.retrieveAllCategories();
@@ -59,5 +64,30 @@ export class CategorySideBarComponent implements OnInit {
 
   }
 
+  setCategory(categoryId:number) {
+    console.log("HERE")
+    this.retrieveCategory(categoryId)
+    console.log("SIDEBAR CHILD : " + categoryId)
+    this.sharingService.setData({"isGeneral": false, "categories": this.category});
 
+}
+
+
+retrieveCategory(categoryId:number) {
+  this.categoryService.getCategoryByCategoryId(categoryId).subscribe(res => {
+    console.log(res);
+    this.category = res.category
+    this.filterCategories();
+
+  },
+    error => {
+      console.log("****** category side bar " + error);
+    }
+  ) 
+}
+
+  sendMessage(message) {
+    console.log("EMITTING " + message)
+    this.messageEvent.emit(message)
+  }
 }

@@ -1,18 +1,21 @@
 <header>
-  <div>
-    <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/categoryMainHeader.png" />
+  <div style="position:relative">
+    <img alt="Card image cap" class="card-img-top" src='../../../../assets/images/{{cat}}' />
+    <h3 style='text-align: center' class="centered">Browsing "{{categoryBrowsing}}"</h3>
+
   </div>
   <!-- <button type="button" class="btn btn-info btn-lg">Subscribe <i class="fa fa-plus-circle"></i></button> -->
 </header>
 
 <div class="row">
   <div class="col-md-3">
-    <app-category-side-bar></app-category-side-bar>
+    <app-category-side-bar (messageEvent) = "receiveMessage($event)"></app-category-side-bar>
   </div>
 
   <div class="col-md-9">
     <div class="container">
-        <h3 style='text-align: center'>Browsing "{{categoryBrowsing}}"</h3>
+      <br />
+        <!-- Message Cat Id Viewing : {{message}} -->
 
       <div class="row py-5" >
         <div class="col-md-4" *ngFor="let num of recipeNums">
@@ -24,9 +27,10 @@
         <div class="col-md-4">
           <app-recipe-card></app-recipe-card>
         </div> -->
+
       </div>
 
-      
+
     </div>
   </div>
 </div>

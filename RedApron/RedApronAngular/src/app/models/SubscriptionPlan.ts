@@ -18,6 +18,8 @@ export class SubscriptionPlan {
     transaction: Transaction
     recipes: Recipe[]
     subscriber: User
+    categoryId : number
+    categoryName: string
 
     constructor(subscriptionPlanId?: number, startDate?: Date, endDate?: Date, preference?: string
         , numOfWeeks?: number

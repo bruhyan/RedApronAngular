@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { RecipeService } from '../../service/recipe.service'
 import { Recipe } from '../../models/Recipe'
 import { send } from 'q';
+import { SharingServiceService } from '../../service/sharing-service.service';
+
 
 @Component({
   selector: 'app-recipe-card',
@@ -17,7 +19,7 @@ export class RecipeCardComponent implements OnInit {
   shortDescription
   sen : string = ""
 
-  constructor(private recipeService: RecipeService) { }
+  constructor(private recipeService: RecipeService,public sharingService: SharingServiceService) { }
 
   ngOnInit() {
     this.retrieveRecipe();
@@ -38,5 +40,10 @@ export class RecipeCardComponent implements OnInit {
         console.log("****** browse category recipe retrieval " + error);
       }
     ) 
+  }
+
+  setRecipe(){
+    this.sharingService.setData({"recipe": this.recipe});
+    console.log("RECIPE SET IN CARD : " + this.sharingService.getData().recipe.name)
   }
 }

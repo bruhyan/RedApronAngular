@@ -14,7 +14,7 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
-import { Module as StripeModule} from 'stripe-angular';
+import { Module as StripeModule } from 'stripe-angular';
 
 import { NgxStripeModule } from 'ngx-stripe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +23,8 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CategoryService } from './service/category.service';
 import { RecipeService } from './service/recipe.service';
 import { UserService } from './service/user.service';
+import { SubscriptionPlanService } from './service/subscription-plan.service';
+import { ReviewService } from './service/review.service';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -54,6 +56,9 @@ import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.com
 import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
 import { PaymentComponent } from './cart/checkout/payment/payment.component';
 import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
+import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
+import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -87,6 +92,8 @@ import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-pa
     EnquiryAnswerComponent,
     PaymentComponent,
     CheckoutPageComponent,
+    ReviewPastRecipesComponent,
+    ReviewCreationComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -102,6 +109,7 @@ import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-pa
     MatTableModule,
     MatPaginatorModule,
     FormsModule,
+    ReactiveFormsModule,
     NgbModule,
     HttpClientModule,
     MatDialogModule,
@@ -111,13 +119,13 @@ import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-pa
     StripeModule.forRoot(),
     NgxStripeModule.forRoot("pk_test_9zdHAOReAhqDbLyt9YCHdwsR00XR1sIOST"),
     ReactiveFormsModule
- 
+
 
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
-  entryComponents: [EnquiryAnswerComponent,PaymentComponent],
+    MatPaginatorModule, HttpClientModule, CategoryService, ReviewService, SubscriptionPlanService, RecipeService, UserService, NgbModule],
+  entryComponents: [EnquiryAnswerComponent, ReviewCreationComponent, PaymentComponent],
 
   bootstrap: [AppComponent],
   exports: [ReactiveFormsModule]

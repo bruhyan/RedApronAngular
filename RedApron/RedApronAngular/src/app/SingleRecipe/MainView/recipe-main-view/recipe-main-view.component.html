@@ -1,6 +1,11 @@
 <div class="container">
-  <app-recipe-main-content></app-recipe-main-content>
-  <app-recipe-instructions></app-recipe-instructions>
-  <app-recipe-reviews></app-recipe-reviews>
+  <app-recipe-main-content [num] = "num"></app-recipe-main-content>
+  <app-recipe-instructions [num] = "num" ></app-recipe-instructions>
+  <br>
+  <div class="container">
+    <h2>Here's what other customers have to say!</h2>
+  </div><br>
+  <app-recipe-reviews [num] = "num"></app-recipe-reviews>
+  <br>
+  <br>
 </div>
-

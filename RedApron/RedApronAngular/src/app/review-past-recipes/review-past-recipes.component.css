@@ -1,0 +1,17 @@
+.card {
+    border-radius: 25px;
+    position: relative;
+
+}
+
+.card-img-top{
+    border-radius: 25px 25px 0px 0px;
+    object-fit: cover;
+}
+.button{
+    float: right;
+}
+
+.time{
+    float: left;
+}
