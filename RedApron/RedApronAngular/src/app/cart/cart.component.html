@@ -4,13 +4,12 @@
       <div class="card-group">
         <div class="card" style="width: 55rem; border: 0; ">
           <div class="card-body">
-            <h5 class="card-title">My Bag</h5>
-            <h6 class="card-title" style="text-align: right">Item(s) are reserved for 60 minutes </h6>
+            <h5 class="card-title">My Cart</h5>
             <hr class="my-4">
 
              <!--List of carts-->
             <ul class="list-group">
-              <li class="list-group-item" style="border: 0">
+              <li class="list-group-item" style="border: 0"  *ngFor="let x of cart">
                 <div class="media">
                   <img src="../../../../assets/images/0401_2PV1_Veg-Gnocchi_011_Square_Web_hi_res.jpg" width="120px"
                     class="mr-3" alt="...">
@@ -19,11 +18,17 @@
                       <button type="button" class="close" aria-label="Close" style="text-align: right">
                         <span aria-hidden="true">&times;</span>
                       </button>
-                    <h5 class="mt-0">Healthy for 2</h5>
-                    Cras sit amet nibh libero, in gravida nulla. <br />
+
+                      <h5>{{x.category.name}}</h5>
+                      <p>Duration: {{x.numOfWeeks}} weeks</p>
+                        <p>Recipes/Week: {{x.numOfRecipes}}</p>
+                        <p>Delivery Day: {{x.deliveryDay}}</p>
+                        <p>Price: ${{x.category.price}}</p>  
+                    <!-- <h5 class="mt-0">Healthy for 2</h5>
+                    Cras sit amet nibh libero, in gravida nulla. <br /> -->
 
                     <!--No of recipes and deliver day-->
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="pr-0 col-sm-3">
                         <br />
                         <p style="vertical-align: center; margin:0;">No of recipes</p>
@@ -31,24 +36,24 @@
                       <div class="px-0 col-sm-2">
                         <div class="form-group" style="width: 70px">
                           <label for="numOfRecipes"></label>
-                          <select name="numOfRecipes" id="numOfRecipes" class="form-control">
+                          <select name="numOfRecipes" id="numOfRecipes" class="form-control"> -->
                             <!-- [(ngModel)]="contact.contactMethod"> -->
-                            <option>1</option>
+                            <!-- <option>1</option>
                             <option>2</option>
                             <option>3</option>
                           </select>
                         </div>
-                      </div>
-                      <div class="pr-0 col-sm-3">
+                      </div> -->
+                      <!-- <div class="pr-0 col-sm-3">
                           <br />
                           <p style="vertical-align: center; margin:0;">Delivery Day</p>
                         </div>
                         <div class="col-sm-2">
                           <div class="form-group" style="width: 70px ">
                             <label for="numOfRecipes"></label>
-                            <select name="numOfRecipes" id="numOfRecipes" class="form-control">
+                            <select name="numOfRecipes" id="numOfRecipes" class="form-control"> -->
                               <!-- [(ngModel)]="contact.contactMethod"> -->
-                              <option>Sunday</option>
+                              <!-- <option>Sunday</option>
                               <option>Monday</option>
                               <option>Tuesday</option>
                               <option>Wednesday</option>
@@ -58,121 +63,14 @@
                             </select>
                           </div>
                         </div>
-                    </div>
+                    </div>--> 
 
                   </div>
                 </div>
                 <hr class="my-4">
               </li>
-              <li class="list-group-item" style="border: 0">
-
-                <div class="media">
-                  <img src="../../../../assets/images/0401_2PV1_Veg-Gnocchi_011_Square_Web_hi_res.jpg" width="120px"
-                    class="mr-3" alt="...">
-                  <div class="media-body">
-                    <!--remove the cart button-->
-                    <button type="button" class="close" aria-label="Close" style="text-align: right">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    <h5 class="mt-0">Baking for 2</h5>
-                    Cras sit amet nibh libero, in gravida nulla.
-                    
-                    <!--No of recipes and deliver day-->
-                    <div class="row">
-                        <div class="pr-0 col-sm-3">
-                          <br />
-                          <p style="vertical-align: center; margin:0;">No of recipes</p>
-                        </div>
-                        <div class="px-0 col-sm-2">
-                          <div class="form-group" style="width: 70px">
-                            <label for="numOfRecipes"></label>
-                            <select name="numOfRecipes" id="numOfRecipes" class="form-control">
-                              <!-- [(ngModel)]="contact.contactMethod"> -->
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="pr-0 col-sm-3">
-                            <br />
-                            <p style="vertical-align: center; margin:0;">Delivery Day</p>
-                          </div>
-                          <div class="col-sm-2">
-                            <div class="form-group" style="width: 70px ">
-                              <label for="numOfRecipes"></label>
-                              <select name="numOfRecipes" id="numOfRecipes" class="form-control">
-                                <!-- [(ngModel)]="contact.contactMethod"> -->
-                                <option>Sunday</option>
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thurday</option>
-                                <option>Friday</option>
-                                <option>Saturday</option>
-                              </select>
-                            </div>
-                          </div>
-                      </div>
-  
-                  </div>
-                </div>
-                <hr class="my-4">
-              </li>
-              <li class="list-group-item" style="border: 0">
-                <div class="media">
-                  <img src="../../../../assets/images/0401_2PV1_Veg-Gnocchi_011_Square_Web_hi_res.jpg" width="120px"
-                    class="mr-3" alt="...">
-                  <div class="media-body">
-                    <!--remove the cart button-->
-                    <button type="button" class="close" aria-label="Close" style="text-align: right">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    <h5 class="mt-0">Seasonal festive for 2</h5>
-                    Cras sit amet nibh libero, in gravida nulla.
-                    
-                    <!--No of recipes and deliver day-->
-                    <div class="row">
-                        <div class="pr-0 col-sm-3">
-                          <br />
-                          <p style="vertical-align: center; margin:0;">No of recipes</p>
-                        </div>
-                        <div class="px-0 col-sm-2">
-                          <div class="form-group" style="width: 70px">
-                            <label for="numOfRecipes"></label>
-                            <select name="numOfRecipes" id="numOfRecipes" class="form-control">
-                              <!-- [(ngModel)]="contact.contactMethod"> -->
-                              <option>1</option>
-                              <option>2</option>
-                              <option>3</option>
-                            </select>
-                          </div>
-                        </div>
-                        <div class="pr-0 col-sm-3">
-                            <br />
-                            <p style="vertical-align: center; margin:0;">Delivery Day</p>
-                          </div>
-                          <div class="col-sm-2">
-                            <div class="form-group" style="width: 70px ">
-                              <label for="numOfRecipes"></label>
-                              <select name="numOfRecipes" id="numOfRecipes" class="form-control">
-                                <!-- [(ngModel)]="contact.contactMethod"> -->
-                                <option>Sunday</option>
-                                <option>Monday</option>
-                                <option>Tuesday</option>
-                                <option>Wednesday</option>
-                                <option>Thurday</option>
-                                <option>Friday</option>
-                                <option>Saturday</option>
-                              </select>
-                            </div>
-                          </div>
-                      </div>
-  
-                  </div>
-                </div>
-              </li><br/><br/>
-                <div style="text-align: right"><h6>SUB-TOTAL SGD$ 70.39</h6></div>
+              <br/><br/>
+                <div style="text-align: right"><h6>TOTAL: SGD$ {{totalPrice}}</h6></div>
             </ul>
           </div>
         </div>
@@ -186,17 +84,17 @@
                 <li class="list-group-item" style="border: 0">
                   <div class="row">
                       <div class="pr-0 col-sm-6">
-                        <h6 class="card-text">Sub-total</h6>
+                        <h6 class="card-text">Total</h6>
                       </div>
                       <div class="pr-0 col-sm-6">
-                        <h6 style="text-align: right">SGD$ 70.39</h6>
+                        <h6 style="text-align: right">SGD$ {{totalPrice}}</h6>
                       </div> 
                   </div>
                   
                   <h6 class="card-text">Delivery</h6>
                   <p class="card-text"><small class="text-muted">Standard Delivery (SGD $1.99)</small></p>
                   <hr class="my-4">
-                  <button type="button" class="btn btn-primary btn-lg btn-block">Checkout</button><br />
+                  <button type="button" routerLink="/checkout" class="btn btn-primary btn-lg btn-block">Checkout</button><br />
                   <h6 class="card-text">WE ACCEPT: </h6><br />
                   <div class="card-group">
                     <img src="../../../../assets/images/visa.png" height="30" width="50px" />

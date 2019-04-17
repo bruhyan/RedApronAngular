@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {SubscriptionPlan } from '../../models/SubscriptionPlan';
 import {DeliveryDay} from '../../models/DeliveryDay';
@@ -9,6 +9,7 @@ import { SubscriptionPlanStatus } from '../../models/SubscriptionPlanStatus';
 import { SessionService } from '../../service/session.service';
 import { ToastrService } from 'ngx-toastr';
 import { ActivatedRoute, Router } from '@angular/router';
+import { SharingServiceService } from '../../service/sharing-service.service';
 
 @Component({
   selector: 'app-create-subscription-main',
@@ -25,8 +26,13 @@ export class CreateSubscriptionMainComponent implements OnInit {
   done : boolean;
   selectedCategoryId : number;
   selectedCategory : Category;
+  message : string = "init";
 
-  constructor(private modalService: NgbModal, private categoryService: CategoryService, public sessionService : SessionService, private toastr : ToastrService, private router : Router) {
+  // @Output() messageEvent = new EventEmitter<string>();
+
+  constructor(private modalService: NgbModal, private categoryService: CategoryService, 
+    public sessionService : SessionService, private toastr : ToastrService, private router : Router,
+    private sharingService : SharingServiceService) {
     this.newSubscriptionPlan = new SubscriptionPlan();
     this.keys = Object.keys(this.deliveryDay);
    }
@@ -64,6 +70,8 @@ export class CreateSubscriptionMainComponent implements OnInit {
     // console.log(this.newSubscriptionPlan.deliveryDay);
     // console.log(this.newSubscriptionPlan.preference);
     // let startDate : Date = this.newSubscriptionPlan.startDate;
+
+    
     let today = new Date();
     let startDate = new Date(this.newSubscriptionPlan.startDate);
     if(startDate < today) {
@@ -79,27 +87,47 @@ export class CreateSubscriptionMainComponent implements OnInit {
       console.log("see "+this.newSubscriptionPlan.endDate);
       
       console.log(this.newSubscriptionPlan);
-      this.sessionService.addPlanToCart(this.newSubscriptionPlan);
-      console.log(sessionStorage.cart);
-      this.done = true;
-      this.showSuccess();
-      this.ngOnInit();
-      this.router.navigate(['/browse/categoryMain']);
+      this.getCat();
+      // this.sessionService.addPlanToCart(this.newSubscriptionPlan);
+      // console.log(sessionStorage.cart);
+      // this.done = true;
+      // this.showSuccess();
+      // this.newMessage();
+      // this.load();
+
+    
+      // this.router.navigate(['/browse/categoryMain']);
       // console.log(this.selectedCategoryId);
       // this.getCat();
       // console.log(this.selectedCategory);
       // this.newSubscriptionPlan.category = this.selectedCategory;
       // console.log("a"+this.newSubscriptionPlan.category);
+      // this.getCat();
+      
     }
 
   }
 
-  // getCat() {
-  //   this.categoryService.getCategoryByCategoryId(this.selectedCategoryId).subscribe(
-  //     response => { this.selectedCategory = response.category },
-  //     error => { console.log('damn')}
-  //   )
-  // }
+  getCat() {
+    this.categoryService.getCategoryByCategoryId(this.selectedCategoryId).subscribe(
+      response => { this.selectedCategory = response.category
+      console.log("rec"+this.selectedCategory)
+      this.newSubscriptionPlan.category = this.selectedCategory 
+      this.sessionService.addPlanToCart(this.newSubscriptionPlan);
+      console.log(sessionStorage.cart);
+      this.done = true;
+      this.showSuccess();
+      this.newMessage();
+      this.load();
+
+    },
+      error => { console.log('damn')}
+    )
+  }
+
+  load() {
+    this.router.navigateByUrl('/browse');
+  }
 
   showFailure() {
     this.toastr.error('Selected date is earlier than current date', 'Failed to add plan to cart')
@@ -111,6 +139,10 @@ export class CreateSubscriptionMainComponent implements OnInit {
 
   test(planForm:NgForm) {
     console.log(this.deliveryDay);
+  }
+
+  newMessage() {
+    this.sharingService.changeMessage("");
   }
 
 }

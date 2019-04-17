@@ -11,7 +11,7 @@
           If you are signed in, check your profile page to see our response!
           Otherwise, check your inbox.
         </p>
-        <div *ngIf="!isLoggedIn" class="form-group">
+        <div *ngIf="sessionService.getIsLogin() == false" class="form-group">
           <label for="email">Email address</label>
           <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
           <small id="emailHelp" class="form-text text-muted"></small>
