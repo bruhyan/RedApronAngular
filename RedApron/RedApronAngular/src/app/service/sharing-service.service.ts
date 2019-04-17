@@ -9,11 +9,13 @@ export class SharingServiceService {
   constructor() { }
 
   getData(){
-    let temp= this.data;
-    return temp;
+    // let temp= this.data;
+    return JSON.parse(sessionStorage.data);
   }
+  
   setData(data){
     this.data = data;
+    sessionStorage.data = JSON.stringify(this.data)
     console.log("SETTING DATA : " + data)
   }
 

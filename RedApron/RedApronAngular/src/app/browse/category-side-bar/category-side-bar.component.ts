@@ -68,7 +68,11 @@ export class CategorySideBarComponent implements OnInit {
     console.log("HERE")
     this.retrieveCategory(categoryId)
     console.log("SIDEBAR CHILD : " + categoryId)
+    // var temp : Category[] = []
+    // this.sharingService.setData({"isGeneral": false, "categories": temp});
+
     this.sharingService.setData({"isGeneral": false, "categories": this.category});
+    
 
 }
 

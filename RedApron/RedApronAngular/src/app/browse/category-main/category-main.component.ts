@@ -24,6 +24,7 @@ export class CategoryMainComponent implements OnInit {
 
   ngOnInit() {
     console.log("*********** PARENT MAIN : is not from child " + this.sharingService.getData().isGeneral )
+    if (this.sharingService.getData().isGeneral) {
       this.categoriesBrowsing = this.sharingService.getData().categories
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
@@ -46,13 +47,21 @@ export class CategoryMainComponent implements OnInit {
       }else if (temp == "Seasonal") {
         this.categoryBrowsing = "Seasonal Specials"
         this.cat = "cat6border.png"
-
       }
       console.log(this.cat)
       for (let cat of this.categoriesBrowsing) {
         console.log("cat Id browsing : " + cat.categoryId)
         this.retrieveRecipesForCategory(cat.categoryId);
       }
+    } else { // handle old data on refresh
+      console.log("REFRESHEDDDDDD")
+      this.categoriesBrowsing = this.sharingService.getData().categories
+      this.retrieveCategory(this.categoriesBrowsing[0].categoryId)
+      this.retrieveRecipesForCategory(this.categoriesBrowsing[0].categoryId)
+
+    }
+      
+      
     
 
   }
@@ -84,6 +93,8 @@ export class CategoryMainComponent implements OnInit {
     this.categoryService.getCategoryByCategoryId(categoryId).subscribe(res => {
       console.log(res);
       this.categoryBrowsing = res.category.name
+
+
       var temp = res.category.name.split(" ")[0]
       if (temp == "Healthy") {
         this.cat = "cat1border.png"
