@@ -13,7 +13,7 @@
       </ng-template>
       <ng-template ngbPanelContent>
         <ul *ngFor="let cat of healthy">
-              <a (click)="sendMessage(cat.categoryId)">
+              <a (click)="sendMessage(cat.categoryId)" >
             <li>{{cat.name}} </li>
           </a>
           <hr>
