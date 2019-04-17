@@ -1,6 +1,8 @@
 <header>
-  <div>
-    <img alt="Card image cap" class="card-img-top img-fluid" src='../../../../assets/images/{{cat}}' />
+  <div style="position:relative">
+    <img alt="Card image cap" class="card-img-top" src='../../../../assets/images/{{cat}}' />
+    <h3 style='text-align: center' class="centered">Browsing "{{categoryBrowsing}}"</h3>
+
   </div>
   <!-- <button type="button" class="btn btn-info btn-lg">Subscribe <i class="fa fa-plus-circle"></i></button> -->
 </header>
@@ -13,8 +15,7 @@
   <div class="col-md-9">
     <div class="container">
       <br />
-        <h3 style='text-align: center'>Browsing "{{categoryBrowsing}}"</h3>
-        Message Cat Id Viewing : {{message}}
+        <!-- Message Cat Id Viewing : {{message}} -->
 
       <div class="row py-5" >
         <div class="col-md-4" *ngFor="let num of recipeNums">

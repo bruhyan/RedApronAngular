@@ -28,24 +28,24 @@ export class CategoryMainComponent implements OnInit {
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
         this.categoryBrowsing = "Healthy"
-        this.cat = "cat1.png"
+        this.cat = "cat1border.png"
       } else if (temp == "Quick") {
         this.categoryBrowsing = "Quick & Easy"
-        this.cat = "cat2.png"
+        this.cat = "cat2border.png"
       }else if (temp == "Vegetarian") {
         this.categoryBrowsing = "Vegetarian"
-        this.cat = "cat3.png"
+        this.cat = "cat3border.png"
       }else if (temp == "Baking") {
         this.categoryBrowsing = "Baking"
-        this.cat = "cat4.png"
+        this.cat = "cat4border.png"
 
       }else if (temp == "Signature") {
         this.categoryBrowsing = "Signature"
-        this.cat = "cat5.png"
+        this.cat = "cat5border.png"
 
       }else if (temp == "Seasonal") {
         this.categoryBrowsing = "Seasonal Specials"
-        this.cat = "cat6.png"
+        this.cat = "cat6border.png"
 
       }
       console.log(this.cat)
@@ -84,6 +84,20 @@ export class CategoryMainComponent implements OnInit {
     this.categoryService.getCategoryByCategoryId(categoryId).subscribe(res => {
       console.log(res);
       this.categoryBrowsing = res.category.name
+      var temp = res.category.name.split(" ")[0]
+      if (temp == "Healthy") {
+        this.cat = "cat1border.png"
+      } else if (temp == "Quick") {
+        this.cat = "cat2border.png"
+      }else if (temp == "Vegetarian") {
+        this.cat = "cat3border.png"
+      }else if (temp == "Baking") {
+        this.cat = "cat4border.png"
+      }else if (temp == "Signature") {
+        this.cat = "cat5border.png"
+      }else if (temp == "Seasonal") {
+        this.cat = "cat6border.png"
+      }
     },
       error => {
         console.log("****** category side bar " + error);

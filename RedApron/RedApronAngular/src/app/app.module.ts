@@ -14,8 +14,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Module as StripeModule } from 'stripe-angular';
 
-
+import { NgxStripeModule } from 'ngx-stripe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -53,6 +54,8 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
 import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
+import { PaymentComponent } from './cart/checkout/payment/payment.component';
+import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
 import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
 
@@ -87,6 +90,8 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
     CartItemComponent,
     UserEnquiriesComponent,
     EnquiryAnswerComponent,
+    PaymentComponent,
+    CheckoutPageComponent,
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
   ],
@@ -110,15 +115,19 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
     MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
-    })
+    }),
+    StripeModule.forRoot(),
+    NgxStripeModule.forRoot("pk_test_9zdHAOReAhqDbLyt9YCHdwsR00XR1sIOST"),
+    ReactiveFormsModule
 
 
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
-    MatPaginatorModule, HttpClientModule, ReviewService, SubscriptionPlanService, RecipeService, UserService, NgbModule],
-  entryComponents: [EnquiryAnswerComponent, ReviewCreationComponent],
+    MatPaginatorModule, HttpClientModule, CategoryService, ReviewService, SubscriptionPlanService, RecipeService, UserService, NgbModule],
+  entryComponents: [EnquiryAnswerComponent, ReviewCreationComponent, PaymentComponent],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ReactiveFormsModule]
 })
 export class AppModule { }
