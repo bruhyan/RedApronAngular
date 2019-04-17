@@ -56,8 +56,8 @@
         <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
             class="fa fa-shopping-cart" style="font-size:larger"></i></button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="width: 500px;">
-          <h5 style="text-align: center"><span style="font-weight: bold">My Cart, </span><span style="color: gray">4
-              items</span></h5>
+          <h5 style="text-align: center"><span style="font-weight: bold">My Cart, </span><span style="color: gray">{{size}}
+              item(s)</span></h5>
           <br />
           <div style="overflow-y: scroll; max-height:400px;">
             <div *ngFor = "let x of cart">
@@ -70,10 +70,11 @@
                     
                       </div>
                       <div class="col-md-9" style="margin-left:0; line-height: 0.5">
-                        <h6 style="font-weight:bold">Category ID: {{x.categoryId}}</h6>
+                        <h6 style="font-weight:bold">Category Name: {{x.category.name}}</h6>
                         <p>Duration: {{x.numOfWeeks}} weeks</p>
                         <p>Recipes/Week: {{x.numOfRecipes}}</p>
-                        <p>{{x.deliveryDay}}</p> 
+                        <p>Delivery Day: {{x.deliveryDay}}</p>
+                        <p>Price: ${{x.category.price}}</p>  
                       </div>
                     </div>
 
@@ -92,7 +93,7 @@
               <app-cart-item></app-cart-item>
             </div> -->
           </div>
-          <h5 style="margin-left: 270px;"><span style="font-weight: bold">Sub-total: </span><span>&nbsp;SGD$100</span>
+          <h5 style="margin-left: 270px;"><span style="font-weight: bold">Sub-total: </span><span>&nbsp;${{totalPrice}}</span>
           </h5>
           <hr>
           <div class="row" style="margin:5px">
