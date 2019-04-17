@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -14,8 +14,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { AgmCoreModule, AgmMarker, MarkerManager, GoogleMapsAPIWrapper } from '@agm/core';
 import { ToastrModule } from 'ngx-toastr';
 import { MatDialogModule } from '@angular/material/dialog';
+import { Module as StripeModule} from 'stripe-angular';
 
-
+import { NgxStripeModule } from 'ngx-stripe';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 
@@ -51,7 +52,8 @@ import { TrackingMapComponent } from './User/profile-subscriptions/tracking-map/
 import { CartItemComponent } from './cart/cart-item/cart-item.component';
 import { UserEnquiriesComponent } from './User/user-enquiries/user-enquiries.component';
 import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enquiry-answer.component';
-
+import { PaymentComponent } from './cart/checkout/payment/payment.component';
+import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -69,6 +71,7 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     GmapComponent,
     FooterComponent,
 
+
     NavbarComponent,
     CategoryMainComponent,
     UserLoginComponent,
@@ -82,6 +85,8 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     CartItemComponent,
     UserEnquiriesComponent,
     EnquiryAnswerComponent,
+    PaymentComponent,
+    CheckoutPageComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -102,15 +107,19 @@ import { EnquiryAnswerComponent } from './User/user-enquiries/enquiry-answer/enq
     MatDialogModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
-    })
-
+    }),
+    StripeModule.forRoot(),
+    NgxStripeModule.forRoot("pk_test_9zdHAOReAhqDbLyt9YCHdwsR00XR1sIOST"),
+    ReactiveFormsModule
+ 
 
   ],
 
   providers: [UserService, RecipeService, CategoryService, MarkerManager, AgmMarker, GoogleMapsAPIWrapper, FormsModule,
     MatPaginatorModule, HttpClientModule, CategoryService, RecipeService, UserService, NgbModule],
-  entryComponents: [EnquiryAnswerComponent],
+  entryComponents: [EnquiryAnswerComponent,PaymentComponent],
 
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: [ReactiveFormsModule]
 })
 export class AppModule { }

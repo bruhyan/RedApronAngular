@@ -2,6 +2,7 @@ import { Category } from './Category';
 import {Step} from './Step';
 import {Review} from './Review';
 import {PaymentType} from './PaymentType';
+import { SubscriptionPlan } from './SubscriptionPlan';
 
 
 export class Transaction {
@@ -9,24 +10,18 @@ export class Transaction {
     amount : number
     paymentDate: Date
     paymentType : PaymentType
-    image : string
-    isAvailable : boolean
-    steps : Step[]
-    categories : Category[]
-    reviews : Review[]
+    subscriptionPlan : SubscriptionPlan
    
     constructor(transactionId?: number
         ,amount?: number
         ,paymentDate?: Date
         ,paymentType?: PaymentType
-        ,image?: string
-        ,isAvailable?: boolean){
+        ,subscriptionPlan?: SubscriptionPlan){
         this.transactionId = transactionId
         this.amount = amount
         this.paymentDate = paymentDate
         this.paymentType = paymentType
-        this.image = image
-        this.isAvailable = isAvailable
+        this.subscriptionPlan = subscriptionPlan
     }
     
 }
