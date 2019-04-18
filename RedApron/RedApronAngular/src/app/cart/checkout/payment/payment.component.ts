@@ -108,13 +108,18 @@ export class PaymentComponent implements OnInit {
               console.log('after delay')
               this.subscriptionPlanService.retrieveLatestSubscriptionPlan(this.cart.length).subscribe(res => {
                 console.log(res);
+                console.log(sessionStorage.getItem("planPrices"));
+                var planPrices = JSON.parse(sessionStorage.getItem("planPrices"));
+                var i = 0;
                 for (let sub of res.subscriptionPlan) {
-                  var transaction: Transaction = new Transaction(undefined, parseInt(sessionStorage.getItem("totalPrice")), new Date(), PaymentType.MASTER, sub);
+                  
+                  var transaction: Transaction = new Transaction(undefined, parseFloat(planPrices[i]), new Date(), PaymentType.MASTER, sub);
                   this.transactionService.createTransaction(transaction).subscribe(res => {
                     console.log(res);
                     this.toastr.success("Payment was successful!");
 
                   })
+                  i++;
                 }
                 this.dialogRef.close();
 

@@ -24,15 +24,18 @@ export class CartComponent implements OnInit {
     this.cart = JSON.parse(sessionStorage.cart);
     console.log(this.cart);
     this.size = this.cart.length;
+    var planPrices = [];
     for (var i = 0; i < this.cart.length; i++) {
       var plan = this.cart[i];
       console.log(plan.category.price);
       console.log(plan.numOfRecipes*2.50);
+      planPrices.push(plan.category.price * plan.numOfWeeks + plan.numOfRecipes*2.5);
       this.totalPrice += (plan.category.price * plan.numOfWeeks);
       this.totalPrice += (plan.numOfRecipes*2.50);
     }
 
     sessionStorage.setItem("totalPrice", (this.totalPrice.toString()));
+    sessionStorage.setItem("planPrices", JSON.stringify(planPrices));
   }
   
   openDialog(): void {
