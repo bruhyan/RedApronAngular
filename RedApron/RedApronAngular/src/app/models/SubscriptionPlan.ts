@@ -9,31 +9,33 @@ export class SubscriptionPlan {
     subscriptionPlanId: number
     startDate: Date
     endDate: Date
-    preference: string
+    preferences: string
     numOfWeeks: number
     numOfRecipes: number
     status: SubscriptionPlanStatus
     deliveryDay: DeliveryDay
     category: Category
     transaction: Transaction
-    recipes: Recipe[]
     subscriber: User
-    categoryId : number
-    categoryName: string
+  
 
-    constructor(subscriptionPlanId?: number, startDate?: Date, endDate?: Date, preference?: string
+    constructor(subscriptionPlanId?: number, startDate?: Date, endDate?: Date, preferences?: string
         , numOfWeeks?: number
         , numOfRecipes?: number
         , status?: SubscriptionPlanStatus
-        , deliveryDay?: DeliveryDay) {
+        , deliveryDay?: DeliveryDay
+        , category? : Category
+        , subscriber? : User) {
         this.subscriptionPlanId = subscriptionPlanId
         this.startDate = startDate
         this.endDate = endDate
-        this.preference = preference
+        this.preferences = preferences
         this.numOfWeeks = numOfWeeks
         this.numOfRecipes = numOfRecipes
         this.status = status
         this.deliveryDay = deliveryDay
+        this.category = category,
+        this.subscriber = subscriber
     }
 
 }

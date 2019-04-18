@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { SubscriptionPlan } from '../models/SubscriptionPlan';
 import {SessionService} from '../service/session.service';
-
+import { StripeScriptTag } from "stripe-angular"
+import { PaymentComponent } from '../cart/checkout/payment/payment.component';
+import { MatDialog, MatDialogRef } from '@angular/material';
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
@@ -14,7 +16,8 @@ export class CartComponent implements OnInit {
   totalPrice : number = 0.00;
 
   constructor(
-    private sessionService : SessionService
+    private sessionService : SessionService,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -28,6 +31,13 @@ export class CartComponent implements OnInit {
       this.totalPrice += (plan.category.price * plan.numOfWeeks);
       this.totalPrice += (plan.numOfRecipes*2.50);
     }
+
+    sessionStorage.setItem("totalPrice", (this.totalPrice.toString()));
+  }
+  
+  openDialog(): void {
+    this.dialog.open(PaymentComponent, { width: '35%', height: '50%' });
+
   }
 
 }

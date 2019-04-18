@@ -15,10 +15,6 @@
         <a routerLink="/browse" routerLinkActive="active" class="nav-link" href="#">Browse <span
             class="sr-only">(current)</span></a>
       </li>
-      <!-- <li class="nav-item active">
-        <a routerLink="/recipeMainView" routerLinkActive="active" class="nav-link" href="#">RecipeMain <span
-            class="sr-only">(current)</span></a>
-      </li> -->
       <li class="nav-item active" *ngIf="sessionService.getIsLogin() == false">
         <a routerLink="/userLogin" routerLinkActive="active" class="nav-link" href="#">Login <span
             class="sr-only">(current)</span></a>
@@ -27,8 +23,8 @@
         <a routerLink="/userRegister" routerLinkActive="active" class="nav-link" href="#">Register <span
             class="sr-only">(current)</span></a>
       </li>
-      
-      <li>
+
+      <li class="nav-item active">
         <a routerLink="/cart" routerLinkActive="active" class="nav-link" href="#">Cart<span
             class="sr-only">(current)</span></a>
       </li>
@@ -42,43 +38,52 @@
            
       </div> -->
       <div *ngIf="sessionService.getIsLogin() == true">
-      <div ngbDropdown class="d-inline-block">
-          <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i class="fa fa-user-circle" style="font-size:larger; color:white"></i></button>
+        <div ngbDropdown class="d-inline-block">
+          <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
+              class="fa fa-user-circle" style="font-size:larger; color:white"></i></button>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-              <a ngbDropdownItem routerLink="/userProfile" class="nav-link" href="#">Profile<span
+            <a ngbDropdownItem routerLink="/userProfile" class="nav-link" href="#">Profile<span
                 class="sr-only">(current)</span></a>
             <button ngbDropdownItem (click)="userLogout()">Logout</button>
           </div>
+        </div>
       </div>
-    </div>
 
       <div ngbDropdown class="d-inline-block">
-        <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle><i
-            class="fa fa-shopping-cart" style="font-size:larger"></i></button>
+        <button class="btn btn-outline-light" style="border: 0;" id="dropdownBasic1" ngbDropdownToggle>
+          <span class="fa-stack fa-2x">
+            <i class="fa fa-shopping-cart fa-stack-1x"></i>
+            <i class="cart-count-circle fa fa-circle fa-stack-1x"></i>
+            <i class="fa-stack-1x cart-count">{{ size == null ? 0 : size }}</i>
+          </span>
+        </button>
+
+
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1" style="width: 500px;">
-          <h5 style="text-align: center"><span style="font-weight: bold">My Cart, </span><span style="color: gray">{{size}}
+          <h5 style="text-align: center"><span style="font-weight: bold">My Cart, </span><span
+              style="color: gray">{{size}}
               item(s)</span></h5>
           <br />
           <div style="overflow-y: scroll; max-height:400px;">
-            <div *ngFor = "let x of cart">
+            <div *ngFor="let x of cart">
               <div class="row">
-                  
-                  <div class="row" style="width:inherit; padding: 0">
-                      <div class="col-md-3">
-                        <img alt="Card image cap" class="card-img-top img-fluid" style="width: 80%; margin-left: 30px"
-                          src="../../../../assets/images/subform.png" />
-                    
-                      </div>
-                      <div class="col-md-9" style="margin-left:0; line-height: 0.5">
-                        <h6 style="font-weight:bold">Category Name: {{x.category.name}}</h6>
-                        <p>Duration: {{x.numOfWeeks}} weeks</p>
-                        <p>Recipes/Week: {{x.numOfRecipes}}</p>
-                        <p>Delivery Day: {{x.deliveryDay}}</p>
-                        <p>Price: ${{x.category.price}}</p>  
-                      </div>
-                    </div>
 
+                <div class="row" style="width:inherit; padding: 0">
+                  <div class="col-md-3">
+                    <img alt="Card image cap" class="card-img-top img-fluid" style="width: 80%; margin-left: 30px"
+                      src="../../../../assets/images/subform.png" />
+
+                  </div>
+                  <div class="col-md-9" style="margin-left:0; line-height: 0.5">
+                    <h6 style="font-weight:bold">Category Name: {{x.category.name}}</h6>
+                    <p>Duration: {{x.numOfWeeks}} weeks</p>
+                    <p>Recipes/Week: {{x.numOfRecipes}}</p>
+                    <p>Delivery Day: {{x.deliveryDay}}</p>
+                    <p>Price: ${{x.category.price}}</p>
+                  </div>
                 </div>
+
+              </div>
             </div>
             <!-- <div class="row">
               <app-cart-item></app-cart-item>
@@ -93,11 +98,13 @@
               <app-cart-item></app-cart-item>
             </div> -->
           </div>
-          <h5 style="margin-left: 270px;"><span style="font-weight: bold">Sub-total: </span><span>&nbsp;${{totalPrice}}</span>
+          <h5 style="margin-left: 270px;"><span style="font-weight: bold">Sub-total:
+            </span><span>&nbsp;${{totalPrice}}</span>
           </h5>
           <hr>
           <div class="row" style="margin:5px">
-            <button type="button" class="btn btn-outline-secondary" style="margin-left: 25px" (click)="clearCart()">Clear</button>
+            <button type="button" class="btn btn-outline-secondary" style="margin-left: 25px"
+              (click)="clearCart()">Clear</button>
             <button type="submit" class="btn btn-success" style='margin-left: 270px'>View Cart</button>
           </div>
 

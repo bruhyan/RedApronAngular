@@ -1,3 +1,17 @@
 .navbar-default {
     background-color:#683ab7;
    }
+
+.cart-count-circle {
+    font-size: 24px;
+    top: -12px;
+    left: 15px;
+    color: tomato;
+}
+
+.cart-count {
+    font-size: 18px;
+    top: -12px;
+    left: 15px;
+    color: #fff;
+}
