@@ -58,6 +58,7 @@ import { PaymentComponent } from './cart/checkout/payment/payment.component';
 import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
 import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
+import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +95,7 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
     CheckoutPageComponent,
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
+    UserTransactionsComponent,
   ],
   imports: [
     ToastrModule.forRoot(),

@@ -14,6 +14,7 @@ export class CartComponent implements OnInit {
   cart : SubscriptionPlan[] = [];
   size : number;
   totalPrice : number = 0.00;
+  canCheckout = false
 
   constructor(
     private sessionService : SessionService,
@@ -33,7 +34,9 @@ export class CartComponent implements OnInit {
       this.totalPrice += (plan.category.price * plan.numOfWeeks);
       this.totalPrice += (plan.numOfRecipes*2.50);
     }
-
+    if(this.cart.length > 0) {
+      this.canCheckout = true
+    }
     sessionStorage.setItem("totalPrice", (this.totalPrice.toString()));
     sessionStorage.setItem("planPrices", JSON.stringify(planPrices));
   }
