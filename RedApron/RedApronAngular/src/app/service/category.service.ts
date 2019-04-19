@@ -34,6 +34,13 @@ export class CategoryService {
 		);
 	}
 
+	getCategoriesByRecipeId(recipeId: number): Observable<any>
+	{		
+		return this.httpClient.get<any>(this.baseUrl + "/retrieveCategoriesByRecipeId/" + recipeId).pipe
+		(
+			catchError(this.handleError)
+		);
+	}
   
 	private handleError(error: HttpErrorResponse)
 	{

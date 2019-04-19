@@ -58,6 +58,8 @@ import { PaymentComponent } from './cart/checkout/payment/payment.component';
 import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
 import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
+import { MatSliderModule } from '@angular/material';
+import { FilterMainIngredientSideBarComponent } from './browse/filter-main-ingredient-side-bar/filter-main-ingredient-side-bar.component';
 
 @NgModule({
   declarations: [
@@ -94,6 +96,7 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
     CheckoutPageComponent,
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
+    FilterMainIngredientSideBarComponent,
   ],
   imports: [
     ToastrModule.forRoot(),
@@ -113,6 +116,7 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
     NgbModule,
     HttpClientModule,
     MatDialogModule,
+    MatSliderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     }),
