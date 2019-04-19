@@ -13,6 +13,9 @@ import { Category } from 'src/app/models/Category';
 import { User } from 'src/app/models/User';
 import { ToastrService } from 'ngx-toastr';
 import { MatDialogRef } from '@angular/material';
+import { SessionService } from 'src/app/service/session.service';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 @Component({
@@ -30,7 +33,7 @@ export class PaymentComponent implements OnInit {
   cart;
   stripeError;
   loadingSpinner = false;
-  constructor(private dialogRef: MatDialogRef<PaymentComponent>, private toastr: ToastrService, private fb: FormBuilder,
+  constructor(private router: Router, private sessionService: SessionService, private dialogRef: MatDialogRef<PaymentComponent>, private toastr: ToastrService, private fb: FormBuilder,
     private stripeService: StripeService, private categoryService: CategoryService, private transactionService: TransactionService, private subscriptionPlanService: SubscriptionPlanService) { }
 
   ngOnInit() {
@@ -64,6 +67,12 @@ export class PaymentComponent implements OnInit {
   wait(ms: number) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+  clearCart() {
+    this.sessionService.clearCart();
+    this.router.navigate(['/home']);
+  }
+
   buy() {
     this.loadingSpinner = true;
     const name = this.stripeForm.get('name').value;
@@ -102,29 +111,40 @@ export class PaymentComponent implements OnInit {
           if (subscriptionPlanPersisted) {
             (async () => {
               this.toastr.info("Confirming payment...");
-              
+
               await this.wait(2000);
 
-              console.log('after delay')
+
               this.subscriptionPlanService.retrieveLatestSubscriptionPlan(this.cart.length).subscribe(res => {
                 console.log(res);
                 console.log(sessionStorage.getItem("planPrices"));
                 var planPrices = JSON.parse(sessionStorage.getItem("planPrices"));
                 var i = 0;
                 for (let sub of res.subscriptionPlan) {
-                  
+
                   var transaction: Transaction = new Transaction(undefined, parseFloat(planPrices[i]), new Date(), PaymentType.MASTER, sub);
                   this.transactionService.createTransaction(transaction).subscribe(res => {
                     console.log(res);
-                    this.toastr.success("Payment was successful!");
-
                   })
                   i++;
                 }
+
+                this.toastr.success("Payment was successful!");
+
                 this.dialogRef.close();
 
+
+                this.toastr.success("Returning you home.");
+                (async () => {
+
+                  await this.wait(500);
+                  this.router.navigate(["/home"]);
+                })();
+
+
+
               })
-              
+
             })();
 
 

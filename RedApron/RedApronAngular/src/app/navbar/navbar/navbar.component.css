@@ -3,10 +3,10 @@
    }
 
 .cart-count-circle {
-    font-size: 24px;
-    top: -12px;
+    font-size: 28px;
+    top: -11px;
     left: 15px;
-    color: tomato;
+    color: #303038;
 }
 
 .cart-count {
