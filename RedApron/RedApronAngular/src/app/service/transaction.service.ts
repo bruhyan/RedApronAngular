@@ -28,6 +28,12 @@ export class TransactionService {
     );
   }
 
+  retrieveTransactionByUserId(userId : number) : Observable<any>{
+    return this.httpClient.get<any>(this.baseUrl+'/retrieveTransactionBySubscriberId?id='+userId).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   private handleError(error: HttpErrorResponse) {
     let errorMessage: String = "";
 

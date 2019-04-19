@@ -6,7 +6,7 @@ header {
     width: 100%;
     overflow: hidden;
   }
-  
+
   header video {
     position: absolute;
     top: 50%;
@@ -18,12 +18,12 @@ header {
     z-index: 0;
     transform: translateX(-50%) translateY(-50%);
   }
-  
+
   header .container {
     position: relative;
     z-index: 2;
   }
-  
+
   header .overlay {
     position: absolute;
     top: 0;
@@ -31,7 +31,7 @@ header {
     height: 100%;
     width: 100%;
     background-color: black;
-    opacity: 0.9  ;
+    opacity: 0.9;
     z-index: 1;
   }
 
@@ -41,7 +41,7 @@ header {
     left: 50%;
     transform: translate(-50%, -50%);
   }
-  
+
   @media (pointer: coarse) and (hover: none) {
     header {
       background: url('../../../assets/images/pre_header.jpg') black no-repeat center center scroll;

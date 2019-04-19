@@ -1,0 +1,22 @@
+<div class="py-5 container" style="margin-left: 55px;">
+  <h3>Filter By:</h3>
+  <div class="card" style="margin-top:20px">
+    <h5 class="card-header">Main Ingredient</h5>
+    <div class="card-body">
+      <div *ngFor="let control of mainIngredientsArray.controls; let i = index;" style="margin-bottom:10px">
+
+        <input type="checkbox" [formControl]="control" (change)="getselectedIngredientValues()" id="checkbox{{i}}"
+          style="width: 21px; height:21px; margin-right: 8px" />
+        <label>{{mainIngredients[i]}}</label>
+      </div>
+
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+    <h5 class="card-header">Rating</h5>
+    <div class="card-body">
+      <mat-slider min="0" max="5" step="0.1" thumbLabel tickInterval="1" [(ngModel)] = "ratingValue" (change)="getRatingFilter()"></mat-slider>
+    </div>
+  </div>
+
+</div>
