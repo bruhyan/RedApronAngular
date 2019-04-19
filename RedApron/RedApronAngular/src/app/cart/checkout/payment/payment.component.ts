@@ -81,6 +81,12 @@ export class PaymentComponent implements OnInit {
       .subscribe(result => {
         if (result.token) {
           console.log(result.token);
+          var cardType: PaymentType = PaymentType.MASTER;
+          if(result.token.card.brand == "MasterCard"){
+
+          }else if(result.token.card.brand == "Visa"){
+            cardType = PaymentType.VISA
+          }
           var subscriptionPlanPersisted = false;
           var count = 0;
           for (let cartItem of this.cart) {
@@ -122,7 +128,7 @@ export class PaymentComponent implements OnInit {
                 var i = 0;
                 for (let sub of res.subscriptionPlan) {
 
-                  var transaction: Transaction = new Transaction(undefined, parseFloat(planPrices[i]), new Date(), PaymentType.MASTER, sub);
+                  var transaction: Transaction = new Transaction(undefined, parseFloat(planPrices[i]), new Date(), cardType, sub);
                   this.transactionService.createTransaction(transaction).subscribe(res => {
                     console.log(res);
                   })
@@ -185,10 +191,7 @@ export class PaymentComponent implements OnInit {
   //   owner: {
   //     name: 'Pereira Yip',
   //   },
-  //   redirect: {
-  //     return_url: 'https://shop.example.com/crtA6B28E1',
-
-  //   }
+  //   
   // }
 
 
@@ -198,33 +201,6 @@ export class PaymentComponent implements OnInit {
   // charges = {
   //   amount: 100,
   //   currency: 'sgd',
-  //   description: 'Example charge',
+  //   description: 'testing charge',
   //   source: this.token,
-  // }
-
-  // makePayment(stripeCard){
-  //   console.log(stripeCard);
-  //   stripeCard.stripe.charges.create({
-  //     amount: 1000,
-  //     currency: "sgd",
-  //     source: "tok_visa",
-  //   })
-  // }
-
-
-  // onStripeInvalid(error: Error) {
-  //   console.log('Validation Error', error)
-  // }
-
-  // setStripeToken(token: StripeToken) {
-  //   this.token = token;
-  //   console.log('Stripe token', token)
-  // }
-
-  // setStripeSource(source: StripeSource) {
-  //   console.log('Stripe source', source)
-  // }
-
-  // onStripeError(error: Error) {
-  //   console.error('Stripe error', error)
   // }
