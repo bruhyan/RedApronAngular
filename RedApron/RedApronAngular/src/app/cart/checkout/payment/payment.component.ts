@@ -7,7 +7,15 @@ import { TransactionService } from '../../../service/transaction.service';
 import { Transaction } from 'src/app/models/Transaction';
 import { PaymentType } from 'src/app/models/PaymentType'
 import { SubscriptionPlan } from 'src/app/models/SubscriptionPlan';
-
+import { SubscriptionPlanService } from 'src/app/service/subscription-plan.service';
+import { CategoryService } from 'src/app/service/category.service';
+import { Category } from 'src/app/models/Category';
+import { User } from 'src/app/models/User';
+import { ToastrService } from 'ngx-toastr';
+import { MatDialogRef } from '@angular/material';
+import { SessionService } from 'src/app/service/session.service';
+import { Router } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 
 @Component({
@@ -21,18 +29,21 @@ export class PaymentComponent implements OnInit {
   @ViewChild(StripeCardComponent) stripeCard: StripeCardComponent;
   elements: Elements;
   card: StripeElement;
-  stripeTest: FormGroup;
-  constructor(private fb: FormBuilder,
-    private stripeService: StripeService, private transactionService: TransactionService) { }
+  stripeForm: FormGroup;
+  cart;
+  stripeError;
+  loadingSpinner = false;
+  constructor(private router: Router, private sessionService: SessionService, private dialogRef: MatDialogRef<PaymentComponent>, private toastr: ToastrService, private fb: FormBuilder,
+    private stripeService: StripeService, private categoryService: CategoryService, private transactionService: TransactionService, private subscriptionPlanService: SubscriptionPlanService) { }
 
   ngOnInit() {
-    this.stripeTest = this.fb.group({
+    this.cart = JSON.parse(sessionStorage.getItem('cart'));
+    this.stripeForm = this.fb.group({
       name: ['', [Validators.required]]
     });
     this.stripeService.elements()
       .subscribe(elements => {
         this.elements = elements;
-        // Only mount the element the first time
         if (!this.card) {
           this.card = this.elements.create('card', {
             style: {
@@ -49,28 +60,112 @@ export class PaymentComponent implements OnInit {
               }
             }
           });
-          this.card.mount('#card-element');
+          this.card.mount('#stripe-card-details');
         }
       });
   }
+  wait(ms: number) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  clearCart() {
+    this.sessionService.clearCart();
+    this.router.navigate(['/home']);
+  }
+
   buy() {
-    const name = this.stripeTest.get('name').value;
+    this.loadingSpinner = true;
+    const name = this.stripeForm.get('name').value;
     this.stripeService
       .createToken(this.card, { name })
       .subscribe(result => {
         if (result.token) {
           console.log(result.token);
-          var subscriptionPlan: SubscriptionPlan = new SubscriptionPlan(undefined, new Date());
-          //multiple transaction made for each subscription plan
-          var transaction: Transaction = new Transaction(undefined, 500.00, new Date(), PaymentType.MASTER);
-          this.transactionService.createTransaction(transaction).subscribe(res => {
+          var subscriptionPlanPersisted = false;
+          var count = 0;
+          for (let cartItem of this.cart) {
+            count++;
+            this.categoryService.getCategoryByCategoryId(cartItem.category.categoryId).subscribe(res => {
+              let category: Category = res.category;
+              let user = JSON.parse(sessionStorage.getItem("currentUser"));
+              var subscriptionPlan: SubscriptionPlan = new SubscriptionPlan(undefined, new Date(cartItem.startDate), cartItem.endDate, cartItem.preference, cartItem.numOfWeeks, cartItem.numOfRecipes, cartItem.status, cartItem.deliveryDay);
+              this.subscriptionPlanService.createSubscriptionPlan(subscriptionPlan, category, user).subscribe(res => {
 
-            console.log(res);
-      
-          })
+
+                //Error here, attempted to solve this for too long, found a way to bypass for now..
+
+              })
+
+
+
+            })
+
+            if (count == this.cart.length) {
+              subscriptionPlanPersisted = true;
+            }
+
+
+          }
+
+          //current method will retrieve old data.
+          if (subscriptionPlanPersisted) {
+            (async () => {
+              this.toastr.info("Confirming payment...");
+
+              await this.wait(2000);
+
+
+              this.subscriptionPlanService.retrieveLatestSubscriptionPlan(this.cart.length).subscribe(res => {
+                console.log(res);
+                console.log(sessionStorage.getItem("planPrices"));
+                var planPrices = JSON.parse(sessionStorage.getItem("planPrices"));
+                var i = 0;
+                for (let sub of res.subscriptionPlan) {
+
+                  var transaction: Transaction = new Transaction(undefined, parseFloat(planPrices[i]), new Date(), PaymentType.MASTER, sub);
+                  this.transactionService.createTransaction(transaction).subscribe(res => {
+                    console.log(res);
+                  })
+                  i++;
+                }
+
+                this.toastr.success("Payment was successful!");
+
+                this.dialogRef.close();
+                this.clearCart();
+
+
+                this.toastr.success("Returning you home.");
+                (async () => {
+
+                  await this.wait(500);
+                  this.router.navigate(["/home"]);
+                })();
+
+
+
+              })
+
+            })();
+
+
+          }
+
+          // var subscriptionPlan: SubscriptionPlan = new SubscriptionPlan(undefined, new Date());
+          //multiple transaction made for each subscription plan
+
+
+
+
+          // this.transactionService.createTransaction(transaction).subscribe(res => {
+
+          //   console.log(res);
+
+          // })
 
         } else if (result.error) {
           // Error creating the token
+          this.stripeError = result.error.message;
           console.log(result.error.message);
         }
       });

@@ -94,7 +94,7 @@
                   <h6 class="card-text">Delivery</h6>
                   <p class="card-text"><small class="text-muted">Standard Delivery (SGD $1.99)</small></p>
                   <hr class="my-4">
-                  <button type="button" routerLink="/checkout" class="btn btn-primary btn-lg btn-block">Checkout</button><br />
+                  <button type="button" *ngIf="canCheckout" (click)="openDialog()" class="btn btn-primary btn-lg btn-block">Checkout</button><br />
                   <h6 class="card-text">WE ACCEPT: </h6><br />
                   <div class="card-group">
                     <img src="../../../../assets/images/visa.png" height="30" width="50px" />

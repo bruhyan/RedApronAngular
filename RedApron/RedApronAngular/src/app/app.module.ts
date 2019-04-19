@@ -60,6 +60,7 @@ import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-re
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
 import { MatSliderModule } from '@angular/material';
 import { FilterMainIngredientSideBarComponent } from './browse/filter-main-ingredient-side-bar/filter-main-ingredient-side-bar.component';
+import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
 
 @NgModule({
   declarations: [
@@ -97,6 +98,7 @@ import { FilterMainIngredientSideBarComponent } from './browse/filter-main-ingre
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
     FilterMainIngredientSideBarComponent,
+    UserTransactionsComponent,
   ],
   imports: [
     ToastrModule.forRoot(),

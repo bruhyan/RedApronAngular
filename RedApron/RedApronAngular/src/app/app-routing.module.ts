@@ -11,6 +11,7 @@ import { CategoryMainComponent } from './browse/category-main/category-main.comp
 import { UserProfileComponent } from './User/user-profile/user-profile.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutPageComponent} from './cart/checkout/checkout-page/checkout-page.component';
+import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
 
 
 
@@ -25,7 +26,8 @@ const routes: Routes = [
   {path: 'userRegister', component: UserRegisterComponent}, 
   {path: 'userProfile', component: UserProfileComponent},
   {path: 'cart', component :CartComponent},
-  {path: 'checkout', component: CheckoutPageComponent}
+  {path: 'checkout', component: CheckoutPageComponent},
+  {path: 'userTransactions', component: UserTransactionsComponent}
 ];
 
 @NgModule({

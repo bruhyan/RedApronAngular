@@ -48,26 +48,19 @@
             <small>Please enter your credentials.</small>
           </div>
           <div class="card-body">
-            <form novalidate (ngSubmit)="buy()" [formGroup]="stripeTest">
-              <input type="text" formControlName="name" placeholder="Jane Doe">
-              <div id="card-element" class="field"></div>
-              <button type="submit">
-                BUY
+            <form novalidate (ngSubmit)="buy()" [formGroup]="stripeForm">
+              <small class="theme-color">{{stripeError}}</small>
+              <div id="stripe-card-details" class="field"></div>
+              <button *ngIf="loadingSpinner == false"  mat-raised-button  type="submit">
+                Confirm Payment
               </button>
+              <i *ngIf="loadingSpinner == true" class="theme-color fa fa-spinner fa-2x fa-pulse" >
+              </i>
             </form>
           </div>
 
 
         </div>
-
-      </div>
-
-
-
-      <div mat-dialog-actions>
-        <button mat-raised-button (click)="stripeCard.createToken(extraData)">Create Token</button>
-        <button mat-raised-button (click)="stripeCard.createSource(paymentData)">Create Source</button>
-        <button mat-raised-button (click)="makePayment(stripeCard)">Make Payment</button>
 
       </div>
     </div>
