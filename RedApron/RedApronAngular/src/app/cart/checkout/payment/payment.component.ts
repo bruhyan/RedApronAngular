@@ -132,6 +132,7 @@ export class PaymentComponent implements OnInit {
                 this.toastr.success("Payment was successful!");
 
                 this.dialogRef.close();
+                this.clearCart();
 
 
                 this.toastr.success("Returning you home.");
