@@ -58,6 +58,7 @@
       </div>
       <div class="modal-footer">
           <button type="submit" ngbAutoFocus class="btn btn-outline-info" [disabled]="!planForm.valid">Add to Cart</button>
+          <button type="button" (click)="modal.close()" id="ninjaButton" style="display: none"></button>
         </div>
     </form>
   </div>
@@ -65,10 +66,13 @@
 </ng-template>
 
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
-<button type="button" class="btn btn-info btn-lg" (click)="open(content)" style="float: right;
-margin: 40px;
-position: fixed;
-bottom:0;
-left: 35px;
-font-size: 25px;
-">Subscribe <i class="fa fa-plus-circle"></i></button>
+<div style="overflow: auto;">
+    <button type="button" class="btn btn-info btn-lg" (click)="open(content)" style="
+    margin: 40px;
+    position: fixed;
+    bottom:0;
+    right: 35px;
+    font-size: 25px;
+    background-color: #f9453b;
+    ">Subscribe <i class="fa fa-plus-circle"></i></button>
+</div>
