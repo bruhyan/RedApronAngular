@@ -59,6 +59,7 @@ import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-pa
 import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
 import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
+import { UserUpdateComponent } from './User/user-update/user-update.component';
 
 @NgModule({
   declarations: [
@@ -96,6 +97,7 @@ import { UserTransactionsComponent } from './User/user-transactions/user-transac
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
     UserTransactionsComponent,
+    UserUpdateComponent,
   ],
   imports: [
     ToastrModule.forRoot(),

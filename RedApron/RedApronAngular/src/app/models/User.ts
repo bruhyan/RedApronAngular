@@ -10,14 +10,14 @@ export class User {
     firstName: string;
     lastName: string;
     phoneNumber: string;
-    postalCode: string;
-    userId : number;
+    postalCode: number;
+    subscriberId : number;
     password: string;
     subscriptionPlans : SubscriptionPlan[]
     reviews : Review[]
     enquiries : Enquiry[]
 
-    constructor(addressLine1?: string, addressLine2?: string, email?: string, firstName?: string, lastName?: string, phoneNumber?: string, postalCode?: string, userId?: number, password?:string) {
+    constructor(addressLine1?: string, addressLine2?: string, email?: string, firstName?: string, lastName?: string, phoneNumber?: string, postalCode?: number, subscriberId?: number, password?:string) {
         this.addressLine1 = addressLine1;
         this.addressLine2 = addressLine2;
         this.email = email;
@@ -25,7 +25,7 @@ export class User {
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.postalCode = postalCode;
-        this.userId = userId;
+        this.subscriberId = subscriberId;
         this.password = password;
     }
 }

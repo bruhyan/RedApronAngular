@@ -29,6 +29,15 @@ export class UserService {
 		);
 	}
 
+	updateUser(userToUpdate : User): Observable<any> {
+		let updateSubscriberReq = {
+			"subscriber" : userToUpdate
+		};
+		return this.httpClient.post<any>(this.baseUrl, updateSubscriberReq).pipe(
+			catchError(this.handleError)
+		);
+	}
+
 	createUser(newUser: User): Observable<any> {
 		let createSubscriberReq = {
 			"subscriber" : newUser
