@@ -1,21 +1,23 @@
 <header>
   <div style="position:relative">
     <img alt="Card image cap" class="card-img-top" src='../../../../assets/images/{{cat}}' />
-    <h3 style='text-align: center' class="centered">Browsing "{{categoryBrowsing}}"</h3>
+    <h3 style='text-align: center' class="centered">{{categoryBrowsing}}</h3>
   </div>
 </header>
 <div class="row">
   <div class="col-md-3">
     <app-category-side-bar (messageEvent) = "receiveMessage($event)"></app-category-side-bar>
-    <app-filter-main-ingredient-side-bar (messageEvent) = "receiveFilter($event)" (ratingFilter)="receiveRatingFilter($event)"></app-filter-main-ingredient-side-bar>
+    <app-filter-main-ingredient-side-bar (messageEvent) = "receiveFilter($event)" (ratingFilter)="receiveRatingFilter($event)" (durationFilter)="receiveDurationFilter($event)" (calorieFilter)="receiveCalorieFilter($event)"></app-filter-main-ingredient-side-bar>
   </div>
 
   <div class="col-md-9">
     <div class="container">
       <br />
-      <br />
+      <h5>Showing filter results for:</h5>
         <!-- Message Cat Id Viewing : {{message}} -->
+        <p>Main Ingredient : [{{filter}}], Rating : [{{ratingFilter}}], Duration : [{{durationFilter}}], Calories : [{{calorieFilter}}]</p>
         <h3>Recipes :</h3>
+        <br />
 
       <div class="row">
         <div class="col-md-4" style="margin-bottom: 40px !important" *ngFor="let num of recipeNums">
