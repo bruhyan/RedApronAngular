@@ -7,6 +7,7 @@ import { Recipe } from '../../models/Recipe'
 import { Review } from '../../models/Review'
 
 import { ReviewService } from '../../service/review.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-category-main',
@@ -27,12 +28,16 @@ export class CategoryMainComponent implements OnInit {
   recipes: Recipe[] = [];
   message
   cat: string
-  filter
-  ratingFilter
-  durationFilter
-  calorieFilter
+  filter = []
+  ratingFilter = 0
+  durationFilter = []
+  calorieFilter = []
+  activeFilters = []
   reviews: Review[] = []
   sum: number = 0
+  keys = ["Rating", "Duration", "Calories"];
+  sortType: string
+
   constructor(private reviewService: ReviewService, private categoryService: CategoryService, private recipeService: RecipeService, public sharingService: SharingServiceService) { }
 
   ngOnInit() {
@@ -71,12 +76,7 @@ export class CategoryMainComponent implements OnInit {
       this.categoriesBrowsing = this.sharingService.getData().categories
       this.retrieveCategory(this.categoriesBrowsing[0].categoryId)
       this.retrieveRecipesForCategory(this.categoriesBrowsing[0].categoryId)
-
     }
-
-
-
-
   }
 
   retrieveRecipesForCategory(categoryId) {
@@ -104,15 +104,16 @@ export class CategoryMainComponent implements OnInit {
 
   receiveFilter($event) {
     this.recipeNums = []
+    this.recipeNumsIngredient = []
     this.filter = $event
     this.categoryBrowsing = "Filter Results"
-    this.recipeNums = []
     console.log("*********** PARENT MAIN got FILTER INFO : " + this.filter)
-    this.doFilterForIngredient()
+    this.doFilterForIngredientTEST()
   }
 
   receiveRatingFilter($event) {
     this.recipeNums = []
+    this.recipeNumsRating = []
     this.categoryBrowsing = "Filter Results"
     this.ratingFilter = $event
     console.log("*********** PARENT MAIN got RATING FILTER INFO : " + this.ratingFilter)
@@ -121,6 +122,7 @@ export class CategoryMainComponent implements OnInit {
 
   receiveDurationFilter($event) {
     this.recipeNums = []
+    this.recipeNumsDuration = []
     this.categoryBrowsing = "Filter Results"
     this.durationFilter = $event
     console.log("*********** PARENT MAIN got DURATION FILTER INFO : " + this.durationFilter)
@@ -129,6 +131,7 @@ export class CategoryMainComponent implements OnInit {
 
   receiveCalorieFilter($event) {
     this.recipeNums = []
+    this.recipeNumsCalorie = []
     this.categoryBrowsing = "Filter Results"
     this.calorieFilter = $event
     console.log("*********** PARENT MAIN got CALORIE FILTER INFO : " + this.durationFilter)
@@ -186,9 +189,11 @@ export class CategoryMainComponent implements OnInit {
         var time = temp[temp.length - 2]
         console.log("TIME : " + time)
         if (time <= end && time >= start) {
-          this.recipeNums.push(recipe.recipeId)
+          this.recipeNumsDuration.push(recipe.recipeId)
         }
       }
+      console.log(this.recipeNumsDuration)
+      this.determineActiveFilters()
     },
       error => {
         console.log("****** browse category recipe retrieval " + error);
@@ -206,9 +211,12 @@ export class CategoryMainComponent implements OnInit {
         var calorie = temp[temp.length - 1]
         console.log("CALORIE : " + calorie)
         if (calorie <= max && calorie >= min) {
-          this.recipeNums.push(recipe.recipeId)
+          this.recipeNumsCalorie.push(recipe.recipeId)
         }
       }
+      console.log(this.recipeNumsCalorie)
+      this.determineActiveFilters()
+
     },
       error => {
         console.log("****** browse category recipe retrieval " + error);
@@ -216,52 +224,159 @@ export class CategoryMainComponent implements OnInit {
     )
   }
 
-  doFilterForIngredient() {
- this.recipeService.getRecipes().subscribe(res => {
+  doFilterForIngredientTEST() {
+    this.recipeService.getRecipes().subscribe(res => {
       this.recipes = res.recipeEntities
       for (let recipe of this.recipes) {
+        var allInside = true
         for (let ingredient of this.filter) {
-          if (recipe.ingredients.includes(ingredient)) {
-            this.recipeNums.push(recipe.recipeId)
+          if (!recipe.ingredients.includes(ingredient)) {
+            allInside = false
             break
           }
         }
+        if (allInside == true) {
+          this.recipeNumsIngredient.push(recipe.recipeId)
+          console.log("all ingredients")
+        }
       }
+      console.log(this.recipeNumsIngredient)
+      this.determineActiveFilters()
     },
-    error => {
-      console.log("****** browse category recipe retrieval " + error);
-    }
-  )
-}
-
+      error => {
+        console.log("****** browse category recipe retrieval " + error);
+      }
+    )
+  }
 
   retrieveAllReviewsByRecipeId(id) {
     this.reviewService.retrieveReviewsByRecipeId(id).subscribe(res => {
       this.reviews = res.reviewEntities;
       console.log("Reviews: " + this.reviews)
-      if (this.reviews.length == 0) {
-        console.log("RECIPE " + id + " NO REVIEWS")
-        this.recipeNums.push(id)
-      } else {
-        this.sum = 0
-        var count: number = 0
-        for (let review of this.reviews) {
-          console.log("RECIPE " + id + " HAS REVIEWS")
-          this.sum = this.sum + review.rating
-          count = count + 1
-        }
-        console.log(this.sum)
-        var avg = this.sum / count
-        if (this.ratingFilter <= avg) {
-          this.recipeNums.push(id)
-        } else {
-          console.log("RECIPE REJECTED")
-        }
+
+      this.sum = 0
+      var count: number = 0
+      for (let review of this.reviews) {
+        console.log("RECIPE " + id + " HAS REVIEWS")
+        this.sum = this.sum + review.rating
+        count = count + 1
       }
+      console.log(this.sum)
+      var avg = this.sum / count
+      if (this.ratingFilter <= avg) {
+        this.recipeNumsRating.push(id)
+      } else {
+        console.log("RECIPE REJECTED")
+      }
+      this.determineActiveFilters()
     }
     )
   };
 
-  
+  determineActiveFilters() {
+    this.activeFilters = []
+    if (this.filter.length != 0) { //filter for ingredients 
+      this.activeFilters.push("ingredient")
+    }
+
+    if (this.ratingFilter != 0) { //filter for ratings
+      this.activeFilters.push("rating")
+    }
+
+    if (this.durationFilter.length != 0) { //filter for duration
+      this.activeFilters.push("duration")
+    }
+
+    if (this.calorieFilter.length != 0) { //filter for calories
+      this.activeFilters.push("calories")
+    }
+    console.log("ACTIVE FILTERS : " + this.activeFilters)
+    this.retrieveFilteredResults()
+
+  }
+
+  retrieveFilteredResults() {
+    console.log("FILTERING")
+    var temp = []
+    var emptyResult = false
+    if (this.activeFilters.includes("ingredient")) {
+      if (this.recipeNumsIngredient.length == 0) {
+        emptyResult = true
+        console.log("TEMP EMPTY")
+
+      } else {
+        temp.push(this.recipeNumsIngredient)
+        console.log("TEMP NOT EMPTY in")
+      }
+    }
+
+    if (this.activeFilters.includes("rating")) {
+      if (this.recipeNumsRating.length == 0) {
+        emptyResult = true
+        console.log("TEMP EMPTY")
+      } else {
+        temp.push(this.recipeNumsRating)
+        console.log("TEMP NOT EMPTY ra")
+      }
+    }
+
+    if (this.activeFilters.includes("duration")) {
+      if (this.recipeNumsDuration.length == 0) {
+        emptyResult = true
+        console.log("TEMP EMPTY")
+      } else {
+        temp.push(this.recipeNumsDuration)
+        console.log("TEMP NOT EMPTY du")
+      }
+    }
+
+    if (this.activeFilters.includes("calories")) {
+      if (this.recipeNumsCalorie.length == 0) {
+        emptyResult = true
+        console.log("TEMP EMPTY")
+      } else {
+        temp.concat(this.recipeNumsCalorie)
+        console.log("TEMP NOT EMPTY ca")
+      }
+    }
+
+    if (emptyResult) {
+      this.recipeNums = []
+    } else if (this.activeFilters.length == 1) {
+      this.recipeNums = temp[0]
+    }
+    else {
+      for (var i = 0; i < this.activeFilters.length; i++) {
+        this.recipeNums = temp[i].filter(e1 => temp[i + 1].includes(e1))
+      }
+    }
+    console.log("recipe nums " + this.recipeNums)
+  }
+
+//   doSort() {
+//     var arr = []
+//     if (this.sortType == "Rating") {
+//       for (let id of this.recipeNums) {
+//         id : value= id.valueOf()
+//         this.reviewService.retrieveReviewsByRecipeId(id).subscribe(res => {
+//           this.reviews = res.reviewEntities;
+//           console.log("Reviews: " + this.reviews)
+
+//           this.sum = 0
+//           var count: number = 0
+//           for (let review of this.reviews) {
+//             console.log("RECIPE " + id + " HAS REVIEWS")
+//             this.sum = this.sum + review.rating
+//             count = count + 1
+//           }
+//           console.log(this.sum)
+//           var avg = this.sum / count
+//           arr.push({ id: id, val: avg })
+//         }
+//         )
+//       };
+//     }
+//   }
+// }
 
 }

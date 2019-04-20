@@ -23,7 +23,7 @@ export class FilterMainIngredientSideBarComponent implements OnInit {
   seasonal: Category[] = [];
   nestedForm: FormGroup
   mainIngredients: Array<String> = [
-    'Chicken', 'Fish', 'Beef', 'Pork', 'Shellfish', 'Lamb'
+    'Chicken', 'Fish', 'Beef', 'Pork', 'Shellfish', 'Lamb', 'Rice'
   ]
   selectedIngredientValues = []
   ratingValue 
