@@ -7,11 +7,11 @@ import { SharingServiceService } from '../../service/sharing-service.service';
 import {FormBuilder, FormGroup, FormArray} from '@angular/forms'
 
 @Component({
-  selector: 'app-category-side-bar',
-  templateUrl: './category-side-bar.component.html',
-  styleUrls: ['./category-side-bar.component.css']
+  selector: 'app-filter-main-ingredient-side-bar',
+  templateUrl: './filter-main-ingredient-side-bar.component.html',
+  styleUrls: ['./filter-main-ingredient-side-bar.component.css']
 })
-export class CategorySideBarComponent implements OnInit {
+export class FilterMainIngredientSideBarComponent implements OnInit {
 
   categories: Category[] = [];
   category: Category
@@ -26,9 +26,11 @@ export class CategorySideBarComponent implements OnInit {
     'Chicken', 'Fish', 'Beef', 'Pork', 'Shellfish', 'Lamb'
   ]
   selectedIngredientValues = []
+  ratingValue 
 
  
   @Output() messageEvent = new EventEmitter<string>()
+  @Output() ratingFilter = new EventEmitter()
 
   constructor(private _fb:FormBuilder,private categoryService: CategoryService,public sharingService: SharingServiceService) { }
 
@@ -103,6 +105,11 @@ retrieveCategory(categoryId:number) {
     this.messageEvent.emit(message)
   }
 
+  sendRatingMessage(message) {
+    console.log("EMITTING RATING : " + message)
+    this.ratingFilter.emit(message)
+  }
+
   addMainIngredientControls() {
     const arr = this.mainIngredients.map(element => {
       return this._fb.control(false)
@@ -125,5 +132,10 @@ retrieveCategory(categoryId:number) {
     this.sendMessage(this.selectedIngredientValues)
   }
 
+  getRatingFilter() {
+    console.log(this.ratingValue)
+    this.sendRatingMessage(this.ratingValue)
+  }
 
 }
+

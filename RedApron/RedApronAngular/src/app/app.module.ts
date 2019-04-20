@@ -58,6 +58,8 @@ import { PaymentComponent } from './cart/checkout/payment/payment.component';
 import { CheckoutPageComponent } from './cart/checkout/checkout-page/checkout-page.component';
 import { ReviewPastRecipesComponent } from './review-past-recipes/review-past-recipes.component';
 import { ReviewCreationComponent } from './review-past-recipes/review-creation/review-creation.component';
+import { MatSliderModule } from '@angular/material';
+import { FilterMainIngredientSideBarComponent } from './browse/filter-main-ingredient-side-bar/filter-main-ingredient-side-bar.component';
 import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
 import { UserUpdateComponent } from './User/user-update/user-update.component';
 
@@ -96,6 +98,7 @@ import { UserUpdateComponent } from './User/user-update/user-update.component';
     CheckoutPageComponent,
     ReviewPastRecipesComponent,
     ReviewCreationComponent,
+    FilterMainIngredientSideBarComponent,
     UserTransactionsComponent,
     UserUpdateComponent,
   ],
@@ -117,6 +120,7 @@ import { UserUpdateComponent } from './User/user-update/user-update.component';
     NgbModule,
     HttpClientModule,
     MatDialogModule,
+    MatSliderModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyCwJTZPr6Ed_SuPojaVn0-S1CxZ4VwSQGc'
     }),
