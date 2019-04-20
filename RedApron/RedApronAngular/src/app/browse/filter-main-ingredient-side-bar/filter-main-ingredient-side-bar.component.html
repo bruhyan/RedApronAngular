@@ -1,7 +1,8 @@
 <div class="py-5 container" style="margin-left: 55px;">
   <h3>Filter By:</h3>
   <div class="card" style="margin-top:20px">
-    <h5 class="card-header">Main Ingredient</h5>
+    <h5 class="card-header">Main Ingredient<a style="float:right; color: rgb(59, 58, 58);" href="javascript:void(0);" (click)="clearIngredientFilter()">Clear</a></h5>
+
     <div class="card-body">
       <div *ngFor="let control of mainIngredientsArray.controls; let i = index;" style="margin-bottom:10px">
 
@@ -13,10 +14,68 @@
     </div>
   </div>
   <div class="card" style="margin-top:20px">
-    <h5 class="card-header">Rating</h5>
+    <h5 class="card-header">Rating<a style="float:right; color: rgb(59, 58, 58);" href="javascript:void(0);" (click)="clearRatingFilter()">Clear</a></h5>
     <div class="card-body">
-      <mat-slider min="0" max="5" step="0.1" thumbLabel tickInterval="1" [(ngModel)] = "ratingValue" (change)="getRatingFilter()"></mat-slider>
+      <mat-slider min="0" max="5" step="0.1" thumbLabel tickInterval="1" [(ngModel)]="ratingValue"
+        (change)="getRatingFilter()"></mat-slider>
     </div>
   </div>
+  <div class="card" style="margin-top:20px">
+    <h5 class="card-header">Cooking Duration (min)<a style="float:right; color: rgb(59, 58, 58);" href="javascript:void(0);" (click)="clearDurationFilter(filterForm)">Clear</a></h5>
+    <div class="card-body">
+      <form #filterForm="ngForm" (ngSubmit)="onSubmit(filterForm)">
+        <div class="form-group">
+          <div class="row">
+            <div class="col-md-3">
+              <input [(ngModel)]="startTime" name="startTime" id="startTime" type="text" class="form-control" required>
+            </div>
+            <div class="col-md-3" style="text-align:center">
+             <h5>to</h5> 
+              </div>
+            <div class="col-md-3">
+              <input [(ngModel)]="endTime" name="endTime" id="endTime" type="text" class="form-control" required>
+            </div>
+            <div class="col-md-3">
+              <button class="btn btn-primary"  [disabled]="!filterForm.valid">Filter</button>
+              
+            </div>
+          </div>
+          <br />
+          <div class="alert alert-danger" *ngIf="startTime>endTime">Min time should be lesser or equal to max time</div>
+          <div class="alert alert-danger" *ngIf="startTime < 1 || endTime < 1">Min time and max time should be positive</div>
+        </div>
+      </form>
+    </div>
+  </div>
+  <div class="card" style="margin-top:20px">
+      <h5 class="card-header">Calorie Range (kcal)<a style="float:right; color: rgb(59, 58, 58);" href="javascript:void(0);" (click)="clearCalorieFilter(calForm)">Clear</a></h5>
+      <div class="card-body">
+        <form #calForm="ngForm" (ngSubmit)="onSubmitCal(calForm)">
+          <div class="form-group">
+            <div class="row" style="margin:10px">
+              <div class="col-md-3">
+                <input [(ngModel)]="minCal" name="minCal" id="minCal" type="text" class="form-control" required>
+              </div>
+              <div class="col-md-3" style="text-align:center">
+               <h5>to</h5> 
+                </div>
+              <div class="col-md-3">
+                <input [(ngModel)]="maxCal" name="maxCal" id="maxCal" type="text" class="form-control" required>
+              </div>
+              <div class="col-md-3">
+                <button class="btn btn-primary"  [disabled]="!calForm.valid" >Filter</button>
+                           
+              </div>
+            </div>
 
+            <div class="alert alert-danger" *ngIf="minCal>maxCal">Min kcal should be lesser or equal to max kcal</div>
+            <div class="alert alert-danger" *ngIf="minCal < 1 || maxCal < 1">Min kcal and max kcal should be positive</div>
+
+          </div>
+          
+        </form>
+      </div>
+    </div>
+
+    
 </div>

@@ -18,11 +18,19 @@ export class CategoryMainComponent implements OnInit {
   categoriesBrowsing: Category[] = [];
   categoryBrowsing: string;
   recipeNums: number[] = [];
+
+  recipeNumsIngredient: number[] = [];
+  recipeNumsRating: number[] = [];
+  recipeNumsDuration: number[] = [];
+  recipeNumsCalorie: number[] = [];
+
   recipes: Recipe[] = [];
   message
   cat: string
   filter
   ratingFilter
+  durationFilter
+  calorieFilter
   reviews: Review[] = []
   sum: number = 0
   constructor(private reviewService: ReviewService, private categoryService: CategoryService, private recipeService: RecipeService, public sharingService: SharingServiceService) { }
@@ -95,7 +103,9 @@ export class CategoryMainComponent implements OnInit {
   }
 
   receiveFilter($event) {
+    this.recipeNums = []
     this.filter = $event
+    this.categoryBrowsing = "Filter Results"
     this.recipeNums = []
     console.log("*********** PARENT MAIN got FILTER INFO : " + this.filter)
     this.doFilterForIngredient()
@@ -103,9 +113,26 @@ export class CategoryMainComponent implements OnInit {
 
   receiveRatingFilter($event) {
     this.recipeNums = []
+    this.categoryBrowsing = "Filter Results"
     this.ratingFilter = $event
     console.log("*********** PARENT MAIN got RATING FILTER INFO : " + this.ratingFilter)
     this.doFilterForRating()
+  }
+
+  receiveDurationFilter($event) {
+    this.recipeNums = []
+    this.categoryBrowsing = "Filter Results"
+    this.durationFilter = $event
+    console.log("*********** PARENT MAIN got DURATION FILTER INFO : " + this.durationFilter)
+    this.doFilterForDuration()
+  }
+
+  receiveCalorieFilter($event) {
+    this.recipeNums = []
+    this.categoryBrowsing = "Filter Results"
+    this.calorieFilter = $event
+    console.log("*********** PARENT MAIN got CALORIE FILTER INFO : " + this.durationFilter)
+    this.doFilterForCalorie()
   }
 
   retrieveCategory(categoryId) {
@@ -149,8 +176,48 @@ export class CategoryMainComponent implements OnInit {
     )
   }
 
-  doFilterForIngredient() {
+  doFilterForDuration() {
     this.recipeService.getRecipes().subscribe(res => {
+      this.recipes = res.recipeEntities
+      var start = this.durationFilter[0]
+      var end = this.durationFilter[1]
+      for (let recipe of this.recipes) {
+        var temp = recipe.shortDescription.split(" ")
+        var time = temp[temp.length - 2]
+        console.log("TIME : " + time)
+        if (time <= end && time >= start) {
+          this.recipeNums.push(recipe.recipeId)
+        }
+      }
+    },
+      error => {
+        console.log("****** browse category recipe retrieval " + error);
+      }
+    )
+  }
+
+  doFilterForCalorie() {
+    this.recipeService.getRecipes().subscribe(res => {
+      this.recipes = res.recipeEntities
+      var min = this.calorieFilter[0]
+      var max = this.calorieFilter[1]
+      for (let recipe of this.recipes) {
+        var temp = recipe.shortDescription.split(" ")
+        var calorie = temp[temp.length - 1]
+        console.log("CALORIE : " + calorie)
+        if (calorie <= max && calorie >= min) {
+          this.recipeNums.push(recipe.recipeId)
+        }
+      }
+    },
+      error => {
+        console.log("****** browse category recipe retrieval " + error);
+      }
+    )
+  }
+
+  doFilterForIngredient() {
+ this.recipeService.getRecipes().subscribe(res => {
       this.recipes = res.recipeEntities
       for (let recipe of this.recipes) {
         for (let ingredient of this.filter) {
@@ -159,14 +226,14 @@ export class CategoryMainComponent implements OnInit {
             break
           }
         }
-
       }
     },
-      error => {
-        console.log("****** browse category recipe retrieval " + error);
-      }
-    )
-  }
+    error => {
+      console.log("****** browse category recipe retrieval " + error);
+    }
+  )
+}
+
 
   retrieveAllReviewsByRecipeId(id) {
     this.reviewService.retrieveReviewsByRecipeId(id).subscribe(res => {
@@ -194,5 +261,7 @@ export class CategoryMainComponent implements OnInit {
     }
     )
   };
+
+  
 
 }

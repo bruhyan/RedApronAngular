@@ -4,7 +4,7 @@ import { CategoryService } from '../../service/category.service'
 import { Category } from '../../models/Category'
 import { SharingServiceService } from '../../service/sharing-service.service';
 
-import {FormBuilder, FormGroup, FormArray} from '@angular/forms'
+import {FormBuilder, FormGroup, FormArray, NgForm} from '@angular/forms'
 
 @Component({
   selector: 'app-filter-main-ingredient-side-bar',
@@ -27,10 +27,18 @@ export class FilterMainIngredientSideBarComponent implements OnInit {
   ]
   selectedIngredientValues = []
   ratingValue 
-
+  period
+  range
+  startTime: number
+  endTime: number
+  minCal: number
+  maxCal: number
  
+  
   @Output() messageEvent = new EventEmitter<string>()
   @Output() ratingFilter = new EventEmitter()
+  @Output() durationFilter = new EventEmitter()
+  @Output() calorieFilter = new EventEmitter()
 
   constructor(private _fb:FormBuilder,private categoryService: CategoryService,public sharingService: SharingServiceService) { }
 
@@ -110,6 +118,16 @@ retrieveCategory(categoryId:number) {
     this.ratingFilter.emit(message)
   }
 
+  sendDurationMessage(message) {
+    console.log("EMITTING DURATION : " + message)
+    this.durationFilter.emit(message)
+  }
+
+  sendCalorieMessage(message) {
+    console.log("EMITTING CALORIE RANGE : " + message)
+    this.calorieFilter.emit(message)
+  }
+
   addMainIngredientControls() {
     const arr = this.mainIngredients.map(element => {
       return this._fb.control(false)
@@ -135,6 +153,56 @@ retrieveCategory(categoryId:number) {
   getRatingFilter() {
     console.log(this.ratingValue)
     this.sendRatingMessage(this.ratingValue)
+  }
+
+  onSubmit(filterForm:NgForm) {
+
+    console.log(this.startTime)
+    console.log(this.endTime)
+    if (this.startTime<=this.endTime && this.startTime > 0 && this.endTime > 0) {
+    this.period = [this.startTime,this.endTime]
+        this.sendDurationMessage(this.period)
+    }
+  }
+
+  onSubmitCal(calForm:NgForm) {
+    console.log(this.minCal)
+    console.log(this.maxCal)
+    console.log(calForm)
+    if (this.minCal<=this.maxCal && this.minCal > 0 && this.maxCal > 0) {
+      this.range = [this.minCal,this.maxCal]
+      this.sendCalorieMessage(this.range)
+    }
+    
+  }
+
+  clearIngredientFilter() {
+    this.selectedIngredientValues = []
+    console.log("CLEARED INGREDIENT FILTER IN CHILD : " + this.selectedIngredientValues)
+    this.sendMessage(this.selectedIngredientValues)
+    this.nestedForm = this._fb.group({
+      filterIngredients: this.addMainIngredientControls()
+    })
+  }
+
+  clearRatingFilter() {
+    this.ratingValue = []
+    console.log("CLEARED RATING FILTER IN CHILD : " + this.ratingValue)
+    this.sendRatingMessage(this.ratingValue)
+  }
+
+  clearDurationFilter(filterForm:NgForm) {
+    this.period = []
+    console.log("CLEARED DURATION FILTER IN CHILD : " + this.period)
+    this.sendDurationMessage(this.period)
+    filterForm.reset()
+  }
+
+  clearCalorieFilter(calForm:NgForm) {
+    this.range = []
+    console.log("CLEARED CALORIE FILTER IN CHILD : " + this.range)
+    this.sendCalorieMessage(this.range)
+    calForm.reset()
   }
 
 }
