@@ -15,6 +15,7 @@ export class CartComponent implements OnInit {
   size : number;
   totalPrice : number = 0.00;
   canCheckout = false
+  item: SubscriptionPlan
 
   constructor(
     private sessionService : SessionService,
@@ -43,7 +44,20 @@ export class CartComponent implements OnInit {
   
   openDialog(): void {
     this.dialog.open(PaymentComponent, { width: '35%', height: '50%' });
+    
+  }
 
+  removeFromCart(itemId:number) {
+    console.log(this.cart)
+    console.log("attempt remove : " + itemId)
+    for( var i = 0; i < this.cart.length; i++){ 
+      if ( i == itemId) {
+        this.cart.splice(i, 1); 
+      }
+   }
+   console.log(this.cart)
+   sessionStorage.cart = JSON.stringify(this.cart)
+   window.location.reload();
   }
 
 }

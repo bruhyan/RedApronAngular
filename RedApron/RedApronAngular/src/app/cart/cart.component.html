@@ -9,13 +9,13 @@
 
              <!--List of carts-->
             <ul class="list-group">
-              <li class="list-group-item" style="border: 0"  *ngFor="let x of cart">
+              <li class="list-group-item" style="border: 0"  *ngFor="let x of cart; let i = index" [attr.data-index]="i">
                 <div class="media">
                   <img src="../../../../assets/images/0401_2PV1_Veg-Gnocchi_011_Square_Web_hi_res.jpg" width="120px"
                     class="mr-3" alt="...">
                   <div class="media-body">
                     <!--remove the cart button-->
-                      <button type="button" class="close" aria-label="Close" style="text-align: right">
+                      <button type="button" class="close" (click)="removeFromCart(i)" aria-label="Close" style="text-align: right">
                         <span aria-hidden="true">&times;</span>
                       </button>
 

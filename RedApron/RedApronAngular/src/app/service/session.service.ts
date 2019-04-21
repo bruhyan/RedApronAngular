@@ -29,10 +29,10 @@ export class SessionService {
     let cart = JSON.parse(sessionStorage.cart);
     cart.push(plan);
     sessionStorage.cart = JSON.stringify(cart);
-    console.log("refresh here?")
-      console.log("refresh here????????")
-      this._refreshNeeded.next()
   }
+
+
+
 
   clearCart():void {
     this.plans = [];
