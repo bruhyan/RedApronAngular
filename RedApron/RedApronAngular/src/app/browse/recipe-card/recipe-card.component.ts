@@ -49,8 +49,8 @@ export class RecipeCardComponent implements OnInit {
   }
 
   setRecipe() {
-    this.sharingService.setData({ "recipe": this.recipe });
-    console.log("RECIPE SET IN CARD : " + this.sharingService.getData().recipe.name)
+    this.sharingService.setRecipeData({ "recipe": this.recipe });
+    console.log("RECIPE SET IN CARD : " + this.sharingService.getRecipeData().recipe.name)
   }
 
   retrieveCategoriesForRecipe(recipeId: number) {

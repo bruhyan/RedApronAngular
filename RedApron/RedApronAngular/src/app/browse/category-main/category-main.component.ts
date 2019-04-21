@@ -47,6 +47,7 @@ export class CategoryMainComponent implements OnInit {
   ngOnInit() {
     console.log("*********** PARENT MAIN : is not from child " + this.sharingService.getData().isGeneral)
     if (this.sharingService.getData().isGeneral) {
+      console.log("REFRESHED OR ENTERED")
       this.categoriesBrowsing = this.sharingService.getData().categories
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
@@ -75,8 +76,8 @@ export class CategoryMainComponent implements OnInit {
         console.log("cat Id browsing : " + cat.categoryId)
         this.retrieveRecipesForCategory(cat.categoryId);
       }
-    } else { // handle old data on refresh
-      console.log("REFRESHEDDDDDD")
+    } else { // handle old data on back
+      console.log("BACKKKKKKKK")
       this.categoriesBrowsing = this.sharingService.getData().categories
       this.retrieveCategory(this.categoriesBrowsing[0].categoryId)
       this.retrieveRecipesForCategory(this.categoriesBrowsing[0].categoryId)
