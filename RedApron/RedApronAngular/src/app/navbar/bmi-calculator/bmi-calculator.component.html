@@ -1,0 +1,100 @@
+
+
+  <div class="row">
+      
+      <div class="center" style="padding-left:600px;">
+        <div class="card" style="padding-left:200px; padding-right:200px;">
+          <div class="card-body">
+              <h3 class="card-title">Calorie Intake & BMI Calculator</h3>
+              <form #bmiForm="ngForm" (ngSubmit)="calc(bmiForm)">
+                  <div class="form-group">
+                    <label for="inputAge">Age </label>
+                    <input type="number" class="form-control" id="inputAge" placeholder="Enter your age" name="ageInput" #ageInput="ngModel" [(ngModel)]="age" min="1" max="100" required>
+                    <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                  </div>
+                  <div class="form-group">
+                    <label for="inputWeight">Gender</label>
+                    <select class="form-control" id="exampleFormControlSelect1" name="genderInput" #genderInput="ngModel" [(ngModel)]="gender" required>
+                        <option value="1">Female</option>
+                        <option value="2">Male</option>
+                        
+                      </select>
+                  </div>
+                  <div class="form-group">
+                      <label for="exampleFormControlSelect1">Lifestyle</label>
+                      <select class="form-control" id="exampleFormControlSelect1" name="lifestyleInput" #lifestyleInput="ngModel" [(ngModel)]="lifestyle" required> 
+                        <option value="1">Sedantary</option>
+                        <option value="2">Low Active</option>
+                        <option value="3">Active</option>
+                        <option value="4">Very Active</option>
+                      </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputHeight">Height (m) </label>
+                        <input type="number" class="form-control" id="inputHeight" placeholder="Enter height in metres" name="heightInput" #heightInput="ngModel" [(ngModel)]="height" min="1" required>
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                      </div>
+                      <div class="form-group">
+                        <label for="inputWeight">Weight (kg)</label>
+                        <input type="number" class="form-control" id="inputWeight" placeholder="Enter weight in kilograms" name="weightInput" #weightInput="ngModel" [(ngModel)]="weight" min="1" required>
+                      </div>
+                  <!-- <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                  </div> -->
+                  <button  type="submit" class="btn btn-md btn-outline-primary" [disabled]="!bmiForm.valid">Submit</button>
+                  <button type="button" id="openButton" class="btn btn-md btn-outline-primary" (click)="open(content)" style="display: none"></button>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ng-template #content let-modal>
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">Your Results</h4>
+          <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <div class="row">
+                  <div class="col-sm-6">
+                      <label for="dateOfBirth">BMI:</label>
+                      <h3>{{bmi}}</h3>
+                      <small>BMI may not be a good indicator of health if you 1) have high muscle mass (athletes) or 2) have lean bone mass (elderly) </small>
+                  </div>
+                  <div class="col-sm-6">
+                      <label for="dateOfBirth">Recommended Daily Calorie Intake:</label>
+                      <h3>{{calorieReq}}</h3>
+                  </div>
+              </div>
+              &nbsp;
+              <div class="row">
+                <div *ngIf="isUnderweight">
+                    <h4>You are Underweight</h4>
+                    <h5>Check out our selection of calorie dense food <a routerLink="/browse" (click)="modal.close()">here!</a></h5>
+                </div>
+                <div *ngIf="isNormal">
+                    <h4>You are Normal</h4>
+                    <h5>Great job keeping fit! Reward yourself with a cheat meal <a routerLink="/browse" (click)="modal.close()">here!</a></h5>
+                </div>
+                <div *ngIf="isOverweight">
+                    <h4>You are Overweight</h4>
+                    <h5>No worries! Check out our selection of delicious, low calorie food <a routerLink="/browse" (click)="modal.close()">here!</a></h5>
+                </div>
+                <div *ngIf="isObese">
+                    <h4>You are Obese</h4>
+                    <h5>No worries! Check out our selection of delicious, low calorie food <a routerLink="/browse" (click)="modal.close()">here!</a></h5>
+                </div>
+              </div>
+              
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Close</button>
+        </div>
+      </ng-template>

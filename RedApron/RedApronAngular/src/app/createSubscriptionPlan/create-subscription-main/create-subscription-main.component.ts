@@ -117,8 +117,7 @@ export class CreateSubscriptionMainComponent implements OnInit {
       console.log(sessionStorage.cart);
       this.done = true;
       this.showSuccess();
-      this.newMessage();
-      this.load();
+      document.getElementById('ninjaButton').click();
 
     },
       error => { console.log('damn')}
