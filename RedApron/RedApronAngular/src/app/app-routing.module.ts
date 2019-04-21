@@ -19,6 +19,7 @@ import { BmiCalculatorComponent } from './navbar/bmi-calculator/bmi-calculator.c
 
 const routes: Routes = [
   {path: '', component : LandingPageComponent},
+  {path: 'contact-form', component: LandingPageComponent},
   {path: 'home', component: LandingPageComponent},
   {path: 'browse/recipeMainView', component : RecipeMainViewComponent},
   {path: 'browse/categoryMain', component :CategoryMainComponent},
