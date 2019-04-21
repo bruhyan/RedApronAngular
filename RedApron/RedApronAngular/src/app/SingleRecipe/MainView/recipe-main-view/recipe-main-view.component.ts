@@ -16,7 +16,7 @@ export class RecipeMainViewComponent implements OnInit {
   constructor(private recipeService: RecipeService,public sharingService: SharingServiceService) { }
 
   ngOnInit() {
-    this.recipe = this.sharingService.getData().recipe
+    this.recipe = this.sharingService.getRecipeData().recipe
     this.num = this.recipe.recipeId
     console.log("PASSING IN DATA FROM RECIPE MAIN VIEW : " + this.num)
   }

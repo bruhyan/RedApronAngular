@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SharingServiceService } from '../../service/sharing-service.service';
 import { CategoryService } from '../../service/category.service'
 import { Category } from '../../models/Category'
@@ -37,12 +37,17 @@ export class CategoryMainComponent implements OnInit {
   sum: number = 0
   keys = ["Rating", "Duration", "Calories"];
   sortType: string
+  refresh
+
+  @Output() messageEvent = new EventEmitter()
+
 
   constructor(private reviewService: ReviewService, private categoryService: CategoryService, private recipeService: RecipeService, public sharingService: SharingServiceService) { }
 
   ngOnInit() {
     console.log("*********** PARENT MAIN : is not from child " + this.sharingService.getData().isGeneral)
     if (this.sharingService.getData().isGeneral) {
+      console.log("REFRESHED OR ENTERED")
       this.categoriesBrowsing = this.sharingService.getData().categories
       var temp = this.categoriesBrowsing[0].name.split(" ")[0]
       if (temp == "Healthy") {
@@ -71,8 +76,8 @@ export class CategoryMainComponent implements OnInit {
         console.log("cat Id browsing : " + cat.categoryId)
         this.retrieveRecipesForCategory(cat.categoryId);
       }
-    } else { // handle old data on refresh
-      console.log("REFRESHEDDDDDD")
+    } else { // handle old data on back
+      console.log("BACKKKKKKKK")
       this.categoriesBrowsing = this.sharingService.getData().categories
       this.retrieveCategory(this.categoriesBrowsing[0].categoryId)
       this.retrieveRecipesForCategory(this.categoriesBrowsing[0].categoryId)
@@ -91,6 +96,16 @@ export class CategoryMainComponent implements OnInit {
         console.log("****** browse category recipe retrieval " + error);
       }
     )
+  }
+
+  receiveNewPlan($event) {
+    this.refresh = $event
+    this.sendNewPlan()
+  }
+
+  sendNewPlan() {
+    console.log("EMITTING " + this.refresh)
+    this.messageEvent.emit(this.refresh)
   }
 
   receiveMessage($event) {
