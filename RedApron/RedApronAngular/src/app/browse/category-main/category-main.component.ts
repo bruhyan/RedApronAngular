@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { SharingServiceService } from '../../service/sharing-service.service';
 import { CategoryService } from '../../service/category.service'
 import { Category } from '../../models/Category'
@@ -37,6 +37,10 @@ export class CategoryMainComponent implements OnInit {
   sum: number = 0
   keys = ["Rating", "Duration", "Calories"];
   sortType: string
+  refresh
+
+  @Output() messageEvent = new EventEmitter()
+
 
   constructor(private reviewService: ReviewService, private categoryService: CategoryService, private recipeService: RecipeService, public sharingService: SharingServiceService) { }
 
@@ -91,6 +95,16 @@ export class CategoryMainComponent implements OnInit {
         console.log("****** browse category recipe retrieval " + error);
       }
     )
+  }
+
+  receiveNewPlan($event) {
+    this.refresh = $event
+    this.sendNewPlan()
+  }
+
+  sendNewPlan() {
+    console.log("EMITTING " + this.refresh)
+    this.messageEvent.emit(this.refresh)
   }
 
   receiveMessage($event) {

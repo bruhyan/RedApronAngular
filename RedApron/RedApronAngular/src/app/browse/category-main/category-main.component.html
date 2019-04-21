@@ -46,4 +46,4 @@
       </div>
     </div>
 
-    <app-create-subscription-main></app-create-subscription-main>
+    <app-create-subscription-main (messageEvent)="receiveNewPlan($event)"></app-create-subscription-main>

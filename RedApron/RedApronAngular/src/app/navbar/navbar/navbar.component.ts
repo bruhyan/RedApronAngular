@@ -23,6 +23,8 @@ export class NavbarComponent implements OnInit {
   constructor(public sessionService : SessionService, private router : Router, private toastr : ToastrService, private sharingService : SharingServiceService) { }
 
   ngOnInit() {
+
+
     this.sharingService.currentMessage.subscribe(message => this.message = message);
     this.cart = JSON.parse(sessionStorage.cart);
     console.log(this.cart);
@@ -65,6 +67,18 @@ export class NavbarComponent implements OnInit {
 
   receiveMessage($event) {
     this.message = $event
+    this.sharingService.currentMessage.subscribe(message => this.message = message);
+    this.cart = JSON.parse(sessionStorage.cart);
+    console.log(this.cart);
+    this.size = this.cart.length;
+    for (var i = 0; i < this.cart.length; i++) {
+      var plan = this.cart[i];
+      console.log(plan.category.price);
+      console.log(plan.numOfRecipes*2.50);
+      this.totalPrice += (plan.category.price * plan.numOfWeeks);
+      this.totalPrice += (plan.numOfRecipes*2.50);
+    }
+
   }
 
 }
