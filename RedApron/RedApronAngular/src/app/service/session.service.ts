@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { User } from '../user';
 import { SubscriptionPlan } from '../models/SubscriptionPlan';
+import {Subject} from 'rxjs';
+import {tap} from 'rxjs/operators'
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +14,12 @@ export class SessionService {
     
    }
 
+   private _refreshNeeded = new Subject<void>()
+
+   get refreshNeeded() {
+    return this._refreshNeeded
+  }
+
    initCart() : void {
     this.plans = [];
     sessionStorage.cart = JSON.stringify(this.plans);
@@ -21,6 +29,9 @@ export class SessionService {
     let cart = JSON.parse(sessionStorage.cart);
     cart.push(plan);
     sessionStorage.cart = JSON.stringify(cart);
+    console.log("refresh here?")
+      console.log("refresh here????????")
+      this._refreshNeeded.next()
   }
 
   clearCart():void {

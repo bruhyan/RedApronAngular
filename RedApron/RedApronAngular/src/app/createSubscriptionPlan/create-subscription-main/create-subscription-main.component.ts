@@ -28,7 +28,7 @@ export class CreateSubscriptionMainComponent implements OnInit {
   selectedCategory : Category;
   message : string = "init";
 
-  // @Output() messageEvent = new EventEmitter<string>();
+  @Output() messageEvent = new EventEmitter();
 
   constructor(private modalService: NgbModal, private categoryService: CategoryService, 
     public sessionService : SessionService, private toastr : ToastrService, private router : Router,
@@ -38,6 +38,7 @@ export class CreateSubscriptionMainComponent implements OnInit {
    }
 
   ngOnInit() {
+    
     this.categoryService.getCategories().subscribe(
       response => {
         this.categories = response.categoryEntities;
@@ -108,7 +109,8 @@ export class CreateSubscriptionMainComponent implements OnInit {
       // this.newSubscriptionPlan.category = this.selectedCategory;
       // console.log("a"+this.newSubscriptionPlan.category);
       // this.getCat();
-      
+      window.location.reload();
+
     }
 
   }
