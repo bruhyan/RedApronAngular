@@ -1,14 +1,14 @@
 <hr>
-<div class="container" style="background: white;">
+<div class="container" style="background: white; padding-bottom: 70px;">
 
   <h1>Tracking your current order here: </h1>
   <br/>
   <app-tracking-map></app-tracking-map>
 
 </div>
-
-<!-- <tbody>
-  <tr> *ngFor="let subscriptionPlan of subscriptionPlans" ; index as i">
+<!-- 
+<tbody>
+  <tr *ngFor="let subscriptionPlan of subscriptionPlans" ; index as i">
     <th scope="row">{{ i+1 }}</th>
     <td>
         <app-review-past-recipes></app-review-past-recipes>
@@ -16,8 +16,40 @@
   </tr>
 </tbody> -->
 
-<hr>
+&nbsp;
 
+<div class="container" style="padding-bottom: 70px">
+    <h1>Your Subscriptions</h1>
+    <small>If you need any assistance (cancellation), you can send in an enquiry ticket <a routerLink="/contact-form">here</a></small>
+    <table class="table table-striped">
+      <thead>
+        
+        <tr>
+          <th scope="col">Plan #:</th>
+          <th scope="col">Start Date: </th>
+          <th scope="col">End Date: </th>
+          <th scope="col"># Weeks:</th>
+          <th scope="col"># Recipes:</th>
+          <th scope="col">Preferences:</th>
+          <th scope="col">Status:</th>
+  
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let plan of subscriptionPlans; index as i">
+          <td scope="row">{{ i + 1 }}</td>
+          <td>{{ plan.startDate }}</td>
+          <td>{{ plan.endDate }}</td>
+          <td>{{ plan.numOfWeeks }}</td>
+          <td>{{ plan.numOfRecipes }}</td>
+          <td>{{ plan.preferences }}</td>
+          <td>{{ plan.status }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  &nbsp;
 
 <div class="container">
   <h1>Share your review of the recipes: </h1>

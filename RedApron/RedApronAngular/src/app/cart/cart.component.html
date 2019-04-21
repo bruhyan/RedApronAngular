@@ -23,7 +23,7 @@
                       <p>Duration: {{x.numOfWeeks}} weeks</p>
                         <p>Recipes/Week: {{x.numOfRecipes}}</p>
                         <p>Delivery Day: {{x.deliveryDay}}</p>
-                        <p>Price: ${{x.category.price}}</p>  
+                        <p>Price: ${{x.category.price * x.numOfWeeks + x.numOfRecipes * 2.5 }}</p>  
                     <!-- <h5 class="mt-0">Healthy for 2</h5>
                     Cras sit amet nibh libero, in gravida nulla. <br /> -->
 
