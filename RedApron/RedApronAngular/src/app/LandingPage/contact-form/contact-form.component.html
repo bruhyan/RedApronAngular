@@ -4,7 +4,7 @@
     <div ><h2>Contact Form</h2></div>
   </div>
   <div class="row pt-4">
-    <div class="col-md-6">
+    <div *ngIf="sessionService.getIsLogin() == true" class="col-md-6">
       <form>
         <p>
           Not sure how you will receive your ingredients? Want a quotation for bulk purchase? Write us and we will reply to 
@@ -12,11 +12,6 @@
           If you are signed in, check your profile page to see our response!
           Otherwise, check your inbox.
         </p>
-        <div *ngIf="sessionService.getIsLogin() == false" class="form-group">
-          <label for="email">Email address</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
-          <small id="emailHelp" class="form-text text-muted"></small>
-        </div>
         <div class="form-group">
           <label for="body">Question: </label>
           <textarea class="form-control" rows="5" #enquiryBody id="body" placeholder="Write your questions here."></textarea>
@@ -26,6 +21,11 @@
       </form>
     </div>
 
+    <div *ngIf="sessionService.getIsLogin() == false" class="col-md-6">
+      <p>Want to send us a question?</p>
+      <button routerLink="/userLogin" class="btn btn-outline-danger">Login</button>&nbsp;&nbsp; or &nbsp;&nbsp;<button routerLink="/userRegister" color="primary" mat-raised-button>Register</button>
+      <p>So our staff can get back to you ASAP!</p>
+    </div>
     <div class="col-md-6">
       <app-gmap></app-gmap>
     </div>
