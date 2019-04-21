@@ -12,6 +12,8 @@ import { UserProfileComponent } from './User/user-profile/user-profile.component
 import { CartComponent } from './cart/cart.component';
 import { CheckoutPageComponent} from './cart/checkout/checkout-page/checkout-page.component';
 import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
+import { UserUpdateComponent } from './User/user-update/user-update.component';
+import { BmiCalculatorComponent } from './navbar/bmi-calculator/bmi-calculator.component';
 
 
 
@@ -27,7 +29,8 @@ const routes: Routes = [
   {path: 'userProfile', component: UserProfileComponent},
   {path: 'cart', component :CartComponent},
   {path: 'checkout', component: CheckoutPageComponent},
-  {path: 'userTransactions', component: UserTransactionsComponent}
+  {path: 'userTransactions', component: UserTransactionsComponent},
+  {path: 'bmiCalculator', component: BmiCalculatorComponent}
 ];
 
 @NgModule({

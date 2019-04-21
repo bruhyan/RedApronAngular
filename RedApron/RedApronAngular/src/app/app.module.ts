@@ -61,6 +61,8 @@ import { ReviewCreationComponent } from './review-past-recipes/review-creation/r
 import { MatSliderModule } from '@angular/material';
 import { FilterMainIngredientSideBarComponent } from './browse/filter-main-ingredient-side-bar/filter-main-ingredient-side-bar.component';
 import { UserTransactionsComponent } from './User/user-transactions/user-transactions.component';
+import { UserUpdateComponent } from './User/user-update/user-update.component';
+import { BmiCalculatorComponent } from './navbar/bmi-calculator/bmi-calculator.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +101,8 @@ import { UserTransactionsComponent } from './User/user-transactions/user-transac
     ReviewCreationComponent,
     FilterMainIngredientSideBarComponent,
     UserTransactionsComponent,
+    UserUpdateComponent,
+    BmiCalculatorComponent,
   ],
   imports: [
     ToastrModule.forRoot(),

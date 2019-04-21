@@ -47,6 +47,10 @@ export class NavbarComponent implements OnInit {
     this.sessionService.setIsLogin(false);
     this.sessionService.setCurrentUser(null);
     this.sessionService.clearCart();
+    this.cart = []
+    this.size = 0;
+    this.totalPrice = 0
+    
     this.showSuccess();
     this.router.navigate(["/home"]);
   }

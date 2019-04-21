@@ -15,9 +15,15 @@
                   <img alt="Card image cap" class="card-img-top img-fluid" src="../../../../assets/images/browseHeader.png" />
                 </div>
             </div>
-        <h2>random picks</h2>
+
+            <div style="text-align: center">
+              <h1>Saw something you like? </h1>
+              <button type="button" class="btn btn-outline-danger btn-lg" style="width: 300px; font-size: 200%" (click)="subscribe()">Subscribe</button>
+            </div>
+            &nbsp;
+        <h2>Random Picks</h2>
       </mat-card-title>
-      <mat-card-subtitle>don't know where to start? here are some delicious recipes you can try!</mat-card-subtitle>
+      <mat-card-subtitle>Don't know where to start? here are some delicious recipes you can try!</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
 
@@ -56,4 +62,8 @@
     </mat-card-content>
 
   </mat-card>
+
+  <div>
+    <app-create-subscription-main></app-create-subscription-main>
+  </div>
 </div>

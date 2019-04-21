@@ -1,31 +1,49 @@
 <header>
   <div style="position:relative">
     <img alt="Card image cap" class="card-img-top" src='../../../../assets/images/{{cat}}' />
-    <h3 style='text-align: center' class="centered">Browsing "{{categoryBrowsing}}"</h3>
+    <h3 style='text-align: center' class="centered">{{categoryBrowsing}}</h3>
   </div>
 </header>
 <div class="row">
   <div class="col-md-3">
-    <app-category-side-bar (messageEvent) = "receiveMessage($event)"></app-category-side-bar>
-    <app-filter-main-ingredient-side-bar (messageEvent) = "receiveFilter($event)" (ratingFilter)="receiveRatingFilter($event)"></app-filter-main-ingredient-side-bar>
+    <app-category-side-bar (messageEvent)="receiveMessage($event)"></app-category-side-bar>
+    <app-filter-main-ingredient-side-bar (messageEvent)="receiveFilter($event)"
+      (ratingFilter)="receiveRatingFilter($event)" (durationFilter)="receiveDurationFilter($event)"
+      (calorieFilter)="receiveCalorieFilter($event)"></app-filter-main-ingredient-side-bar>
   </div>
 
   <div class="col-md-9">
     <div class="container">
-      <br />
-      <br />
-        <!-- Message Cat Id Viewing : {{message}} -->
-        <h3>Recipes :</h3>
 
       <div class="row">
-        <div class="col-md-4" style="margin-bottom: 40px !important" *ngFor="let num of recipeNums">
-          <app-recipe-card [num] = "num"></app-recipe-card>
+        <div class="col-md-6">
+          <br />
+          <h5>Showing filter results for:</h5>
+          <!-- Message Cat Id Viewing : {{message}} -->
+          <p>Main Ingredient : [{{filter}}], Rating : [{{ratingFilter}}], Duration : [{{durationFilter}}], Calories :
+            [{{calorieFilter}}]</p>
+          <h3>Recipes :</h3>
+          <br />
+        </div>
+        <div class="col-md-6">
+            <br />
+          <label for="sort">Sort by:</label>
+          <div class="input-group">
+            <select id="sort" name="sort" [(ngModel)]="sortType" required="true">
+              <option *ngFor="let key of keys" value="{{key}}">{{key}}</option>
+            </select>
+          </div>
+          </div>
+
+          <div class="row">
+            <div class="col-md-4" style="margin-bottom: 40px !important" *ngFor="let num of recipeNums">
+              <app-recipe-card [num]="num"></app-recipe-card>
+            </div>
+          </div>
+
+
         </div>
       </div>
-
-
     </div>
-  </div>
-</div>
 
-<app-create-subscription-main></app-create-subscription-main>
+    <app-create-subscription-main></app-create-subscription-main>
