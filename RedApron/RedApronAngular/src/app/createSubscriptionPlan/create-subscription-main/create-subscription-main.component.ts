@@ -78,6 +78,11 @@ export class CreateSubscriptionMainComponent implements OnInit {
     if(startDate < today) {
       console.log('hell naw');
       this.showFailure();
+    }else if(this.newSubscriptionPlan.numOfRecipes < 1 || this.newSubscriptionPlan.numOfWeeks < 1) {
+      this.showFailure2();
+    }else if(this.newSubscriptionPlan.numOfRecipes > 15 || this.newSubscriptionPlan.numOfWeeks > 52) {
+        this.showFailure3();
+  
     }else {
       let startDate = new Date(this.newSubscriptionPlan.startDate);
       let endDate = new Date();
@@ -132,6 +137,14 @@ export class CreateSubscriptionMainComponent implements OnInit {
 
   showFailure() {
     this.toastr.error('Selected date is earlier than current date', 'Failed to add plan to cart')
+  }
+
+  showFailure2() {
+    this.toastr.error('Number of weeks/recipes must be at least 1', 'Failed to add plan to cart')
+  }
+
+  showFailure3() {
+    this.toastr.error('For customised plans such as corporate plans, please contact us at business@redapron.com', 'Failed to add to cart : Amount exceeded')
   }
 
   showSuccess() {

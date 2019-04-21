@@ -33,6 +33,10 @@ export class BrowseCategoryComponent implements OnInit {
     this.retrieveAllRecipes();
   }
 
+  subscribe() {
+    document.getElementById('subscribeBtn').click()
+  }
+
   retrieveAllCategories() {
     this.categoryService.getCategories().subscribe(res => {
       console.log(res);

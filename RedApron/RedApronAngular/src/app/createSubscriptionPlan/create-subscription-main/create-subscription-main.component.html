@@ -14,15 +14,6 @@
         </div>
         <div class="col-md-6">
           <div class="form-group">
-            <!-- <label for="startDate">Start Date:</label>
-            <div class="input-group">
-              <input id="startDate" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker
-                #dp1="ngbDatepicker" [(ngModel)]="newSubscriptionPlan.startDate">
-              <div class="input-group-append">
-                <button class="btn btn-outline-secondary" (click)="dp1.toggle()" type="button"><i
-                    class="fa fa-calendar"></i></button>
-              </div>
-            </div> -->
             <br />
 
             <label for="startDate">Start Date:</label>
@@ -33,12 +24,16 @@
 
             <label for="numWeeks">No. of Weeks:</label>
             <input type="number" id="numWeeks" class="form-control" placeholder="Enter duration of subscription"
-              name="numWeeks" #numWeeks="ngModel" [(ngModel)]="newSubscriptionPlan.numOfWeeks" required>
+              name="numWeeks" #numWeeks="ngModel" [(ngModel)]="newSubscriptionPlan.numOfWeeks" min="1" max="52" required>
+              <small>Minimum 1, maximum 52 week(s) per plan</small>
+            <br />
             <br />
             <label for="numRecipes">No. of Recipes/Week :</label>
             <input type="number" id="numRecipes" class="form-control" placeholder="Enter number of recipes per week"
-              name="numRecipes" #numRecipes="ngModel" [(ngModel)]="newSubscriptionPlan.numOfRecipes" required>
+              name="numRecipes" #numRecipes="ngModel" [(ngModel)]="newSubscriptionPlan.numOfRecipes" min='1' max="15" required>
+              <small>Each recipe cost $2.50 flat, minimum 1, maximum 15 per plan</small>
             <br />
+            <br/>
             <label for="deliveryDate">Delivery Date:</label>
             <div class="input-group">
               <select id="selDelDate" name="deliveryDate" #deliveryDate="ngModel"
@@ -74,7 +69,7 @@
 
 <!-- <button class="btn btn-lg btn-outline-primary" (click)="open(content)">Launch demo modal</button> -->
 <div style="overflow: auto;">
-    <button type="button" class="btn btn-info btn-lg" (click)="open(content)" style="
+    <button type="button" id="subscribeBtn" class="btn btn-info btn-lg" (click)="open(content)" style="
     margin: 40px;
     position: fixed;
     bottom:0;
